@@ -1,0 +1,15 @@
+@use '../../rp-theme-1-dark-pallete.scss' as darkColors;
+@use '../../../utilities/color-utilities.scss' as colorUtilities;
+
+body.rp-theme-1.dark {
+  .loading-bar {
+    @each $saturation,$color in  map-get(darkColors.$rp-theme-1-dark-primary-pallete, primary) {
+      &.bar-color-#{$saturation}::before {
+        background-color: $color;
+      }
+    }
+    &::before {
+      background-color: var(--primary-100);
+    }
+  }
+}

@@ -1,0 +1,12 @@
+<ul *ngIf="data" class="p-3 flex flex-col gap-1">
+  <li *ngFor="let item of data">
+    <ngx-button
+      type="button"
+      variation="transparent"
+      (click)="valueChange.emit(item)"
+      [class.active]="selectedData === item"
+    >
+      {{ item }}
+    </ngx-button>
+  </li>
+</ul>

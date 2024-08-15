@@ -1,0 +1,24 @@
+<button
+  type="button"
+  (click)="clickOption()"
+  [ngClass]="_optionData.selected ? '!bg-neutral-800/10 dark:!bg-neutral-100/10' : ''"
+  class="
+   
+    flex 
+    justify-start 
+    items-center 
+    w-full 
+    h-12 
+    pl-4 
+    pr-2 
+    hover:bg-neutral-400/10 
+    dark:hover:bg-neutral-100/5
+    rounded-md"
+>
+  <ng-container *ngIf="_optionData.multi">
+    <ngx-input-checkbox [checked]="fcSelected.value" class="mr-3 pointer-events-none"></ngx-input-checkbox>
+  </ng-container>
+  <div class="overflow-hidden whitespace-nowrap overflow-ellipsis" #content>
+    <ng-content></ng-content>
+  </div>
+</button>

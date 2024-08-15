@@ -1,0 +1,92 @@
+//@import '~@angular/cdk/overlay-prebuilt.css'; this shit brakes tailwind..wtf...Solution now is to update angular.json and put the file in the style loading
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@config "../tailwind.config.js";
+
+body {
+    background-color: var(--color-default);
+}
+a {
+    text-decoration: none;
+    color: inherit;
+}
+p {
+    max-width: 55rem;
+}
+router-outlet + * {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+.element-edit-active {
+    position: relative;
+    outline: 1px dashed var(--color-default-inverse);
+    z-index: 1;
+}
+.component-drag-handler {
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 0px;
+    z-index: 1;
+    background-color: transparent;
+    font-size: 10px;
+    color: inherit;
+    transform: translate(-50%,-50%);
+}
+.pointer-events-none {
+    pointer-events: none;
+}
+.editor-side-panel {
+    width: 250px;
+}
+hr {
+    background-color: rgba(var(--data-mode-inverse-color-rgb),var(--opacity-10));
+    height: 2px !important;
+    border: none !important;
+}
+.z-index-max {
+    z-index: 1000;
+}
+.container-min-height {
+    min-height: 10px;
+}
+.drag-helper {
+    display: none;
+    background-color: red;
+    height: 3px;
+    width: 0px;
+    position: absolute;
+}
+
+.bordered {
+    border: 1px solid rgba(var(--data-mode-inverse-color-rgb),var(--opacity-15));
+}
+
+.template-container {
+    position: relative;
+    min-height: 400px;
+    overflow: hidden;
+    .template {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 1152px;
+        height: auto;
+        transform-origin: top left;
+        transform: scale(.25);
+    }
+}
+.component-hover {
+    outline: rgba(var(--data-mode-inverse-color-rgb),1) dashed 1px;
+    z-index: 100;
+}
+.component-active {
+    outline: rgba(var(--data-mode-inverse-color-rgb),1) dashed 1px;
+
+}
+.Appkit4-icon {
+    width: initial !important;
+    height: initial !important;
+}

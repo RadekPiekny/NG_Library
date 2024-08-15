@@ -1,0 +1,52 @@
+@use '../../rp-theme-1-light-pallete.scss' as lightColors;
+@use '../../../utilities/color-utilities.scss' as colorUtilities;
+
+body.rp-theme-1 {
+  .loading-bar {
+    --bar-width: 60%;
+    --bar-height: 2px;
+    height: var(--bar-height);
+    position: relative;
+    overflow: hidden;
+    
+    @each $saturation,$color in  map-get(lightColors.$rp-theme-1-light-primary-pallete, primary) {
+      &.bar-color-#{$saturation}::before {
+        background-color: $color;
+      }
+    }
+    &.on {
+      &::before {
+        animation: loading-bar 1.6s ease-in-out infinite;
+      }
+    }
+    &.on.fast {
+      &::before {
+        animation: loading-bar .8s ease-in-out infinite;
+      }
+    }
+    &.on.slow {
+      &::before {
+        animation: loading-bar 2.4s ease-in-out infinite;
+      }
+    }
+    &::before {
+      content: '';
+      position: absolute;
+      transform: translateX(-100%);
+      @include colorUtilities.insertBackground(primary, 100);
+      width: var(--bar-width);
+      height: var(--bar-height);
+      transform-origin: 0 0;
+    }
+
+    @keyframes loading-bar {
+      0% {
+          transform: translateX(-100%);
+      }
+      100% {
+          transform: translateX(calc(100% + 1.1 * var(--bar-width)));
+      }
+    }
+  }
+}
+

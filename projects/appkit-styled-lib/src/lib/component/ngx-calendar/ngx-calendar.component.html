@@ -1,0 +1,28 @@
+<div class="relative d-flex flex-column w-80 bg-white dark:bg-neutral-800 overflow-hidden">
+  <ngx-calendar-new-selection *ngIf="showChangeSelection" @slideFromLeft
+    [year]="_year" 
+    [month]="_month" 
+    (valueChange)="perChange($event)" 
+    class="absolute top-0 h-full w-full dark:bg-neutral-800 z-10">
+  </ngx-calendar-new-selection>
+  <div class="flex px-3 py-2">
+    <ngx-button variation='transparent' cssClass="!p-2" (click)="showChangeSelection = true">{{ _year }} {{ monthList[_month - 1].name }}</ngx-button>
+    <div class="ml-auto flex align-center">
+      <ngx-button variation='transparent' icon (click)="previous()" ><span class="Appkit4-icon icon-left-chevron-outline relative -left-px"></span></ngx-button>
+      <ngx-button variation='transparent' icon (click)="next()" ><span class="Appkit4-icon icon-right-chevron-outline relative left-px"></span></ngx-button>
+    </div>
+  </div>
+  <div>
+    <ngx-calendar-month
+      [disableFrom]="_disableFrom"
+      [disableTo]="_disableTo"
+      [disableRange]="_disableRange"
+      [year]="_year"
+      [month]="_month"
+      class="block px-3 pb-3"
+      [size]="size"
+      (dateChange)="dateChange.emit($event)"
+      [selection]="_selectedDate"
+    ></ngx-calendar-month>
+  </div>
+</div>

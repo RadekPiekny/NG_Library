@@ -1,0 +1,22 @@
+<form [formGroup]="form" class="flex flex-col gap-4">
+    <ngx-tab [filled]="true">
+        <ngx-tab-item (click)="changeSize('s')" class="flex-1">small</ngx-tab-item>
+        <ngx-tab-item (click)="changeSize('sm')" class="flex-1">sm</ngx-tab-item>
+        <ngx-tab-item (click)="changeSize('m')" class="flex-1" [active]="true">medium</ngx-tab-item>
+    </ngx-tab>
+    <ngx-input-text label="Label" formControlName="label"></ngx-input-text>
+    <ngx-input-text label="Placeholder" formControlName="placeholder"></ngx-input-text>
+    <ngx-select label="Value" formControlName="value">
+        <ngx-option (click)="reset()">reset</ngx-option>
+        <ngx-option>option 1</ngx-option>
+        <ngx-option>option 2</ngx-option>
+    </ngx-select>
+    <ngx-select label="Icon" formControlName="leftIcon" [overlayWidthExactMatch]="true">
+        <ngx-option [value]="null">reset</ngx-option>
+        <ngx-option *ngFor="let item of appkitIconOutline">{{item.onlyIconName}}</ngx-option>
+    </ngx-select>
+    <!-- placeholder screw the position of label. I am not sure if its supposed to even exist in this type of control..-->
+    <ngx-input-text label="Placeholder" formControlName="placeholder" *ngIf="false"></ngx-input-text>
+    <input-base [form]="baseForm.general" [err]="false" (formChange)="baseChange($event)"></input-base>
+    <ngx-toggle label="Multi" (valueChange)="changeToMulti($event)"></ngx-toggle>
+</form>

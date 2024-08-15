@@ -1,0 +1,8 @@
+<ng-container *ngIf="type === 'line'; else cir">
+    <ngx-loader-line [progress]="progress" [indeterminate]="indeterminate" [compact]="compact" class="w-full"></ngx-loader-line>
+</ng-container>
+
+
+<ng-template #cir>
+    <ngx-loader-spinner [progress]="progress" [indeterminate]="indeterminate" [compact]="compact"></ngx-loader-spinner>
+</ng-template>

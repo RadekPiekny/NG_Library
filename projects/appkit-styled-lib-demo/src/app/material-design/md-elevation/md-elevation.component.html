@@ -1,0 +1,10 @@
+<div class="d-flex flex-wrap">
+  <div
+    *ngFor="let el of count"
+    class="d-flex justify-content-center align-items-center md-elevation-{{
+      el
+    }}dp example p-3"
+  >
+    <input type="text" value="dp-{{ el }}" />
+  </div>
+</div>

@@ -1,0 +1,12 @@
+<form [formGroup]="form" class="flex flex-col gap-4">
+    <div class="flex flex-col gap-3">
+        <div class="text-l">State</div>
+        <ngx-radio id="radioFalse" label="Close" formControlName="open" [value]="false" name="open"></ngx-radio>
+        <ngx-radio id="radioTrue" label="Open" formControlName="open" [value]="true" name="open"></ngx-radio>
+    </div>
+    <div class="flex flex-col gap-3">
+        <div class="text-l">Automatic close</div>
+        <ngx-radio label="Yes" formControlName="autoClose" [value]="true" name="autoClose"></ngx-radio>
+        <ngx-radio label="No" formControlName="autoClose" [value]="false" name="autoClose"></ngx-radio>
+    </div>
+</form>

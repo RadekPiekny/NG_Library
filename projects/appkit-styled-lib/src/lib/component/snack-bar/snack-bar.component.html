@@ -1,0 +1,16 @@
+<div class="p-3 text-center {{data?.type}} relative w-full" *ngIf="data?.display" @slideFromBottom>
+    <div class="absolute left-2 top-0 h-full flex items-center">
+        <ngx-countdown-circle *ngIf="_counterDown$ | async" [duration]="data?.duration" (stopped)="stopped.next(null)"></ngx-countdown-circle>
+    </div>
+    <div class="mx-8 flex justify-center">
+        <span>{{data?.message}}</span>
+        <ng-container *ngIf="_duplicate | async as d">
+            <span class="px-3 py-1 rounded-full w-fit flex justify-center items-center font-semibold leading-4 text-sm dark:bg-white/10 bg-black/5" [tooltip]="'There were duplicate of this message - ' + d">{{d}}</span>
+        </ng-container>
+    </div>
+    <div class="absolute right-2 top-0 h-full flex items-center">
+        <button type="button" (click)="snackClick(data)" class="ms-auto w-8 h-8 bg-white/5 hover:bg-white/10">
+            <span class="Appkit4-icon icon-close-outline"></span>
+        </button>
+    </div>
+</div>

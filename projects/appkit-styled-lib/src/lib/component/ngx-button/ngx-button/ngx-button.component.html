@@ -1,0 +1,7 @@
+<button [attr.id]="_id ? _id : null" [disabled]="_disabled" [type]="_type" [ngClass]="finalClass" class="{{cssClass}}">
+    <ng-container [ngTemplateOutlet]="content"></ng-container>
+</button>
+
+<ng-template #content>
+    <ng-content></ng-content>
+</ng-template>

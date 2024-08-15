@@ -1,0 +1,13 @@
+<div  class="flex flex-col w-72 bg-neutral-800 p-5">
+    <form [formGroup]="newGroup" class="flex flex-col">
+        <label for="">name</label>
+        <input type="text" formControlName="name">
+        <label for="">parentId</label>
+        <input type="text" formControlName="parentId">
+        <label for="">type</label>
+        <input type="text" formControlName="type">
+        <label for="">description</label>
+        <input type="text" formControlName="description">
+    </form>
+    <button class="primary mt-3" (click)="newComponentGroups(newGroup)">create</button>
+</div>

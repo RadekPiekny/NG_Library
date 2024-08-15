@@ -1,0 +1,9 @@
+<div class="px-2 py-1 w-fit mb-5 border border-neutral-800 rounded-md bg-white dark:bg-neutral-800 dark:border-neutral-600 transition-all">
+    <table #table class="border-separate !border-spacing-y-1">
+        <ng-content select="thead"></ng-content>
+        <ng-content select="tbody"></ng-content>
+        <tbody>
+          <ng-content select="tr"></ng-content>
+        </tbody>
+    </table>
+  </div>

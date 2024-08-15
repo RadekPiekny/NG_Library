@@ -1,0 +1,10 @@
+<div class="h-full flex flex-col relative">
+  <div class="flex flex-col flex-1 overflow-auto px-2" #el>
+    <ng-container *ngFor="let year of yearList">
+      <ngx-button variation='secondary' cssClass="w-full" (click)="change(year)" *ngIf="year === selectedYear; else notSelected">{{ year }}</ngx-button>
+      <ng-template #notSelected>
+        <ngx-button variation='transparent' cssClass="w-full" (click)="change(year)">{{ year }}</ngx-button>
+      </ng-template>
+    </ng-container>
+  </div>
+</div>

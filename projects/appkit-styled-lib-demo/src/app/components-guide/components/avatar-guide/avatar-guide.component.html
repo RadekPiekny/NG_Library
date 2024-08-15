@@ -1,0 +1,57 @@
+<div class="text-2xl">Avatar</div>
+<p class="opacity-80">An avatar is a graphical representation of the user.</p>
+<div class="flex flex-col py-4">
+    <component-showcase>
+        <ng-container visual>
+            <ng-container *ngIf="form.value.group; else singleAvatar">
+                <ngx-avatar-group>
+                    <ngx-avatar>{{form.value.text}}1</ngx-avatar>
+                    <ngx-avatar>{{form.value.text}}2</ngx-avatar>
+                    <ngx-avatar>{{form.value.text}}3</ngx-avatar>
+                </ngx-avatar-group>
+            </ng-container>
+            <ng-template #singleAvatar>
+                <ngx-avatar>{{form.value.text}}</ngx-avatar>
+            </ng-template>
+        </ng-container>
+        <ng-container code>
+            <component-code-show [componentCode]="componentCode"></component-code-show>
+        </ng-container>
+        <avatar-guide-form form [form]="form" (formChange)="formChange($event)"></avatar-guide-form>
+    </component-showcase>
+    <div class="px-2 py-1 rounded-md bg-white dark:bg-neutral-850 dark:border-neutral-600 transition-all mt-4">
+        <ngx-tab>
+            <ngx-tab-item [active]="changeTab === 'avatar_singleData'" (click)="changeTab = 'avatar_singleData'">ngx-avatar</ngx-tab-item>
+            <ngx-tab-item [active]="changeTab === 'avatar_GroupedData'" (click)="changeTab = 'avatar_GroupedData'">ngx-avatar-group</ngx-tab-item>
+        </ngx-tab>
+        <table class="w-full">
+          <thead>
+            <tr>
+              <th class="text-left p-3 rounded transition-all">Property name</th>
+              <th class="text-left p-3 rounded transition-all">Type</th>
+              <th class="text-left p-3 rounded transition-all">Data type</th>
+              <th class="text-left p-3 rounded transition-all">Description</th>
+            </tr>
+          </thead>
+          <tbody class="border-spacing-1" *ngIf="changeTab === 'avatar_GroupedData'">
+            <tr *ngFor="let row of avatar_GroupedData | slice:0:6" class="hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-all" [ngClass]="{'odd:bg-neutral-50 dark:odd:bg-neutral-700': striped}">
+              <td class="text-left p-3 h-fit first:rounded-l last:rounded-r" [ngClass]="{'!py-1': condensed}">{{ row.name }}</td>
+              <td class="text-left p-3 h-fit first:rounded-l last:rounded-r" [ngClass]="{'!py-1': condensed}">{{ row.type }}</td>
+              <td class="text-left p-3 h-fit first:rounded-l last:rounded-r" [ngClass]="{'!py-1': condensed}">{{ row.dataType }}</td>
+              <td class="text-left p-3 h-fit first:rounded-l last:rounded-r" [ngClass]="{'!py-1': condensed}">{{ row.description }}</td>
+            </tr>
+          </tbody>
+          <tbody class="border-spacing-1" *ngIf="changeTab === 'avatar_singleData'">
+            <tr *ngFor="let row of avatar_singleData | slice:0:6" class="hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-all" [ngClass]="{'odd:bg-neutral-50 dark:odd:bg-neutral-700': striped}">
+              <td class="text-left p-3 h-fit first:rounded-l last:rounded-r" [ngClass]="{'!py-1': condensed}">{{ row.name }}</td>
+              <td class="text-left p-3 h-fit first:rounded-l last:rounded-r" [ngClass]="{'!py-1': condensed}">{{ row.type }}</td>
+              <td class="text-left p-3 h-fit first:rounded-l last:rounded-r" [ngClass]="{'!py-1': condensed}">{{ row.dataType }}</td>
+              <td class="text-left p-3 h-fit first:rounded-l last:rounded-r" [ngClass]="{'!py-1': condensed}">{{ row.description }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    <accessibility-guide [heading]="componentData.accessibility.heading" [list]="componentData.accessibility.items" class="mt-4"></accessibility-guide>
+    <usage-guide [heading]="componentData.use.heading" [list]="componentData.use.items" class="mt-4"></usage-guide>
+    <usage-not-guide [heading]="componentData.useNot.heading" [list]="componentData.useNot.items" class="mt-4"></usage-not-guide>
+</div>

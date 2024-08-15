@@ -1,0 +1,271 @@
+{
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "version": 1,
+  "newProjectRoot": "projects",
+  "projects": {
+    "appkit-styled-lib": {
+      "projectType": "library",
+      "schematics": {
+        "@schematics/angular:component": {
+          "changeDetection": "OnPush",
+          "style":"none",
+          "skipTests": true
+        }
+      },
+      "root": "projects/appkit-styled-lib",
+      "sourceRoot": "projects/appkit-styled-lib/src",
+      "prefix": "my-org",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "tsConfig": "projects/appkit-styled-lib/tsconfig.lib.json",
+            "project": "projects/appkit-styled-lib/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/appkit-styled-lib/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/appkit-styled-lib/src/test.ts",
+            "tsConfig": "projects/appkit-styled-lib/tsconfig.spec.json",
+            "karmaConfig": "projects/appkit-styled-lib/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "eslintConfig": ".eslintrc.json",
+            "lintFilePatterns": ["**/*.spec.ts", "**/*.ts"]
+          }
+        }
+      }
+    },
+    "appkit-styled-lib-demo": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:component": {
+          "changeDetection": "OnPush",
+          "style": "none",
+          "skipTests": true
+        }
+      },
+      "root": "projects/appkit-styled-lib-demo",
+      "sourceRoot": "projects/appkit-styled-lib-demo/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/appkit-styled-lib-demo",
+            "index": "projects/appkit-styled-lib-demo/src/index.html",
+            "main": "projects/appkit-styled-lib-demo/src/main.ts",
+            "polyfills": [
+              "zone.js"
+            ],
+            "tsConfig": "projects/appkit-styled-lib-demo/tsconfig.app.json",
+            "inlineStyleLanguage": "scss",
+            "assets": [
+              "projects/appkit-styled-lib-demo/src/favicon.ico",
+              "projects/appkit-styled-lib-demo/src/assets"
+            ],
+            "styles": [
+              "projects/appkit-styled-lib-demo/src/styles.scss",
+              "projects/appkit-styled-lib/assets/css/_appkit-redone.scss",
+              "./node_modules/highlight.js/styles/github.css"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kb",
+                  "maximumError": "2mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "2kb",
+                  "maximumError": "4kb"
+                }
+              ],
+              "outputHashing": "all"
+            },
+            "development": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "configurations": {
+            "production": {
+              "buildTarget": "appkit-styled-lib-demo:build:production"
+            },
+            "development": {
+              "buildTarget": "appkit-styled-lib-demo:build:development"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "buildTarget": "appkit-styled-lib-demo:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "polyfills": [
+              "zone.js",
+              "zone.js/testing"
+            ],
+            "tsConfig": "projects/appkit-styled-lib-demo/tsconfig.spec.json",
+            "inlineStyleLanguage": "scss",
+            "assets": [
+              "projects/appkit-styled-lib-demo/src/favicon.ico",
+              "projects/appkit-styled-lib-demo/src/assets"
+            ],
+            "styles": [
+              "projects/appkit-styled-lib-demo/src/styles.scss"
+            ],
+            "scripts": []
+          }
+        }
+      }
+    },
+    "cms": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:component": {
+          "changeDetection": "OnPush",
+          "style":"none",
+          "skipTests": true
+        }
+      },
+      "root": "projects/cms",
+      "sourceRoot": "projects/cms/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/cms",
+            "index": "projects/cms/src/index.html",
+            "main": "projects/cms/src/main.ts",
+            "polyfills": "projects/cms/src/polyfills.ts",
+            "tsConfig": "projects/cms/tsconfig.app.json",
+            "inlineStyleLanguage": "scss",
+            "assets": [
+              "projects/cms/src/favicon.ico",
+              "projects/cms/src/assets"
+            ],
+            "styles": [
+              "projects/cms/src/styles.scss",
+              "node_modules/highlight.js/styles/github.css",
+              "node_modules/@angular/cdk/overlay-prebuilt.css",
+              "projects/appkit-styled-lib/assets/@appkit4/styles/appkit.icon.min.css",
+              "projects/appkit-styled-lib/assets/css/_appkit-redone.scss"
+            ],
+            "scripts": [],
+            "vendorChunk": true,
+            "extractLicenses": false,
+            "buildOptimizer": false,
+            "sourceMap": true,
+            "optimization": false,
+            "namedChunks": true
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "projects/cms/src/environments/environment.ts",
+                  "with": "projects/cms/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          },
+          "defaultConfiguration": ""
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "buildTarget": "cms:build"
+          },
+          "configurations": {
+            "production": {
+              "buildTarget": "cms:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "buildTarget": "cms:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/cms/src/test.ts",
+            "polyfills": "projects/cms/src/polyfills.ts",
+            "tsConfig": "projects/cms/tsconfig.spec.json",
+            "karmaConfig": "projects/cms/karma.conf.js",
+            "assets": [
+              "projects/cms/src/favicon.ico",
+              "projects/cms/src/assets"
+            ],
+            "styles": [],
+            "scripts": []
+          }
+        },
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "projects/cms/e2e/protractor.conf.js",
+            "devServerTarget": "cms:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "cms:serve:production"
+            }
+          }
+        }
+      }
+    }
+  },
+  "cli": {
+    "analytics": false
+  }
+}

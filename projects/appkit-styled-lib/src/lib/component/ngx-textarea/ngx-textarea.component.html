@@ -1,0 +1,22 @@
+<ngx-form-field #formField *ngIf="data$ | async as data"
+    [disabled]="fc.disabled" [label]="data.label" [fieldFocus]="data.focused" 
+    [contentPopulated]="!!fc.value || !!data.placeholder || !!maxlength" 
+    [invalid]="_invalid" (formFieldClick)="formFieldClick(inp)" [readonly]="_readonly" [leftIcon]="data.leftIcon" [data]="data">
+    <textarea 
+        #inp
+        [rows]="rows"
+        [maxlength]="maxlength ? maxlength : null"
+        class="w-full bg-transparent outline-none disabled:cursor-not-allowed text-inherit read-only:cursor-default mb-3 {{resize ? '' : 'resize-none'}} pt-4"
+        [formControl]="fc" 
+        (keypress)="onKeypress($event)" 
+        (focus)="onFocus()" 
+        (blur)="onBlur($event)"
+        [placeholder]="data.placeholder" 
+        [readonly]="_readonly"
+        [disabled]="fc.disabled" 
+    ></textarea>
+    <span *ngIf="maxlength" class="absolute right-2 top-1 text-xs leading-none opacity-60
+    {{_invalid ? 'text-negative dark:text-negative-300 opacity-100' : 'text-neutral-900 dark:text-neutral-100'}}">
+    {{counter$ | async}} / {{maxlength}}
+    </span>
+</ngx-form-field>

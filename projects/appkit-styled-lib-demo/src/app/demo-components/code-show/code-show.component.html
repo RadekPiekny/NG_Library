@@ -1,0 +1,12 @@
+<div class="d-flex flex-column">
+  <button
+    class="icon s basic primary mx-auto my-1"
+    style="opacity: 0.5"
+    (click)="show = !show"
+  >
+    <span class="appkiticon icon-down-chevron-fill"></span>
+  </button>
+  <div *ngIf="show" [@smoothCollapse]>
+    <ng-content></ng-content>
+  </div>
+</div>

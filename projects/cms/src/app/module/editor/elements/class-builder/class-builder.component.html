@@ -1,0 +1,15 @@
+<div>
+    <ngx-input-text label="new class" [formControl]="fc" (change)="newStuff($event.target.value)" size="m"></ngx-input-text>
+    <div class="py-2">
+        <span *ngFor="let item of _data.elementBase.cssClass" class="m-1 bg-neutral-100 dark:bg-neutral-600 rounded-full ps-2 py-0 text-xs items-center inline-flex">
+            {{item.className}}
+            <button (click)="delete(item)" class="m-1">
+                <span class="Appkit4-icon icon-circle-delete-outline"></span>
+            </button>
+        </span>
+    </div>
+    <div class="flex justify-end gap-2">
+        <button [cdkCopyToClipboard]="cssClassesString" class="text-xs bg-primary px-2 py-1 rounded-md">copy all</button>
+        <button (click)="deleteAll()" class="text-xs bg-red-400 px-2 py-1 rounded-md text-white">delete all</button>
+    </div>
+</div>

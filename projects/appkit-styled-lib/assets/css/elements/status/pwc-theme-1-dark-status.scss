@@ -1,0 +1,13 @@
+body.rp-theme-1.dark {
+  .status {
+    &.good {
+        background-color: green;
+    };
+    &.error {
+      background-color: red;
+    };
+    &.warn {
+      background-color: khaki;
+    }
+  }
+}

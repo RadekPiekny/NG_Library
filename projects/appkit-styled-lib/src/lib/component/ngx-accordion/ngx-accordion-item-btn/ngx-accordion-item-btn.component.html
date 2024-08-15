@@ -1,0 +1,26 @@
+<ng-container *ngIf="_state | async as st">
+    <ngx-button
+      (click)="toggle()"
+      type="button"
+      class="w-full"
+      variation="transparent"
+      cssClass="w-full !justify-start !h-fit"
+    >
+      <div class="flex flex-col w-full">
+        <ng-container *ngIf="title; else custom">
+          <div class="h-10 flex items-center">
+            <span class="mr-auto">{{ title }}</span>
+            <div class="ps-4 ml-auto">
+              <span *ngIf="icon" class="Appkit4-icon {{ icon }} a-font-16 opacity-70 block transition-transform {{st === 'expand' ? 'rotate-180' : ''}}"></span>
+            </div>
+          </div>
+        </ng-container>
+        <ng-template #custom>
+          <ng-content select="[header]"></ng-content>
+        </ng-template>
+        <div [@smoothCollapse]="st" class="overflow-hidden whitespace-normal text-left">
+          <ng-content></ng-content>
+        </div>
+      </div>
+    </ngx-button>
+  </ng-container>

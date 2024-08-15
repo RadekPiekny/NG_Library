@@ -1,0 +1,9 @@
+<div class="flex flex-col gap-[2px]">
+  <div *ngFor="let type of types" class="flex gap-[2px]">
+    <button type="button" *ngFor="let tint of tints" class="w-4 {{colorHeight}} rounded-sm bg-{{type}}-{{tint}} flex items-center justify-center border border-neutral-500 border-opacity-40" (click)="pick(type,tint)">
+      <ng-container *ngIf="_selectedType === type && _selectedTint === tint">
+        &#8226;
+      </ng-container>
+    </button>
+  </div>
+</div>

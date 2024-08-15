@@ -1,0 +1,29 @@
+<div class="nav-tabs-raised-container">
+  <div class="tabs">
+    <span
+      *ngFor="let item of tabs"
+      (click)="activate(item)"
+      [class.active]="item.active"
+      >{{ item.name }}</span
+    >
+  </div>
+  <div class="content p-5">
+    <p>
+      Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ullam fugit iure
+      doloribus asperiores quo perferendis, minima voluptatum voluptatem
+      recusandae aliquid et aspernatur tempore reprehenderit cum, autem, a
+      facere nulla veniam.
+    </p>
+    <p>
+      Lorem, ipsum dolor sit amet consectetur adipisicing elit. Odio ducimus
+      dolorem saepe explicabo voluptatum ea, dicta quidem omnis cum voluptates
+      temporibus labore est ipsa, nam velit illum quibusdam, ad sint.
+    </p>
+    <p>
+      Lorem ipsum dolor, sit amet consectetur adipisicing elit. Iste iusto
+      labore fuga distinctio! Rem, aspernatur sit nihil laborum ab ipsam
+      architecto voluptatibus dolorem praesentium quae veritatis, veniam
+      nesciunt distinctio numquam.
+    </p>
+  </div>
+</div>

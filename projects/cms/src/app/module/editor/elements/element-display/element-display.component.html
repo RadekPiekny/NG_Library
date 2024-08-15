@@ -1,0 +1,57 @@
+<ng-container [ngSwitch]="_data.className">
+    <button 
+        *ngSwitchCase="'button'"
+        [id]="_data.id"
+        wrapperEvents
+        [elementHTML_Wrapper]="_data"
+        [data]="_data"
+        >
+        {{_data.cssClass | json}}
+        <div class="_data-drag-handler md-elevation-4dp" [class.d-none]="(_dataEnterId$ | async) !== _data.id" cdkDragHandle >
+            <span class="Appkit4-icon icon-move-outline"></span>
+        </div>
+    </button>
+    <div 
+        *ngSwitchCase="'div'"
+        [id]="_data.id"
+        wrapperEvents
+        [elementHTML_Wrapper]="_data"
+        [data]="_data"
+        >
+        this is div
+        <ng-container *ngIf="_data.children.length">
+
+            <!-- Invoke the recursive template. -->
+            <element-display [data]="item" *ngFor="let item of _data.children"></element-display>
+    
+        </ng-container>
+        <div class="_data-drag-handler md-elevation-4dp" [class.d-none]="(_dataEnterId$ | async) !== _data.id" cdkDragHandle >
+            <span class="Appkit4-icon icon-move-outline"></span>
+        </div>
+    </div>
+    <div 
+        *ngSwitchCase="'p'" 
+        [id]="_data.id"
+        wrapperEvents
+        [elementHTML_Wrapper]="_data"
+        [data]="_data"
+    >
+        <p 
+
+
+            class="_data-wrapper relative"
+            
+            contenteditable
+            #editedElement
+            [innerHTML]="_data.attributes[0].value | sanitizeHtml"
+            >
+            this. is p
+        </p>
+        <span class="p-1 rich-text w-auto md-elevation-4dp absolute block" style="top: 0; left: 0; transform: translateY(-100%)" [ngClass]="ac.active_datasId.includes(_data.id) ? 'block' : 'hidden'">
+            <ngx-rich-text [editedElement]="editedElement" (htmlChange)="t($event,_data,ac.active_datasId.includes(_data.id))" class="flex"></ngx-rich-text>
+        </span>
+        <span class="_data-drag-handler md-elevation-4dp" [ngClass]="ac.moveover_dataId === _data.id ? 'block' : 'hidden'" cdkDragHandle >
+            <span class="Appkit4-icon icon-move-outline"></span>
+        </span>
+    </div>
+</ng-container>

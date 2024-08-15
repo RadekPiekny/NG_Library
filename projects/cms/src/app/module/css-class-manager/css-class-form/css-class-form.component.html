@@ -1,0 +1,13 @@
+<form [formGroup]="cssClassForm" class="flex flex-col gap-4 p-5">
+    <input type="text" formControlName="value" placeholder="value">
+    <input type="text" formControlName="shortDescription" placeholder="shortDescription">
+    <input type="text" formControlName="description" placeholder="description">
+    <div class="flex justify-end">
+        <ng-container *ngIf="cssClass.cssClassId; else newCssClass">
+            <button (click)="update()" class="bg-primary px-3 py-2 rounded-sm">update</button>
+        </ng-container>
+        <ng-template #newCssClass>
+            <button  (click)="create()" class="bg-primary px-3 py-2 rounded-sm">create</button>
+        </ng-template>
+    </div>
+</form>

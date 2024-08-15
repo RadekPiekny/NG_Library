@@ -1,0 +1,20 @@
+<ngx-form-field #formField *ngIf="data$ | async as data"
+    [disabled]="fc.disabled" [label]="data.label" [fieldFocus]="data.focused" 
+    [contentPopulated]="fc.value !== null || !!data.placeholder" [heightClass]="heightClass" 
+    [invalid]="_invalid" (formFieldClick)="formFieldClick(inp)" [readonly]="_readonly" [leftIcon]="leftIcon" [data]="data">
+    <input 
+        #inp
+        class="w-full h-full bg-transparent outline-none disabled:cursor-not-allowed text-inherit read-only:cursor-default {{cssClass}}"
+        [style]="stl$ | async"
+        [ngStyle]="cssStyle"
+        type="number"
+        [formControl]="fc"
+        (keypress)="onKeypress($event)"
+        (focus)="onFocus()"
+        (blur)="onBlur($event)"
+        [placeholder]="data.placeholder"
+        [readonly]="_readonly"
+        [attr.min]="min ? min : null"
+        [attr.max]="max ? max : null"
+    />
+</ngx-form-field>

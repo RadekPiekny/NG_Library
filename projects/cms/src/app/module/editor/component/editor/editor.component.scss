@@ -1,0 +1,21 @@
+.background-view {
+    box-shadow: inset 0px 0px 0px 1px rgba(var(--data-mode-inverse-color-rgb),0.3);
+}
+.show {
+    display: block;
+}
+.magic {
+    background: repeating-conic-gradient(rgba(var(--data-mode-inverse-color-rgb),5%) 0% 25%, transparent 0% 50%) 50% / 20px 20px;
+    -webkit-perspective: 1600px;
+    perspective: 1600px;
+}
+.magic-icon {
+    width: 24px;
+    height: 24px;
+    background: repeating-conic-gradient(rgba(var(--data-mode-inverse-color-rgb),5%) 0% 25%, transparent 0% 50%) 50% / 8px 8px;
+    border: 1px solid rgba(var(--data-mode-inverse-color-rgb),.2);
+}
+.component-outline {
+    border: 2px dotted rgba(var(--data-mode-inverse-color-rgb),.3);
+    transform-style: preserve-3d !important;
+}

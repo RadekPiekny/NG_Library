@@ -1,0 +1,141 @@
+
+
+<div *ngIf="testFuckeryState$ | async"></div>
+<ng-container *ngIf="{
+    moveoverComponentId: (componentEnterId$ | async),
+    activeComponentsId: (activeComponentsId$ | async)
+} as ac">
+    <span *ngIf="false">{{ac.moveoverComponentId}}</span>
+    <span *ngIf="false">{{ac.activeComponentsId[0]}}</span>
+    <ng-template #nodeTemplateRef let-component>
+        <ng-container [ngSwitch]="component?.elementBase.className">
+            <button 
+                *ngSwitchCase="'button'"
+                [id]="component.elementBase.id"
+                cdkDrag
+                (cdkDragStarted)="dragStart($event,component)"
+                (cdkDragEnded)="dragEnd($event)"
+                (cdkDragMoved)="dragMove($event)"
+                wrapperEvents
+                [elementHTML_Wrapper]="component"
+                [data]="component"
+                [acData]="ac"
+                [innerText]="component?.elementBase.attributes | getAttribute:'innerText'"
+                @componentEnter
+            >
+            {{component?.elementBase.attributes}}
+                <ng-container *ngIf="component.children.length">
+    
+                    <!-- Invoke the recursive template. -->
+                    <ng-template
+                        ngFor
+                        [ngForOf]="component.children"
+                        [ngForTemplate]="nodeTemplateRef">
+                        <!--
+                            NOTE: The "$implicit" property of the ngFor context is what will
+                            be made available to the template ref's implicit let-node binding.
+                        -->
+                    </ng-template>
+            
+                </ng-container>
+                <div class="component-drag-handler shadow" [ngClass]="(ac.moveoverComponentId === component.elementBase.id && ac.moveoverComponentId !== 1) ? 'block' : 'hidden'" cdkDragHandle >
+                    <span class="Appkit4-icon icon-move-outline"></span>
+                </div>
+            </button>
+            <div 
+                *ngSwitchCase="'div'"
+                [id]="component.elementBase.id"
+                cdkDrag
+                (cdkDragStarted)="dragStart($event,component)"
+                (cdkDragEnded)="dragEnd($event)"
+                (cdkDragMoved)="dragMove($event)"
+                wrapperEvents 
+                (wrapperEventsDataChange)="test($event,component)"
+                [elementHTML_Wrapper]="component"
+                [data]="component"
+                [acData]="ac"
+                @componentEnter>
+                
+                <ng-container *ngIf="component.children.length">
+    
+                    <!-- Invoke the recursive template. -->
+                    <ng-template
+                        ngFor
+                        [ngForOf]="component.children"
+                        [ngForTemplate]="nodeTemplateRef">
+                        <!--
+                            NOTE: The "$implicit" property of the ngFor context is what will
+                            be made available to the template ref's implicit let-node binding.
+                        -->
+                    </ng-template>
+            
+                </ng-container>
+                <div class="component-drag-handler md-elevation-4dp" [ngClass]="(ac.moveoverComponentId === component.elementBase.id && ac.moveoverComponentId !== 1) ? 'block' : 'hidden'" cdkDragHandle >
+                    <span class="Appkit4-icon icon-move-outline"></span>
+                </div>
+            </div>
+            <div 
+                *ngSwitchCase="'img'" 
+                cdkDrag
+                (cdkDragStarted)="dragStart($event,component)"
+                (cdkDragEnded)="dragEnd($event)"
+                (cdkDragMoved)="dragMove($event)"
+                [id]="component.elementBase.id"
+                [data]="component"
+                [acData]="ac"
+                wrapperEvents 
+                [elementHTML_Wrapper]="component"
+                (wrapperEventsDataChange)="test($event,component)"
+            >
+                <img 
+                    [src]="component.elementBase.attributes[0].value"
+                    [elementHTML_Wrapper]="component"
+                >
+                <span class="component-drag-handler md-elevation-4dp" [ngClass]="(ac.moveoverComponentId === component.elementBase.id && ac.moveoverComponentId !== 1) ? 'block' : 'hidden'" cdkDragHandle >
+                    <span class="Appkit4-icon icon-move-outline"></span>
+                </span>
+            </div>
+            <div 
+                *ngSwitchCase="'p'" 
+                cdkDrag
+                (cdkDragStarted)="dragStart($event,component)"
+                (cdkDragEnded)="dragEnd($event)"
+                (cdkDragMoved)="dragMove($event)"
+                [id]="component.elementBase.id"
+                [data]="component"
+                [acData]="ac"
+                wrapperEvents 
+                [elementHTML_Wrapper]="component"
+                (wrapperEventsDataChange)="test($event,component)"
+            >
+                <p 
+                    contenteditable
+                    #editedElement
+                    [innerHTML]="component.elementBase.attributes[0].value | sanitizeHtml"
+                    style="padding: 0; border: none"
+                    >
+                </p>
+                <span class="p-2 rich-text w-auto shadow dark:bg-neutral-850 bg-white absolute rounded" style="top: 0; left: 0; transform: translateY(-100%)" [ngClass]="ac.activeComponentsId.includes(component.elementBase.id) ? 'block' : 'hidden'">
+                    <ngx-rich-text [editedElement]="editedElement" (htmlChange)="t($event,component,ac.activeComponentsId.includes(component.elementBase.id))" class="flex"></ngx-rich-text>
+                </span>
+                <span class="component-drag-handler md-elevation-4dp" [ngClass]="(ac.moveoverComponentId === component.elementBase.id && ac.moveoverComponentId !== 1) ? 'block' : 'hidden'" cdkDragHandle >
+                    <span class="Appkit4-icon icon-move-outline"></span>
+                </span>
+            </div>
+        </ng-container>
+    </ng-template>
+     
+    <!--
+        Initiate the recursive template rendering. Because our recursive template is going to
+        be using the ngFor directive to render recursively, the "context" in the recursive
+        instances is going to be the ngForContext. As such, we have to "mock" the initial
+        context to look like the context that the ngFor directive will expose internally.
+     
+        NOTE: If we used ngContainer or ngTemplate to invoke the recursion internally, we'd
+        have more control over which values were made available at each level.
+    -->
+    <ng-template
+        [ngTemplateOutlet]="nodeTemplateRef"
+        [ngTemplateOutletContext]="{ $implicit: _data }">
+    </ng-template>
+</ng-container>

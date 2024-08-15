@@ -1,0 +1,6 @@
+<form [formGroup]="form" class="flex flex-col gap-4">
+    <div class="flex flex-col gap-3">
+        <div class="text-l">Form control state</div>
+        <ngx-radio [label]="state" [value]="state" formControlName="state" name="state" *ngFor="let state of formControlStates"></ngx-radio>
+    </div>
+</form>

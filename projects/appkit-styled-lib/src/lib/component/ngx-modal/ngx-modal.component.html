@@ -1,0 +1,5 @@
+<div *ngIf="open" class="fixed flex backdrop-blur-sm items-center justify-center top-0 left-0 right-0 bottom-0 z-50 w-full p-4 overflow-x-hidden overflow-y-auto bg-neutral-900/20" (click)="handleClose()" @modal>
+  <div class="relative bg-white rounded-lg dark:bg-neutral-700 shadow-md" @slideFromTop (click)="$event.stopPropagation()">
+    <ng-content></ng-content>
+  </div>
+</div>

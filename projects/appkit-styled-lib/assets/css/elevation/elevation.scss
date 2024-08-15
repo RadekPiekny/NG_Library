@@ -1,0 +1,65 @@
+@use './constants.scss' as constants;
+@use './shadows.scss' as shadows;
+
+@mixin md-elevation-shadow($dp) {
+  box-shadow: map-get(shadows.$md-elevation-penumbra, $dp) rgba(0, 0, 0, shadows.$md-elevation-penumbra-opacity), map-get(shadows.$md-elevation-umbra, $dp) rgba(0, 0, 0, shadows.$md-elevation-umbra-opacity), map-get(shadows.$md-elevation-ambient, $dp) rgba(0, 0, 0, shadows.$md-elevation-ambient-opacity);
+  transition: box-shadow .2s ease-in-out, background-color .2s ease-in-out;
+}
+
+@mixin md-elevation-background-color($dp, $mode) {
+  @if $mode == 'dark' {
+    $lightness: map-get(constants.$md-elevation, $dp);
+    //background-color: mix(rgba(255,255,255),rgba(18,18,18,1),$lightness);
+    transition: background-color .2s ease-in-out;
+    color: white;
+  }
+  @if $mode == 'light' {
+    background-color: white;
+    transition: background-color .2s ease-in-out;
+  }
+  
+}
+
+@mixin md-elevation($dp, $mode) {
+  @include md-elevation-shadow($dp);
+  @include md-elevation-background-color($dp, $mode);
+}
+
+@mixin generateElevation($mode) {
+  @include md-elevation(0dp,$mode);
+  @each $dp,$value in constants.$md-elevation {
+    .md-elevation-#{$dp}-box-shadow { 
+        @include md-elevation-shadow($dp);
+    }
+    .md-elevation-#{$dp}-background-color { 
+        @include md-elevation-background-color($dp,$mode);
+    }
+    .md-elevation-#{$dp} { 
+        @include md-elevation($dp,$mode);
+    }
+}
+}
+
+@mixin elementsElevation($mode) {
+  .ngx-modal { @include md-elevation(24dp,$mode); }
+  .modal-sheet-bottom { @include md-elevation(16dp,$mode) }
+  .modal-sheet-side { @include md-elevation(16dp,$mode); }
+  .button-floating-action-pressed { @include md-elevation(12dp,$mode) }
+  .standard-sheet-bottom { @include md-elevation(8dp,$mode) }
+  .standard-side {@include md-elevation(8dp,$mode)}
+  .nav-bottom {@include md-elevation(8dp,$mode)}
+  .app-bar-bottom {@include md-elevation(8dp,$mode)}
+  .menu {@include md-elevation(8dp,$mode)}
+  .menu-child-1 {@include md-elevation(9dp,$mode)}
+  .menu-child-2 {@include md-elevation(10dp,$mode)}
+  .card-picked {@include md-elevation(11dp,$mode)}
+  .button-contained-pressed	{@include md-elevation(0dp,$mode)}
+  .button-floating-action-rest {@include md-elevation(6dp,$mode)}
+  .snackbar {@include md-elevation(6dp,$mode)}
+  .nav-top-scrolled {@include md-elevation(4dp,$mode)}
+  .nav-top-rest {@include md-elevation(4dp,$mode)}; // or 0dp
+  .button-contained-rest {@include md-elevation(2dp,$mode)}
+  .switch {@include md-elevation(1dp,$mode)}
+  .card-rest {@include md-elevation(1dp,$mode)}
+  .button-text {@include md-elevation(0dp,$mode)}
+}

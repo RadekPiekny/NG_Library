@@ -1,0 +1,40 @@
+trigger:
+- '*'
+
+pool:
+  vmImage: 'windows-latest'
+
+steps:
+- task: NodeTool@0
+  inputs:
+    versionSpec: '22.0.0'
+  displayName: 'Install Node.js'
+
+- task: Npm@1
+  displayName: 'npm install'
+  inputs:
+    workingDir: $(System.DefaultWorkingDirectory)
+    verbose: false
+    customRegistry: useFeed
+    customFeed: '7a265872-885c-464f-a801-17fac8cd0ff5'
+- script: dir /s /b
+  displayName: show working dir contents
+  workingDirectory: $(Agent.BuildDirectory)
+- script: npm run build-demo
+  displayName: 'Build appkit-demo'
+  workingDirectory: $(System.DefaultWorkingDirectory)
+- script: dir /s /b
+  displayName: show working dir contents
+  workingDirectory: $(Agent.BuildDirectory)
+- task: CopyFiles@2
+  displayName: 'Copy dist to artifacts'
+  inputs:
+      SourceFolder: '$(Agent.BuildDirectory)/s/dist/appkit-styled-lib-demo'
+      Contents: '**'
+      TargetFolder: '$(build.artifactstagingdirectory)/dist'
+      cleanTargetFolder: true
+- task: PublishBuildArtifacts@1
+  displayName: 'Publish Artifacts'
+  inputs:
+      PathtoPublish: '$(build.artifactstagingdirectory)'
+      ArtifactName: 'appkit-styled-lib-demo'

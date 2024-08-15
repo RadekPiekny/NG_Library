@@ -1,0 +1,28 @@
+:host {
+  display: block;
+}
+.accordionn {
+  cursor: pointer;
+  &--right {
+    display: flex;
+    align-items: center;
+  }
+  &--left {
+    & .leftSide {
+      color: var(--color-primary);
+    }
+  }
+}
+span {
+  display: inline-block;
+  transition: transform 0.3s ease-in-out;
+  & + span {
+    margin-left: auto;
+  }
+}
+.open2 {
+  transform: rotate(0deg);
+}
+.close2 {
+  transform: rotate(-90deg);
+}

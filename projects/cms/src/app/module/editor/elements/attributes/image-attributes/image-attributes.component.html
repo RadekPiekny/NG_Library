@@ -1,0 +1,6 @@
+<input type="file" (change)="onFileSelected($event)">
+<div *ngIf="imageData" class="flex flex-col">
+    <span>name: {{imageData.name}}</span>
+    <span>type: {{imageData.mimeType}}</span>
+    <span>size: {{imageData.size}}</span>
+</div>

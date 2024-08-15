@@ -1,0 +1,58 @@
+<div class="text-primary-200 bg-primary-700">
+    test
+</div>
+<div class="flex p-5">
+    <div *ngIf="families$ | async as families" class="flex flex-col p-5 transition-all w-60 bg-neutral-800">
+        <span class="p-3 flex items-center justify-center">
+            <button (click)="newFamily = true" class="dark:hover:bg-neutral-700 hover:bg-neutral-200 flex items-center justify-center h-7 w-7 shrink-0">
+                <div class="flex items-center justify-center">
+                    <span class="Appkit4-icon icon-plus-outline text-xs"></span>
+                </div>
+            </button>
+            <div class="relative flex items-center w-fit" *ngIf="newFamily">
+                <input type="text" (keyup.enter)="addFamily($event.target.value)" class="pl-3 py-1 pr-9 w-full outline-none bg-neutral-200 dark:bg-neutral-700 border dark:border-neutral-700 border-neutral-200 dark:focus:border-primary focus:border-primary">
+                <button (click)="newFamily = false" class="dark:hover:bg-neutral-700 hover:bg-neutral-300 flex items-center justify-center h-7 w-7 shrink-0 absolute right-0 -translate-x-1">
+                    <div class="flex items-center justify-center">
+                        <span class="Appkit4-icon icon-circle-delete-outline text-xs"></span>
+                    </div>
+                </button>
+            </div>
+        </span>
+        <span *ngFor="let family of families">
+            <div class="flex items-center" (mouseenter)="showAddGroup = family.cssGroupFamilyId" (mouseleave)="showAddGroup = 0" (click)="newGroup = family.cssGroupFamilyId">
+                <input [value]="family.name" (change)="changeFamiliyName(family,$event.target.value)" class="font-bold flex flex-nowrap pt-2 pb-3 bg-transparent" >
+                <button *ngIf="showAddGroup === family.cssGroupFamilyId" (click)="deleteFamily(family.cssGroupFamilyId)" class="rounded-full bg-neutral-200 dark:bg-neutral-800 dark:hover:bg-red-400 hover:bg-red-400 flex items-center justify-center h-7 w-7 shrink-0">
+                    <div class="flex items-center justify-center">
+                        <span class="Appkit4-icon icon-delete-outline text-xs"></span>
+                    </div>
+                </button>
+            </div>
+            <div class="pl-3 relative flex flex-col before:block before:w-px before:absolute before:dark:bg-neutral-700 before:bg-neutral-200 before:h-full before:left-0">
+                <span *ngIf="newGroup === family.cssGroupFamilyId">
+                    <div class="relative flex items-center w-fit">
+                        <input type="text" (keyup.enter)="addGroup($event.target.value)" class="pl-3 py-1 pr-9 w-full outline-none bg-neutral-200 dark:bg-neutral-700 border dark:border-neutral-700 border-neutral-200 dark:focus:border-primary focus:border-primary">
+                        <button (click)="newGroup = 0" class="dark:hover:bg-neutral-700 hover:bg-neutral-300 flex items-center justify-center h-7 w-7 shrink-0 absolute right-0 -translate-x-1">
+                            <div class="flex items-center justify-center">
+                                <span class="Appkit4-icon icon-circle-delete-outline text-xs"></span>
+                            </div>
+                        </button>
+                    </div>
+                </span>
+                <span *ngFor="let group of family.cssGroups" class="group px-3 py-1 opacity-70 relative transition-colors" [ngClass]="selectedGroup?.cssGroupId === group.cssGroupId ? 'opacity-90 font-bold' : 'opacity-70'" (click)="selectedGroup = group">
+                    <span class="group-hover:bg-primary w-px h-full absolute -left-3 dark:bg-neutral-700 bg-neutral-200 transition-colors"></span>
+                    <div class="flex items-center" (mouseenter)="showAddGroup = family.cssGroupFamilyId" (mouseleave)="showAddGroup = 0">
+                        <input [value]="group.name" (change)="changeGroupName(group,$event.target.value)" class="flex flex-nowrap pt-2 pb-3 bg-transparent" >
+                        <button *ngIf="showAddGroup === family.cssGroupFamilyId" (click)="deleteFamily(family.cssGroupFamilyId)" class="rounded-full bg-neutral-200 dark:bg-neutral-800 dark:hover:bg-red-400 hover:bg-red-400 flex items-center justify-center h-7 w-7 shrink-0">
+                            <div class="flex items-center justify-center">
+                                <span class="Appkit4-icon icon-delete-outline text-xs"></span>
+                            </div>
+                        </button>
+                    </div>
+                </span>
+            </div>
+        </span>
+    </div>
+    <div class="border border-neutral-800">
+        <css-group *ngIf="selectedGroup" [group]="selectedGroup"></css-group>
+    </div>
+</div>

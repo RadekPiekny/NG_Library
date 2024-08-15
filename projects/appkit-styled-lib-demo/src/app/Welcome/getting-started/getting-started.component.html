@@ -1,0 +1,26 @@
+<div>
+  <div class="dark:bg-neutral-850 rounded-md py-4 px-6 bg-white flex flex-col gap-8 m-auto">
+    <div class="flex flex-row items-center gap-4">
+      <div class="flex flex-col gap-4 w-full">
+        <p class="text-4xl font-medium">Welcome to ngx library.</p>
+        <p class="opacity-80">
+          Use this design system to build accessible branded applications
+          with exceptional user experiences.
+        </p>
+        <div class="flex flex-row items-center gap-4 mt-2">
+          <ngx-button routerLink="/Welcome/installation">Get started</ngx-button>
+          <ngx-button variation="secondary" routerLink="/Welcome/all-components">Browse components</ngx-button>
+        </div>
+        <div class="flex flex-row items-center gap-4 mt-2">Current version: 6.0.8
+          <div class="rounded-3xl border border-neutral-300 px-2 flex flex-row items-center gap-2">
+          <img src="./assets/angular-logo.svg">17</div>
+        </div>
+      </div>
+      <img src="./assets/Hero-with-mask.svg" class="min-w-[400px]">
+    </div>
+  </div>
+  <div class="mt-4 flex w-full justify-end text-xs mb-1 opacity-80">
+    all releases
+  </div>
+  <app-all-releases [data]="releaseData"></app-all-releases>
+</div>

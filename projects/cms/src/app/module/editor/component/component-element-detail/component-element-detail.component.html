@@ -1,0 +1,16 @@
+<div class="flex gap-2 py-2">
+    <span class="mr-auto">{{componentName}}</span>
+    <ngx-button variation="primary" [compact]="true" icon (click)="duplicateComponent(_webBlocksComponent)">
+        <span class="Appkit4-icon icon-copy-outline"></span>
+    </ngx-button>
+    <ngx-button variation="primary" [compact]="true" icon (click)="deleteComponent(_webBlocksComponent)">
+        <span class="Appkit4-icon icon-delete-outline"></span>
+    </ngx-button>
+</div>
+<app-class-builder [data]="_webBlocksComponent" (dataChange)="dataChange(_webBlocksComponent,$event)"></app-class-builder>
+<ng-container *ngIf="_webBlocksComponent.elementBase.className === 'img'">
+    <image-attributes [data]="_webBlocksComponent" (dataChange)="dataChange(_webBlocksComponent,$event)"></image-attributes>
+</ng-container>
+<ng-container *ngIf="_webBlocksComponent.elementBase.className === 'button'">
+    <button-attributes [data]="_webBlocksComponent" (dataChange)="dataChange(_webBlocksComponent,$event)"></button-attributes>
+</ng-container>

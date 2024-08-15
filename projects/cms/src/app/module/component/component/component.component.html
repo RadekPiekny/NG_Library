@@ -1,0 +1,48 @@
+<button [routerLink]="['presentation']">presentation</button>
+<div *ngIf="ComponentGroups$ | async as ComponentGroups" class="flex p-5 gap-5">
+    <div *ngFor="let group of ComponentGroups" class="flex flex-col w-72 bg-neutral-800">
+        <div class="flex bg-neutral-700 px-5 py-2">
+            <h6>{{group.name}} - {{group.id}}</h6>
+            
+            <button class="ml-auto" [menu]="groupMenu">
+                <span class="Appkit4-icon icon-vertical-more-outline"></span>
+            </button>
+            <ng-template #groupMenu>
+                <div class="shadow dark:bg-neutral-800 bg-white py-3 my-1">
+                    <ngx-button variation="transparent" (click)="deleteGroup(group.id)">
+                        <span class="Appkit4-icon icon-delete-outline"></span>
+                        <span class="ml-3">delete group</span>
+                    </ngx-button>
+                    <button class="flex align-center w-full transparent px-3 py-2" [routerLink]="['editor','new']" [queryParams]="{groupId: group.id}">
+                        <span class="Appkit4-icon icon-plus-outline"></span>
+                        <span class="ml-3">new component</span>
+                    </button>
+                    
+                </div>
+            </ng-template>
+        </div>
+        <div class="px-5 py-2">
+            <div>{{group.parentId}}</div>
+            <ul *ngFor="let component of group.reusableComponents">
+                <li class="flex">
+                    <span class="text-red-600 w-4">
+                        <ng-container *ngIf="!component.skeletonWebBlocksComponentId">!</ng-container>
+                    </span>
+                    {{component.name}}
+                    <div class="flex gap-3 ml-auto">
+                        <button [routerLink]="['editor',component.id]">
+                            <span class="Appkit4-icon icon-edit-outline"></span>
+                        </button>
+                        <button (click)="deleteComponent(component.id)" >
+                            <span class="Appkit4-icon icon-delete-outline"></span>
+                        </button>
+                        <button [routerLink]="['editor',component.id]" [queryParams]="{skeleton: true}">s</button>
+                        
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+    </div>
+
+</div>

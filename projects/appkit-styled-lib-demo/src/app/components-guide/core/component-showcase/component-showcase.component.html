@@ -1,0 +1,16 @@
+<div class="flex dark:bg-neutral-850 bg-white rounded-md px-6 py-4" style="min-height: 300px;">
+    <div class="flex flex-col items-center flex-1">
+        <div class="flex flex-col relative p-8 h-full items-center justify-center w-full {{bg ? bg : 'dark:bg-neutral-850'}}">
+            <ng-content select="[visual]"></ng-content>
+        </div>
+
+    </div>
+    <div class="min-w-[256px] flex flex-col justify-start p-5 pt-0 overflow-auto" style="max-height: 500px;">
+        <div class="w-full">
+            <ng-content select="[form]"></ng-content>
+        </div>
+    </div>
+</div>
+<div class="w-full mt-4">
+    <ng-content select="[code]"></ng-content>
+</div>

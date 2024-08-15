@@ -1,0 +1,10 @@
+@use './elevation/elevation.scss' as elevation;
+
+:root[data-mode="dark"] {
+    --data-mode-inverse-color-rgb: 255,255,255;
+    @include elevation.generateElevation('dark');
+}
+:root[data-mode="light"] {
+    --data-mode-inverse-color-rgb: 17,17,17;
+    @include elevation.generateElevation('light');
+}

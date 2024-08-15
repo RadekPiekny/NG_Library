@@ -1,0 +1,41 @@
+<div *ngIf="state$ | async as state" (click)="change()"
+  class="{{state.disabled ? 'cursor-not-allowed opacity-30' : 'cursor-pointer'}} relative text-center
+  {{ state.filled ? 'py-1 rounded-sm px-3' : 'h-8'}}
+  {{ (state.active && state.filled) ? 'bg-primary text-base': ''}}  
+  {{ (state.active && state.filled && !state.disabled) ? 'hover:bg-primary-lighten-100': ''}} 
+  {{ (state.active && !state.filled) ? 'dark:text-primary-lighten-200 text-primary ' : ''}} 
+  {{ textColor }}
+  {{ (state.filled && !state.active) ? 'dark:text-neutral-200': ''  }}
+  {{ (state.filled && !state.active && !state.disabled) ? 'dark:hover:bg-neutral-100/5 hover:bg-neutral-900/5 hover:font-normal': ''  }}
+  {{!state.active ? 'dark:text-neutral-200 text-neutral-700 ':''}}
+  {{(!state.active && !state.filled) && !state.disabled ? 'hover:font-semibold':''}}
+  "
+  (mouseenter)="mouseEnter()"
+  (mouseleave)="hovered = false"
+>
+  <div
+    *ngIf="!state.filled "
+    class="h-[2px] w-full absolute {{
+      hovered && !state.active ? 'dark:bg-neutral-500 bg-neutral-550 bottom-0' : ''
+    }}
+    {{
+      hovered && state.active
+        ? 'bg-primary bottom-0'
+        : ''
+    }}
+    {{
+     state.active && !hovered
+        ? ' bg-primary bottom-0'
+        : ''
+    }}"
+  ></div>
+  <button
+    [disabled]="state.disabled"
+    class="{{ state.disabled  ? 'cursor-not-allowed' : '' }} h-[24px]"
+  >
+    <ng-container *ngTemplateOutlet="content"></ng-container>
+  </button>
+</div>
+<ng-template #content>
+  <ng-content></ng-content>
+</ng-template>

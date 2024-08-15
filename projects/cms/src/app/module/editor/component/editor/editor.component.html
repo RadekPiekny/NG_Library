@@ -1,0 +1,56 @@
+<div class="dark:bg-neutral-800 p-2 flex items-center justify-center">
+    <div class="flex-1">
+        <component-detail [type]="currentType"></component-detail>
+    </div>
+    <div class="flex-5 flex items-center justify-center" *ngIf="historyDisabled$ | async as historyDisabled">
+        <button (click)="history(-1)" class="transparent" [disabled]="historyDisabled.backward">
+            <span class="Appkit4-icon icon-undo-fill"></span>
+        </button>
+        <button (click)="history(1)" class="transparent" [disabled]="historyDisabled.forward">
+            <span class="Appkit4-icon icon-undo-fill" style="transform: scaleX(-1)"></span>
+        </button>
+    </div>
+    <div class="flex-1 flex">
+        <button (click)="printJSON()" class="secondary me-3" >JSON log</button>
+        <ng-container *ngIf="queryParams$ | async as qp">
+            <ng-container *ngIf="params$ | async as params">
+                <button (click)="PublishEditorComponent()" class="appkit primary ml-auto" *ngIf="!qp.skeleton && params.id === 'new'">Publish</button>
+                <button (click)="UpdateEditorComponent(params.id)" class="appkit primary ml-auto" *ngIf="!qp.skeleton && params.id !== 'new'">Update</button>
+                <button (click)="UpdateSkeletonComponent(params.id)" class="appkit primary ml-auto" *ngIf="qp.skeleton && params.id !== 'new' && skeletonUpdateId">Update skeleton</button>
+                <button (click)="PublishSkeletonComponent()" class="appkit primary ml-auto" *ngIf="qp.skeleton && params.id !== 'new' && skeletonUpdateId === 0">Publish skeleton</button>
+            </ng-container>
+        </ng-container>
+    </div>
+</div>
+<div class="flex flex-1 pb-16" (click)="editorClick()">
+    <div class="w-72 sticky top-3 self-start">
+        <div class="dark:bg-neutral-800" (click)="$event.stopPropagation()">
+            <site-controls-elements *ngIf="queryParams$ | async as qp" [skeleton]="!!qp.skeleton"></site-controls-elements>
+
+        </div>
+    </div>
+    <div class="flex-1 mx-3 flex items-center justify-center border border-solid border-neutral-200 dark:border-neutral-800 relative magic top-12" >
+        <div class="absolute -translate-y-full top-0 left-0 flex items-center gap-5 py-2">
+            <button (click)="changeWidthOfEditor('w-full')">
+                <span class="Appkit4-icon icon-convert-outline"></span>
+            </button>
+            <button class="magic-icon">
+
+            </button>
+        </div>
+        <div #editorView id="editorView_Xoxo" class="editor-cdk-drag-boundary relative component-outline" [ngClass]="editorClass" (click)="$event.stopPropagation()" (mouseleave)="editorLeave()">
+            <div #dragHelper class="drag-helper" [class.show]="dragHelperShow$ | async"></div>
+            <ng-container *ngIf="page$ | async as page">
+                <container-edit #pageView [data]="page$ | async"></container-edit>
+                <element-display [data]="page.elementBase" *ngIf="false"></element-display>
+            </ng-container>
+        </div>
+    </div>
+    <div class="w-96 sticky top-3 self-start" (click)="$event.stopPropagation()">
+        <div *ngIf="activeComponent$ | async as ac" class="dark:bg-neutral-800 p-3">
+            <ng-container *ngIf="ac.length === 1">
+                <component-element-detail [webBlocksComponent]="ac[0]"></component-element-detail>
+            </ng-container>
+        </div>
+    </div>
+</div>

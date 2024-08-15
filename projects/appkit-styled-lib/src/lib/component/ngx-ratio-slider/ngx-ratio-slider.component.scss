@@ -1,0 +1,26 @@
+.semi-circle {
+    width: 1rem;
+    height: 2rem;
+    
+    &.left {
+        border-top-left-radius: 1rem;
+        border-bottom-left-radius: 1rem;
+        span {
+            font-size: 8px;
+        };
+    }
+    &.right {
+        border-top-right-radius: 1rem;
+        border-bottom-right-radius: 1rem;
+        span {
+            font-size: 8px;
+        }
+    }
+}
+.triangle-up {
+    width: 0;
+    height: 0;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-bottom: 8px solid rgb(129 129 129); /* Change the color and size as needed */
+}

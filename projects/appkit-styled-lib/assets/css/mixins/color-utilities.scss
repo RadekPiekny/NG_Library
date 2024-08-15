@@ -1,0 +1,81 @@
+
+@mixin insertBackground($type,$saturationName) {
+    background-color: var(--bg-#{$type}-#{$saturationName});
+    color: var(--bg-#{$type}-#{$saturationName}-text-color);
+}
+
+@mixin generateCSScolorVariables($colorList) { // for ease of use in components / devs on their projects
+    @each $type,$saturationList in $colorList {
+        @each $saturationName,$color in $saturationList {
+            $hoverColor: hoverColor($color);
+            $activeColor: activeColor($color);
+            $transparentHover: rgba($color, .3);
+            --#{$type}-#{$saturationName}: #{$color};
+            --#{$type}-#{$saturationName}-hover: #{$hoverColor};
+            --#{$type}-#{$saturationName}-active: #{$activeColor};
+            --#{$type}-#{$saturationName}-transparent-hover: #{$transparentHover};
+            
+        }
+    }
+};
+
+@mixin generateCSScolorText($textColorList) {
+    @each $type,$color in $textColorList {
+        --text-color-#{$type}: #{$color};
+        .color-#{$type} {
+            color: #{$color};
+        };
+    }
+}
+
+@mixin text-contrast($n,$lightText,$darkText) {
+    color: generate-text-color($n,$lightText,$darkText);
+}
+
+@function generate-text-color($n,$lightText,$darkText) {
+    $color-brightness: round((red($n) * 299) + (green($n) * 587) + (blue($n) * 114) / 1000);
+    $light-color: round((red(#ffffff) * 299) + (green(#ffffff) * 587) + (blue(#ffffff) * 114) / 1000);
+    
+    @if abs($color-brightness) > (calc($light-color / 2)){
+        @return $lightText;
+    }
+  
+    @else {
+        @return $darkText;
+    }
+}
+
+@function hoverColor($color) {
+    $result: scale-color($color, $lightness: +5%);
+    @return $result;
+}
+
+@function activeColor($color) {
+    $result: scale-color($color, $lightness: -10%);
+    @return $result;
+}
+
+@function getColor($type, $saturation) {
+    @return var(--#{$type}-#{$saturation});
+}
+
+@function color($color-name) {
+    
+  }
+
+@mixin surfaceGenerate($colorList,$lightText,$darkText) { // generate css variables for easier use without imports in other files. Then we use insertBackground mixing to insert bg and appropriate color
+    @each $type,$saturationList in $colorList {
+        @each $saturationName,$color in $saturationList {
+            $fff: generate-text-color($color, $lightText, $darkText);
+            --bg-#{$type}-#{$saturationName}: #{$color};
+            --bg-#{$type}-#{$saturationName}-text-color: #{$fff};
+            /*.bg-#{$type}-#{$saturationName} {
+                background-color: $color;
+                @include text-contrast($color, $lightText, $darkText);
+            }
+            .color-#{$type}-#{$saturationName} {
+                color: $color;
+            }*/
+        }
+    }
+}

@@ -1,0 +1,74 @@
+button {
+  width: 2.575rem;
+  height: 2rem;
+  text-align: center;
+  vertical-align: middle;
+  padding: 0.375rem 0.75rem !important;
+  background-color: rgba(0, 0, 0, 0);
+  display: flex;
+  position: relative;
+  transition: 0.2s;
+  align-items: center;
+  justify-content: center;
+
+  span {
+    color: inherit;
+  }
+
+  &:hover {
+    background-color: var(--color-grey-14) !important;
+  }
+}
+
+.color-list {
+  padding: 0.5rem;
+  display: flex;
+  box-shadow: rgba(99, 99, 99, 0.2) 0 2px 8px 0;
+  background-color: white;
+  z-index: 1;
+  user-select: none;
+  margin-top: 1rem;
+}
+
+.colors {
+  width: 1.5rem;
+  height: 1.5rem;
+  margin: 0.5rem;
+  border-radius: 50%;
+  color: white;
+
+  &:hover {
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 3px 6px, rgba(0, 0, 0, 0.3) 0px 3px 6px;
+  }
+}
+
+.color-set {
+  display: block;
+  z-index: 99999;
+  overflow: hidden;
+
+  > div {
+    cursor: pointer;
+  }
+}
+
+.color-light {
+  border: rgb(170, 170, 170) solid 1px;
+  color: rgb(0, 0, 0);
+}
+
+.color-type-description {
+  width: 100%;
+  margin-top: 0.2rem;
+  margin-bottom: 0.3rem;
+  text-align: center;
+}
+
+.color-set-list {
+  display: flex;
+}
+
+svg {
+  pointer-events: none;
+  font: bold 16px Verdana, Helvetica, Arial, sans-serif;
+}

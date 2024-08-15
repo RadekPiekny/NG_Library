@@ -1,0 +1,40 @@
+<div class="h-40 bg-primary transition-colors flex flex-col items-center">
+    <div class="w-full h-full">
+        <div class="text-3xl p-8" @bannerSlide *ngIf="activeTab === 0">
+            Welcome to our App
+        </div>
+        <div class="text-3xl p-8" @bannerSlide *ngIf="activeTab === 1">
+            Component - {{activeTab}}
+        </div>
+        <div class="text-3xl p-8" @bannerSlide *ngIf="activeTab === 2">
+            Component - {{activeTab}}
+        </div>
+        <div class="text-3xl p-8" @bannerSlide *ngIf="activeTab === 3">
+            Component - {{activeTab}}
+        </div>
+    </div>
+    <div class="flex w-full items-center p-3">
+        <div class="w-10"></div>
+        <ul class="flex gap-1 m-auto p-4 flex-1 justify-center">
+            <li class="h-2 w-6 bg-primary-lighten-100 hover:bg-primary-lighten-200 cursor-pointer" [class.bg-primary-lighten-200]="activeTab === i" *ngFor="let item of tabs; let i = index"></li>
+        </ul>
+        <div class="ms-auto">
+            <div class="h-8 w-8 relative bg-transparent cursor-pointer" >
+                <ngx-loader-circ [progress]="progress$ | async" [indeterminate]="false" [strokeWidth]="2" class="-rotate-90"></ngx-loader-circ>
+                <ng-container *ngIf="running; else play">
+                    <button (click)="toggleProgression()"  class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 flex gap-1 group">
+                        <span class="h-3 w-1 bg-white/40 group-hover:bg-white/60"></span>
+                        <span class="h-3 w-1 bg-white/40 group-hover:bg-white/60"></span>
+                    </button>
+                </ng-container>
+                <ng-template #play>
+                    <button (click)="toggleProgression()" class="w-6 h-6 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 flex gap-1 group">
+                        <svg  width="24" height="24" viewBox="0 0 100 100">
+                            <polygon points="30,20 80,50 30,80"  class="fill-white/40 group-hover:fill-white/60" />
+                        </svg>
+                    </button>
+                </ng-template>
+            </div>
+        </div>
+    </div>
+</div>

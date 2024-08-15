@@ -1,0 +1,22 @@
+<ngx-input-text *ngIf="data$ | async as data"
+    [formControl]="fcAutocomplete"
+    [type]="_type"
+    [reset]="reset"
+    [label]="data.label"
+    [placeholder]="data.placeholder"
+    [leftIcon]="leftIcon"
+    #trigger
+></ngx-input-text>
+<ng-template ngIf="fcAutocomplete.value.length <= minLength">
+    <ng-container [ngTemplateOutlet]="autocompleteMenu">
+        <div class="text-neutral-200 dark:text-neutral-600">
+            {{continueTyping}}
+        </div>
+    </ng-container>
+</ng-template>
+
+<div class="max-h-52 overflow-y-auto overflow-x-hidden dark:bg-neutral-850 bg-white mt-2 py-3 px-2 shadow-lg w-full rounded-lg" [style.width]="menuWidthInPx">
+    <ng-template #autocompleteMenu>
+
+    </ng-template>
+</div>

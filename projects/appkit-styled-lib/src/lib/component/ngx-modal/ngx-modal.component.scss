@@ -1,0 +1,26 @@
+.overlay-origin {
+  position: fixed;
+  left: 0;
+  top: 0;
+}
+.ngx-modal-background {
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  &.focus {
+    background-color: rgba(0, 0, 0, 0.3);
+  }
+}
+.ngx-modal {
+  margin: auto;
+  min-width: 260px;
+  max-width: 95vw;
+  min-height: 10rem;
+  max-height: 82vh;
+  border-radius: 0.125rem;
+  overflow: auto;
+}

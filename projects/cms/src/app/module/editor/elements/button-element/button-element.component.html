@@ -1,0 +1,17 @@
+<button 
+    [id]="data.id"
+    cdkDrag
+    (cdkDragStarted)="dragStart($event,data)"
+    (cdkDragEnded)="dragEnd($event)"
+    (cdkDragMoved)="dragMove($event)"
+    wrapperEvents
+    [elementHTML_Wrapper]="data"
+    [data]="data"
+    class="data-wrapper relative"
+    @dataEnter
+>
+    button individual
+    <div class="data-drag-handler md-elevation-4dp" [class.d-none]="ac.moveoverComponentId !== data.id" cdkDragHandle >
+        <span class="Appkit4-icon icon-move-outline"></span>
+    </div>
+</button>

@@ -1,0 +1,18 @@
+<form [formGroup]="form" class="flex flex-col gap-4">
+    <div class="flex flex-col gap-3">
+        <div class="text-l">Variation</div>
+        <ngx-radio label="Inline" formControlName="variation" [value]="'Inline'" name="variation"></ngx-radio>
+        <ngx-radio label="Contained" formControlName="variation" [value]="'Contained'" name="variation"></ngx-radio>
+    </div>
+    <div class="flex flex-col gap-3">
+        <div class="text-l">Filled</div>
+        <ngx-radio label="No" formControlName="filled" [value]="false" name="filled"></ngx-radio>
+        <ngx-radio label="Yes" formControlName="filled" [value]="true" name="filled"></ngx-radio>
+    </div>
+    <div class="flex flex-col gap-3">
+        <div class="text-l">Sentiment</div>
+        <ng-container *ngFor="let s of badgeSentiments">
+            <ngx-radio [label]="s" formControlName="sentiment" [value]="s" name="sentiment"></ngx-radio>
+        </ng-container>
+    </div>
+</form>

@@ -1,0 +1,55 @@
+<div class="md-elevation-4dp p-3" [formGroup]="form">
+  <div class="fileupload-demo-wrapper">
+    <!--
+    <fileupload uploadTitle=""
+      [config]="{multiple: false, type: 'inline'}"
+      (onUpload)="uploadFiles($event)"
+      [uploadInstruction]="'You can upload JPG, PNG or PDF files. The max file size is 10mb.'"
+      [fileType]="['JPG', 'PNG', 'PDF']"
+      [customUploader]="{'maxFileSize':10485760,'autoUpload':false}">
+    </fileupload>
+    -->
+  </div>
+  <label>circle</label>
+  <input type="checkbox"formControlName="circle">
+  <div class="mb-2">
+      <div>
+        <label id="singleSlider">Greyscale</label>
+        <div>
+          {{form.get('grayscale').value | number}}
+        </div>
+      </div>
+      <input type="range" [max]="1" [step]="0.01" formControlName="grayscale">
+  </div>
+
+  <div class="mb-2">
+      <div>
+        <label id="singleSlider">Contrast</label>
+        <div>
+          {{form.get('contrast').value | number}}
+        </div>
+      </div>
+      <input type="range" [min]="0" [max]="2" [step]="0.01" formControlName="contrast">
+  </div>
+  
+  <div class="mb-2">
+      <div>
+        <label id="singleSlider">Brightness</label>
+        <div>
+          {{form.get('brightness').value | number}}
+        </div>
+      </div>
+      <input type="range" [min]="0" [max]="2" [step]="0.01" formControlName="brightness">
+  </div>
+
+  <div>
+      <div>
+        <label id="singleSlider">Blur</label>
+        <div>
+          {{form.get('blur').value | number}}
+        </div>
+      </div>
+      <input type="range" [min]="0" [max]="5" [step]="0.1" formControlName="blur">
+  </div>
+  
+</div>

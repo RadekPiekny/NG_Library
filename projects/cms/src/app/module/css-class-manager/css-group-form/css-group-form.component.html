@@ -1,0 +1,15 @@
+<form [formGroup]="groupForm">
+    <span>parentId - {{parentId}}</span>
+    <input type="text" formControlName="name" placeholder="name">
+    <input type="number" formControlName="parentId" placeholder="parentId">
+    <input type="text" formControlName="shortDescription" placeholder="shortDescription">
+    <input type="text" formControlName="description" placeholder="description">
+    <div>
+        <ng-container *ngIf="CssGroup; else newCssGroup">
+            <button (click)="update()">update</button>
+        </ng-container>
+        <ng-template #newCssGroup>
+            <button  (click)="create()">create</button>
+        </ng-template>
+    </div>
+</form>

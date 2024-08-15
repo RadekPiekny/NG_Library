@@ -1,0 +1,8 @@
+@use './theme-colors/theme-colors.scss' as themeColors;
+
+@include themeColors.primaryColorGenerate();
+:root {
+    //@include themeColors.neutralColorGenerate();
+    @include themeColors.colorGenerate();
+    //.bg-transparent { background-color: transparent; }
+}

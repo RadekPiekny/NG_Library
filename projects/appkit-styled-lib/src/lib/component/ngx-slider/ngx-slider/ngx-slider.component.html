@@ -1,0 +1,12 @@
+<div class="h-fit bg-transparent p-2" *ngIf="data$ | async as data">
+    <div class="flex flex-row flex-nowrap justify-between text-sm min-w-fit w-100">
+        <span>{{ title }}</span>
+        <span *ngIf="_showValue" class="dark:text-neutral-500 dark:font-bold">{{ data.value }} / {{ max }}</span>
+    </div>
+    <div class="relative align-middle w-full">
+        <input type="range" [min]="min" [max]="max" [step]="step" (input)="changeValue($event)" [value]="data.value" [disabled]="_disabled"
+        class="peer appearance-none bg-neutral-300 h-0.5 w-full rounded-md relative [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:w-4 [&::-webkit-slider-thumb]:h-4 [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:bg-primary dark:bg-neutral-600 cursor-pointer disabled:[&::-webkit-slider-thumb]:!bg-black dark:disabled:[&::-webkit-slider-thumb]:!bg-neutral-500 dark:[&::-webkit-slider-thumb]:bg-primary-lighten-200 dark:bg-white/70 disabled:[&::-webkit-slider-thumb]:cursor-not-allowed">
+        <div class="peer-disabled:bg-transparent inline-block absolute h-0.5 rounded bg-primary dark:bg-primary-lighten-200 left-0 !z-50 top-4" [ngStyle]="{'width.%': data.ratio}"></div>
+    </div>
+    
+</div>

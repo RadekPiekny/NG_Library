@@ -1,0 +1,55 @@
+<ng-container *ngIf="data$ | async as data">
+  <ngx-form-field
+  [disabled]="fc.disabled" [label]="data.label" 
+  cdkOverlayOrigin #trigger="cdkOverlayOrigin" 
+  [fieldFocus]="data.focused" 
+  [contentPopulated]="!!fc.value || !!data.placeholder || !!data.label" 
+  [heightClass]="heightClass" 
+  [readonly]="_readonly" 
+  [data]="data"
+  [fieldCssClass]="fieldCssClass">
+  <div *ngIf="showInternalErrors && errMsg" class="absolute top-0 left-2 rounded whitespace-nowrap shadow dark:bg-neutral-800 p-2 -translate-y-full text-xs text-negative dark:text-negative-lighten-200">
+    {{errMsg}}
+    <ngx-button *ngIf="!fc.disabled" variation='transparent' size="s" icon class="m-auto my-px text-neutral-800 dark:text-neutral-50" tooltip="close" (click)="errMsg = ''">
+      <span class="Appkit4-icon icon-close-outline text-xs"></span>
+    </ngx-button>
+  </div>
+  <button type="button" [disabled]="fc.disabled" #btn class="w-full h-full flex items-center disabled:cursor-not-allowed outline-none {{_readonly ? 'cursor-default' : 'cursor-pointer'}}" (click)="btnClick()" (focus)="onFocus()" (blur)="selectBlur($event)" [disabled]="fc.disabled"> 
+      <span *ngIf="leftIcon" class="Appkit4-icon {{data.leftIcon}} opacity-60 me-2 {{data.label ? 'relative top-[5px]' : ''}}"></span>
+      <input-auto-date
+        class="flex-1 {{data.label ? 'pt-2' : ''}}"
+        [format]="dateFormat"
+        [formControl]="fc"
+        (click)="$event.stopPropagation()"
+        (dateValidation)="autoDateValidation($event)"
+        [readonly]="_readonly">
+      </input-auto-date>
+      <span *ngIf="data.placeholder && !fc.value" class="opacity-70" [style]="stl$ | async">{{data.placeholder}}</span>
+      <ngx-button variation='transparent' icon compact (click)="resetMe($event)" *ngIf="fc.value && reset && !fc.disabled && !_readonly" class="mx-1">
+        <span class="Appkit4-icon icon-circle-delete-outline opacity-70"></span>
+      </ngx-button>
+      <ngx-button variation='transparent' icon compact *ngIf="!fc.disabled && !_readonly" (click)="showCalendar = true">
+        <span class="Appkit4-icon icon-calendar-outline " [ngClass]="(_readonly || fc.disabled) ? 'opacity-30' : 'opacity-70'"></span>
+      </ngx-button>
+      
+    </button>
+  </ngx-form-field>
+  <ng-template
+    cdkConnectedOverlay
+    [cdkConnectedOverlayOrigin]="trigger"
+    [cdkConnectedOverlayOpen]="showCalendar"
+    [cdkConnectedOverlayHasBackdrop]="true"
+    [cdkConnectedOverlayBackdropClass]="'cdk-overlay-transparent-backdrop'"
+    (backdropClick)="closeOptions()"
+  >
+    <ngx-calendar
+      [disableFrom]="_disableFrom"
+      [disableTo]="_disableTo"
+      [disableRange]="_disableRange"
+      [selectedDate]="fc.value"
+      (dateChange)="dateChange($event)"
+      class="block dark:bg-neutral-800"
+      @slideFromBottom
+    ></ngx-calendar>
+  </ng-template>
+</ng-container>

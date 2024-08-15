@@ -1,0 +1,104 @@
+<div class="dark:bg-neutral-900 bg-neutral-50 min-h-screen ">
+  <div class="flex relative overflow-hidden">
+    <nav class="dark:bg-neutral-850 flex flex-col fixed h-screen max-h-[100vh] w-72 shadow-md z-10 my-border-radius">
+      <ngx-accordion class="p-5 max-h-[100vh] overflow-auto">
+        <ngx-accordion-item class="mb-2">
+          <div header class="py-2 rounded">
+            <span class="Appkit4-icon icon-venn-abc-outline sidebar-icon"></span>
+            Welcome
+          </div>
+          <div class="flex flex-col">
+            <ng-container *ngFor="let link of welcome" >
+              <ngx-button variation='transparent' [routerLink]="[link.route]" cssClass="!w-full !justify-start" routerLinkActive="!bg-neutral-900/10 dark:!bg-neutral-100/10">
+                {{link.name}}
+              </ngx-button>
+            </ng-container>
+            
+          </div>
+        </ngx-accordion-item>
+        <ngx-accordion-item class="mb-2">
+          <div header class="py-2 rounded">
+            <span class="Appkit4-icon icon-venn-abc-outline sidebar-icon"></span>
+            Styles
+          </div>
+          <div class="flex flex-col">
+            <ng-container *ngFor="let link of styles" >
+              <ngx-button variation='transparent' standard="base" [routerLink]="[link.route]" routerLinkActive="!bg-neutral-900/10 dark:!bg-neutral-100/10" class="px-6 py-3 rounded">
+                <div class="w-full text-left">
+                  {{link.name}}
+                </div>
+              </ngx-button>
+            </ng-container>
+          </div>
+        </ngx-accordion-item>
+        <ngx-accordion-item class="mb-2">
+          <div header class="py-2 rounded">
+            <span class="Appkit4-icon icon-particulates-outline sidebar-icon"></span>
+            Components
+          </div>
+          <div class="flex flex-col">
+            <ng-container *ngFor="let link of links">
+              <ngx-button variation='transparent' cssClass="!w-full !justify-start" [routerLink]="[link.route]" routerLinkActive="!bg-neutral-900/10 dark:!bg-neutral-100/10">
+                {{link.name}}
+              </ngx-button>
+            </ng-container>
+          </div>
+        </ngx-accordion-item>
+        <ngx-accordion-item class="mb-2">
+          <div header class="py-2 rounded">
+            <span class="Appkit4-icon icon-particulates-outline sidebar-icon"></span>
+            Common patterns
+          </div>
+          <div class="flex flex-col">
+            <button 
+              *ngFor="let link of commonPatterns" 
+              [routerLink]="[link.route]" 
+              routerLinkActive="dark:bg-white/10 bg-black/10" 
+              class="text-left px-6 py-2 capitalize dark:hover:bg-white/10 hover:bg-black/10"
+              >{{link.name}}
+            </button>
+          </div>
+        </ngx-accordion-item>
+        <ngx-accordion-item class="mb-2">
+          <div header class="py-2 rounded">
+            <span class="Appkit4-icon icon-particulates-outline sidebar-icon"></span>
+            Services
+          </div>
+          <div class="flex flex-col">
+            <button 
+              *ngFor="let link of services" 
+              [routerLink]="[link.route]" 
+              routerLinkActive="dark:bg-white/10 bg-black/10" 
+              class="text-left px-6 py-2 capitalize dark:hover:bg-white/10 hover:bg-black/10"
+              >{{link.name}}
+            </button>
+          </div>
+        </ngx-accordion-item>
+        <ngx-accordion-item>
+          <div header class="py-2 rounded">
+            <span class="Appkit4-icon icon-particulates-outline sidebar-icon"></span>
+            Composite Snippets
+          </div>
+          <div class="flex flex-col">
+            <button 
+              *ngFor="let link of componentSnippets" 
+              [routerLink]="[link.route]" 
+              routerLinkActive="dark:bg-white/10 bg-black/10" 
+              class="text-left px-6 py-2 capitalize dark:hover:bg-white/10 hover:bg-black/10"
+              >{{link.name}}
+            </button>
+          </div>
+        </ngx-accordion-item>
+      </ngx-accordion>
+      <div class="mt-auto flex items-center justify-center">
+        <theme-picker></theme-picker>
+        <dark-mode></dark-mode>
+      </div>
+    </nav>
+    <main class="px-8 py-5 ml-72 flex-1 flex" >
+      <div style="max-width: 1280px;" class="m-auto w-full">
+        <router-outlet></router-outlet>
+      </div>
+    </main>
+  </div>
+</div>

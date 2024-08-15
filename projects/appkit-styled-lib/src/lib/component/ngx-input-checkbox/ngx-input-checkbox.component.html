@@ -1,0 +1,35 @@
+<ng-container *ngIf="label; else noLabel">
+    <div class="flex items-center gap-3">
+        <input 
+            [id]="id"
+            type="checkbox" 
+            [indeterminate]="_indeterminate"
+            [disabled]="_disabled | async" 
+            [readonly]="_readonly | async" 
+            class="rounded-sm leading-4 h-4 w-4 relative focus:outline focus:outline-4 outline-offset-0 focus:outline-primary/10 dark:focus:outline-primary-lighten-100/20 dark:text-white/70 dark:focus:checked:text-primary-lighten-200 text-neutral-700 focus:checked:text-primary disabled:opacity-70 disabled:cursor-not-allowed 
+            {{_readonly.getValue() ? 'pointer-events-none opacity-70 cursor-default' : ''}}
+            appearance-none cursor-pointer after:relative after:font-appkit4-font after:content-['\e98f'] dark:checked:text-primary-lighten-200 checked:text-primary checked:after:content-['\e880'] dark:indeterminate:text-primary-lighten-200 indeterminate:text-primary indeterminate:after:content-['\e98d']" 
+            [checked]="value" 
+            (click)="toggleChecked()"
+        >
+        <label [for]="id" class="
+            leading-none 
+            {{_disabled.getValue() ? 'opacity-70 cursor-not-allowed' : 'cursor-pointer'}}
+            {{_readonly.getValue() ? 'pointer-events-none' : ''}}">{{label}}
+        </label>
+    </div>
+</ng-container>
+<ng-template #noLabel>
+    <input 
+        [id]="id"
+        type="checkbox" 
+        [indeterminate]="_indeterminate"
+        [disabled]="_disabled | async" 
+        [readonly]="_readonly | async" 
+        class="rounded-sm leading-4 h-4 w-4 relative focus:outline focus:outline-4 outline-offset-0 focus:outline-primary/10 dark:focus:outline-primary-lighten-100/20 dark:text-white/70 dark:focus:text-white/100 dark:focus:checked:text-primary-lighten-200 text-neutral-700 focus:text-neutral-900 focus:checked:text-primary disabled:opacity-70 disabled:cursor-not-allowed 
+        {{_readonly.getValue() ? 'pointer-events-none opacity-70 cursor-default' : ''}}
+        appearance-none cursor-pointer after:relative after:font-appkit4-font after:content-['\e98f'] dark:checked:text-primary-lighten-200 checked:text-primary checked:after:content-['\e880'] dark:indeterminate:text-primary-lighten-200 indeterminate:text-primary indeterminate:after:content-['\e98d']" 
+        [checked]="value" 
+        (click)="toggleChecked()"
+    >
+</ng-template>

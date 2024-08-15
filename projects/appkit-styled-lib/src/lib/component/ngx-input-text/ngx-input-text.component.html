@@ -1,0 +1,27 @@
+<ngx-form-field #formField *ngIf="data$ | async as data"
+    [disabled]="fc.disabled" [label]="data.label" [fieldFocus]="data.focused" 
+    [contentPopulated]="!!fc.value || !!data.placeholder" [heightClass]="heightClass" 
+    [invalid]="_invalid" (formFieldClick)="formFieldClick(inp)" [readonly]="_readonly" [leftIcon]="leftIcon" [data]="data">
+    <input 
+        #inp
+        class="w-full h-full bg-transparent outline-none disabled:cursor-not-allowed text-inherit read-only:cursor-default"
+        [style]="stl$ | async"
+        [type]="_type" 
+        [formControl]="fc" 
+        (keypress)="onKeypress($event)" 
+        (focus)="onFocus()" 
+        (blur)="onBlur($event)" 
+        [placeholder]="data.placeholder" 
+        [readonly]="_readonly"
+        [disabled]="fc.disabled" 
+        [attr.maxlength]="maxlength ? maxlength : null"
+    />
+    <ngx-button variation='transparent' icon compact (click)="resetMe($event)" *ngIf="fc.value && reset" class="mx-1">
+        <span class="Appkit4-icon icon-circle-delete-outline opacity-70 dark:text-primary-lighten-200 text-primary"></span>
+    </ngx-button>
+    <span *ngIf="maxlength && displayMaxLength" class="text-sm opacity-70 scale-75 inline-block whitespace-nowrap absolute top-0 right-0 pr-1">
+        {{fc?.value?.length ? fc?.value?.length : 0}}
+        /
+        {{maxlength}}
+    </span>
+</ngx-form-field>

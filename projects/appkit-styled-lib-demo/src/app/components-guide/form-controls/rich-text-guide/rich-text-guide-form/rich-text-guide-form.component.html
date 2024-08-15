@@ -1,0 +1,7 @@
+<form [formGroup]="form" class="flex flex-col gap-4">
+    <div class="flex flex-col gap-4">
+        <div>Variation</div>
+        <ngx-radio label="Simple" name="simple" formControlName="variation" [value]="'simple'"></ngx-radio>
+        <ngx-radio label="Expanded" name="expanded" formControlName="variation" [value]="'expanded'"></ngx-radio>
+    </div>
+</form>

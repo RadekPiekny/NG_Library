@@ -1,0 +1,20 @@
+<ul class="grid grid-cols-[repeat(7,1fr)] gap-1 text-xs font-semibold text-center">
+  <li *ngFor="let day of weekDay">{{day.shortName}}</li>
+</ul>
+<ul class="grid grid-cols-[repeat(7,auto)] gap-1">
+  <li *ngFor="let item of previousDays" class="h-10">
+      <button type="button" class="h-full w-full rounded-md cursor-not-allowed">
+        <span class="opacity-40">{{item | date:'d'}}</span>
+      </button>
+  </li>
+  <li *ngFor="let item of currentDays" class="h-10">
+      <button type="button" class="h-full w-full rounded-md hover:enabled:bg-neutral-100 dark:enabled:hover:bg-neutral-700 disabled:cursor-not-allowed disabled:opacity-40" (click)="activateDay(item.date,true)" [ngClass]="activeDayCheck(item.date) ? '!bg-primary !text-white' : ''" [disabled]="item.disabled">
+        <span>{{item.date | date:'d'}}</span>
+      </button>
+  </li>
+  <li *ngFor="let item of nextDays" class="h-10">
+      <button type="button" class="h-full w-full rounded-md cursor-not-allowed">
+        <span class="opacity-40">{{item | date:'d'}}</span>
+      </button>
+  </li>
+</ul>

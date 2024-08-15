@@ -1,0 +1,9 @@
+<div class="flex" style="height: 344px;">
+    <calendar-year-selection [selectedYear]="_year" (valueChange)="yearChange($event)"></calendar-year-selection>
+    <div class="flex flex-col flex-1">
+        <month-selection [selectedMonth]="_month" (valueChange)="monthChange($event)" class="w-full flex-1"></month-selection>
+        <div class="p-3 flex justify-end">
+            <ngx-button variation='primary' (click)="confirm()">confirm</ngx-button>
+        </div>
+    </div>
+</div>

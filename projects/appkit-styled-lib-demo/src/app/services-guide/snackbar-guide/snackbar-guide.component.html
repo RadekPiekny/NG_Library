@@ -1,0 +1,14 @@
+<div class="text-2xl">Checkbox</div>
+<p class="opacity-80">A checkbox can either displays one option or a list of options to the user or allow the user to activate a setting or selection.</p>
+<div class="flex flex-col py-4">
+    <component-showcase>
+        <ng-container visual>
+            <ngx-button variation='primary' (click)="newSnack()">new snack</ngx-button>
+        </ng-container>
+        <ng-container code>
+            <component-code-show [componentCode]="componentCode"></component-code-show>
+        </ng-container>
+        <snackbar-guide-form form [form]="form" (formChange)="formChange($event)"></snackbar-guide-form>
+    </component-showcase>
+    <all-guides [componentData]="componentData"></all-guides>
+</div>

@@ -1,0 +1,55 @@
+<!-- <div class="w-80 flex flex-col gap-2">
+    <ngx-textarea></ngx-textarea>
+    <ngx-textarea label="lbl"></ngx-textarea>
+    <ngx-textarea [maxlength]="40"></ngx-textarea>
+    
+    <ngx-input-text label="Label"></ngx-input-text>
+</div> -->
+
+<div class="text-2xl">Text area</div>
+<p class="opacity-80">A Textarea enables users to input text within the context of a form.</p>
+<div class="flex flex-col py-4">
+    <component-showcase>
+        <ng-container visual>
+            <ngx-textarea
+                [focus]="form.value.focus"
+                [label]="form.value.label"
+                [placeholder]="form.value.placeholder"
+                [maxlength]="form.value.maxlength"
+                [rows]="form.value.rows"
+                [resize]="form.value.resize"
+                class="w-80"
+            ></ngx-textarea>
+        </ng-container>
+        <ng-container code>
+            <component-code-show [componentCode]="componentCode"></component-code-show>
+        </ng-container>
+        <textarea-guide-form form [form]="form" (formChange)="formChange()"></textarea-guide-form>
+    </component-showcase>
+    <div class="px-2 py-1 rounded-md bg-white dark:bg-neutral-850 dark:border-neutral-600 transition-all mt-4">
+        <ngx-tab>
+            <ngx-tab-item active>ngx-textarea</ngx-tab-item>
+        </ngx-tab>
+        <table class="w-full">
+          <thead>
+            <tr>
+              <th class="text-left p-3 rounded transition-all">Property name</th>
+              <th class="text-left p-3 rounded transition-all">Type</th>
+              <th class="text-left p-3 rounded transition-all">Data type</th>
+              <th class="text-left p-3 rounded transition-all">Description</th>
+            </tr>
+          </thead>
+          <tbody class="border-spacing-1">
+            <tr *ngFor="let row of allPropertiesData" class="hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-all" [ngClass]="{'odd:bg-neutral-50 dark:odd:bg-neutral-700': striped}">
+              <td class="text-left p-3 h-fit first:rounded-l last:rounded-r" [ngClass]="{'!py-1': condensed}">{{ row.name }}</td>
+              <td class="text-left p-3 h-fit first:rounded-l last:rounded-r" [ngClass]="{'!py-1': condensed}">{{ row.type }}</td>
+              <td class="text-left p-3 h-fit first:rounded-l last:rounded-r" [ngClass]="{'!py-1': condensed}">{{ row.dataType }}</td>
+              <td class="text-left p-3 h-fit first:rounded-l last:rounded-r" [ngClass]="{'!py-1': condensed}">{{ row.description }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    <accessibility-guide [heading]="componentData.accessibility.heading" [list]="componentData.accessibility.items" class="mt-4"></accessibility-guide>
+    <usage-guide [heading]="componentData.use.heading" [list]="componentData.use.items" class="mt-4"></usage-guide>
+    <usage-not-guide [heading]="componentData.useNot.heading" [list]="componentData.useNot.items" class="mt-4"></usage-not-guide>
+</div>

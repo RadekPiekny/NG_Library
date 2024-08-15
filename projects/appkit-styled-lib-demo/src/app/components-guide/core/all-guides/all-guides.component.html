@@ -1,0 +1,5 @@
+<div class="flex flex-col gap-2 mt-4" *ngIf="componentData">
+    <accessibility-guide [heading]="componentData.accessibility.heading" [list]="componentData.accessibility.items"></accessibility-guide>
+    <usage-guide [heading]="componentData.use.heading" [list]="componentData.use.items"></usage-guide>
+    <usage-not-guide [heading]="componentData.useNot.heading" [list]="componentData.useNot.items"></usage-not-guide>
+</div>

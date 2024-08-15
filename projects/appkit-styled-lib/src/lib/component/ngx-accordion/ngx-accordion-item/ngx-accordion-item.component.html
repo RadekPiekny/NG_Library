@@ -1,0 +1,21 @@
+
+<ng-container *ngIf="_state | async as st">
+  <button
+    (click)="toggle()"
+    class="flex align-center transparent w-full"
+    type="button"
+  >
+    <ng-container *ngIf="title; else custom">
+      <span class="mr-auto">{{ title }}</span>
+      <div class="ps-4 ml-4">
+        <span *ngIf="icon" class="Appkit4-icon {{ icon }} a-font-16 opacity-70 {{st === 'expand' ? 'rotate-180' : ''}}"></span>
+      </div>
+    </ng-container>
+    <ng-template #custom>
+      <ng-content select="[header]"></ng-content>
+    </ng-template>
+  </button>
+  <div [@smoothCollapse]="st" class="overflow-hidden">
+    <ng-content></ng-content>
+  </div>
+</ng-container>

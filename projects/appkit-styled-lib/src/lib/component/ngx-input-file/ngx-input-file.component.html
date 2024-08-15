@@ -1,0 +1,42 @@
+<ngx-form-field #formField
+    [disabled]="fc.disabled" [fieldFocus]="focused$ | async" [isFileType]="true"
+    [heightClass]="heightClass"
+    [invalid]="_invalid" (formFieldClick)="formFieldClick(inp)" [readonly]="_readonly"
+>
+    <label [for]="id" [attr.tabindex]="fc.disabled? null : tabindex"
+        dropZone (fileDropped)="fileDrop($event)"
+        class="flex flex-col items-center justify-center w-full h-full {{fc.disabled ? 'cursor-not-allowed' : 'cursor-pointer'}} {{_icon ? 'p-4' : ''}}" 
+        (focus)="onFocus()" (blur)="onBlur($event)" >
+        <ng-container *ngIf="_icon">
+            <ng-container *ngIf="fc.disabled; else enabledIcon">
+                <ng-container *ngIf="_icon.disabled === 'default'; else customDisabledIcon">
+                    <div class="relative">
+                        <span class="Appkit4-icon icon-cloud-outline !block !text-5xl text-neutral-500 dark:text-neutral-400 !w-fit !h-fit"></span>
+                        <span class="Appkit4-icon icon-arrow-up-fill absolute left-1/2 top-[55%] transform -translate-x-1/2 -translate-y-1/2 text-neutral-500 dark:text-neutral-400"></span>
+                    </div>
+                </ng-container>
+                <ng-template #customDisabledIcon>
+                    <span class="Appkit4-icon {{_icon.disabled}} !block !text-5xl text-neutral-500 dark:text-neutral-400 !w-fit !h-fit"></span>
+                </ng-template>
+            </ng-container>
+            <ng-template #enabledIcon>
+                <ng-container *ngIf="_icon.enabled === 'default'; else customEnabledIcon">
+                    <div class="relative">
+                        <span class="Appkit4-icon icon-cloud-outline !block !text-5xl text-neutral-500 dark:text-neutral-400 !w-fit !h-fit"></span>
+                        <span class="Appkit4-icon icon-arrow-up-fill absolute left-1/2 top-[55%] transform -translate-x-1/2 -translate-y-1/2 text-neutral-500 dark:text-neutral-400"></span>
+                    </div>
+                </ng-container>
+                <ng-template #customEnabledIcon>
+                    <span class="Appkit4-icon {{_icon.enabled}} !block !text-5xl text-neutral-500 dark:text-neutral-400 !w-fit !h-fit"></span>
+                </ng-template>
+            </ng-template>
+        </ng-container>
+        <p class="text-sm text-neutral-500 dark:text-neutral-400" >
+            <em class="font-semibold" style="font-style: normal;">{{_label}}</em>
+            or
+            <span class="font-semibold underline dark:text-primary-lighten-200 text-primary {{fc.disabled ? '' : 'hover:no-underline'}}">choose {{multiple ? 'files' : 'file'}}</span>
+        </p>
+        <input #inp [id]="id" type="file" (change)="change($event)" [accept]="accept" class="hidden" [multiple]="multiple" [disabled]="fc.disabled" />
+        <p class="text-xs text-center text-neutral-500 dark:text-neutral-400">{{uploadInstruction}}</p>
+    </label>
+</ngx-form-field>

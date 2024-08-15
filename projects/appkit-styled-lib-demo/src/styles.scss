@@ -1,0 +1,19 @@
+@use 'sass:meta';
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@config "../tailwind.config.js";
+@import '@angular/cdk/overlay-prebuilt.css';
+
+html[data-mode='light'] {
+    @include meta.load-css('highlight.js/styles/a11y-light');
+    .hljs {
+      background-color: transparent !important;
+    }
+}
+html[data-mode='dark'] {
+    @include meta.load-css('highlight.js/styles/a11y-dark');
+    .hljs {
+      background-color: transparent !important;
+    }
+}

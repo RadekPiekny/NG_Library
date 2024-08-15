@@ -1,0 +1,60 @@
+<div class="text-2xl">Breadcrumb</div>
+<p class="opacity-80">A breadcrumb is an element used as a navigational aid in user interfaces. It allows users to keep track and maintain awareness of their location within an application.</p>
+<div class="flex flex-col py-4">
+    <component-showcase>
+        <ng-container visual>
+            <ngx-breadcrumb>
+                <ngx-bc-item>
+                    <span class="Appkit4-icon icon-home-outline me-1 leading-3 h-3 text-xs"></span>
+                    <span tabindex="0">first level</span>
+                </ngx-bc-item>
+                <ngx-bc-item>
+                    <span tabindex="0">second level</span>
+                </ngx-bc-item>
+                <ngx-bc-item>
+                    <span tabindex="0">third level</span>
+                </ngx-bc-item>
+            </ngx-breadcrumb>
+        </ng-container>
+        <ng-container code>
+            <component-code-show [componentCode]="componentCode"></component-code-show>
+        </ng-container>
+        <breadcrumb-guide-form form [form]="form" (formChange)="formChange($event)"></breadcrumb-guide-form>
+    </component-showcase>
+    <div class="px-2 py-1 rounded-md bg-white dark:bg-neutral-850 dark:border-neutral-600 transition-all mt-4">
+        <ngx-tab>
+            <ngx-tab-item [active]="activeTab === 'ngx-breadcrumb'" (click)="activeTab = 'ngx-breadcrumb'">ngx-breadcrumb</ngx-tab-item>
+            <ngx-tab-item  [active]="activeTab === 'ngx-bc-item'" (click)="activeTab = 'ngx-bc-item'">ngx-bc-item</ngx-tab-item>
+        </ngx-tab>
+        <table class="w-full">
+          <thead>
+            <tr>
+              <th class="text-left p-3 rounded transition-all">Property name</th>
+              <th class="text-left p-3 rounded transition-all">Type</th>
+              <th class="text-left p-3 rounded transition-all">Data type</th>
+              <th class="text-left p-3 rounded transition-all">Description</th>
+            </tr>
+          </thead>
+          <tbody class="border-spacing-1" *ngIf="activeTab === 'ngx-bc-item'">
+            <tr *ngFor="let row of ngx_bc_ItemData" class="hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-all" [ngClass]="{'odd:bg-neutral-50 dark:odd:bg-neutral-700': striped}">
+              <td class="text-left p-3 h-fit first:rounded-l last:rounded-r" [ngClass]="{'!py-1': condensed}">{{ row.name }}</td>
+              <td class="text-left p-3 h-fit first:rounded-l last:rounded-r" [ngClass]="{'!py-1': condensed}">{{ row.type }}</td>
+              <td class="text-left p-3 h-fit first:rounded-l last:rounded-r" [ngClass]="{'!py-1': condensed}">{{ row.dataType }}</td>
+              <td class="text-left p-3 h-fit first:rounded-l last:rounded-r" [ngClass]="{'!py-1': condensed}">{{ row.description }}</td>
+            </tr>
+          </tbody>
+          <tbody class="border-spacing-1" *ngIf="activeTab === 'ngx-breadcrumb'">
+            <tr *ngFor="let row of ngx_breadcrumbData" class="hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-all" [ngClass]="{'odd:bg-neutral-50 dark:odd:bg-neutral-700': striped}">
+              <td class="text-left p-3 h-fit first:rounded-l last:rounded-r" [ngClass]="{'!py-1': condensed}">{{ row.name }}</td>
+              <td class="text-left p-3 h-fit first:rounded-l last:rounded-r" [ngClass]="{'!py-1': condensed}">{{ row.type }}</td>
+              <td class="text-left p-3 h-fit first:rounded-l last:rounded-r" [ngClass]="{'!py-1': condensed}">{{ row.dataType }}</td>
+              <td class="text-left p-3 h-fit first:rounded-l last:rounded-r" [ngClass]="{'!py-1': condensed}">{{ row.description }}</td>
+            </tr>
+          </tbody>
+
+        </table>
+      </div>
+    <accessibility-guide [heading]="componentData.accessibility.heading" [list]="componentData.accessibility.items" class="mt-4"></accessibility-guide>
+    <usage-guide [heading]="componentData.use.heading" [list]="componentData.use.items" class="mt-4"></usage-guide>
+    <usage-not-guide [heading]="componentData.useNot.heading" [list]="componentData.useNot.items" class="mt-4"></usage-not-guide>
+</div>bad

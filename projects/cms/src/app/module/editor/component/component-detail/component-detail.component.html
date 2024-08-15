@@ -1,0 +1,6 @@
+<form [formGroup]="buttonForm" class="flex gap-3 items-center" *ngIf="!skeleton">
+    <ngx-input-text label="Name" formControlName="name"></ngx-input-text>
+    <ngx-select label="group" formControlName="groupId" *ngIf="groups$ | async as groups">
+        <ngx-option *ngFor="let item of groups" [value]="item.id" [displayValue]="item.name">{{item.name}}</ngx-option>
+    </ngx-select>
+</form>

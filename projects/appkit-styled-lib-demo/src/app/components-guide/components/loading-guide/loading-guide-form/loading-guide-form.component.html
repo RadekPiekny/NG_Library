@@ -1,0 +1,14 @@
+<form [formGroup]="form" class="flex flex-col gap-4">
+    <ngx-tab [filled]="true">
+        <ngx-tab-item (click)="form.controls.type.patchValue('line')" [active]="form.controls.type.value === 'line'" class="flex-1">Line</ngx-tab-item>
+        <ngx-tab-item (click)="form.controls.type.patchValue('circle')" [active]="form.controls.type.value === 'circle'" class="flex-1">Circle</ngx-tab-item>
+    </ngx-tab>
+    <ngx-tab [filled]="true">
+        <ngx-tab-item (click)="form.controls.indeterminate.patchValue(false)" [active]="!form.controls.indeterminate.value">Default</ngx-tab-item>
+        <ngx-tab-item (click)="form.controls.indeterminate.patchValue(true)" [active]="form.controls.indeterminate.value">Indeterminate</ngx-tab-item>
+    </ngx-tab>
+    <ng-container *ngIf="!form.controls.indeterminate.value">
+        <ngx-input-number label="Progress" formControlName="progress"></ngx-input-number>
+    </ng-container>
+    <ngx-toggle label="Compact" formControlName="compact"></ngx-toggle>
+</form>

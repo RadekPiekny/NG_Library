@@ -1,0 +1,6 @@
+<h3 class="text-xl text-left mt-3 mb-2">Button attributes: </h3>
+<form [formGroup]="attributesForm">
+    <ng-container *ngFor="let attribute of _data.elementBase.attributes; trackBy:identify">
+        <ngx-input-text [label]="attribute.name" [value]="attribute.value" (valueChange)="valChange(attribute,$event)"></ngx-input-text>
+    </ng-container>
+</form>

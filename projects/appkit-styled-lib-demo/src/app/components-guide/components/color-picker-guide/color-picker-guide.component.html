@@ -1,0 +1,10 @@
+<div class="flex flex-col gap-5">
+    <rp-color-picker></rp-color-picker>
+    <rp-color-picker [types]="['primary']"></rp-color-picker>
+    <button class="text-{{colorPickerIcon_1?.type}}-{{colorPickerIcon_1?.tint}}">
+        <span class="Appkit4-icon icon-art-themes-fill" [menu]="test"></span>
+    </button>
+    <ng-template #test>
+        <rp-color-picker [types]="['primary']" class="block shadow dark:bg-neutral-800 bg-white p-4" (colorChange)="ttt($event)"></rp-color-picker>
+    </ng-template>
+</div>

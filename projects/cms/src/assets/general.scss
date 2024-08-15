@@ -1,0 +1,90 @@
+.block {
+    display: block;
+}
+.flex {
+    display: flex !important;
+    &.column {
+        flex-direction: column;
+    }
+    &.justify-end {
+        justify-content: flex-end;
+    }
+    &.justify-stretch {
+        justify-content: stretch;
+    }
+    &.justify-center {
+        justify-content: center;
+    }
+    &.align-center {
+        align-items: center;
+    }
+    &.wrap {
+        flex-wrap: wrap;
+    }
+    &.center {
+        justify-content: center;
+        align-items: center;
+    }
+}
+.flex-1 {
+    flex: 1;
+}
+$spacerTypeList: (
+    m: 'margin',
+    p: 'padding',
+    gap: 'gap'
+);
+$spacerList: (
+    1: .25rem,
+    2: .5rem,
+    3: 1rem,
+    4: 2rem,
+    5: 4rem,
+    auto: auto
+);
+@each $key,$value in $spacerList {
+    @each $typeKey,$type in $spacerTypeList {
+        .#{$typeKey}-#{$key} {
+            #{$type}: $value !important;
+        };
+        .#{$typeKey}y-#{$key} {
+            #{$type}-top: $value !important;
+            #{$type}-bottom: $value !important;
+        };
+        .#{$typeKey}x-#{$key} {
+            #{$type}-left: $value !important;
+            #{$type}-right: $value !important;
+        };
+        .#{$typeKey}e-#{$key} {
+            #{$type}-right: $value !important;
+        };
+        .#{$typeKey}s-#{$key} {
+            #{$type}-left: $value !important;
+        }
+        .#{$typeKey}t-#{$key} {
+            #{$type}-top: $value !important;
+        };
+        .#{$typeKey}b-#{$key} {
+            #{$type}-bottom: $value !important;
+        }
+    }
+    td {
+        vertical-align: middle;
+    }
+    .text-no-wrap {
+        white-space: nowrap;
+    }
+
+}
+.w-full {
+    width: 100%;
+}
+.h-full {
+    height: 100%;
+}
+.h-fullv {
+    height: 100vh;
+}
+.text-center {
+    text-align: center;
+}

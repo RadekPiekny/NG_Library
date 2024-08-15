@@ -1,0 +1,48 @@
+<form [formGroup]="form" class="flex flex-col gap-4">
+    <div class="flex flex-col gap-3">
+        <div class="text-l">Filled</div>
+        <ngx-radio label="No" formControlName="filled" [value]="false" name="filled"></ngx-radio>
+        <ngx-radio label="Yes" formControlName="filled" [value]="true" name="filled"></ngx-radio>
+    </div>
+    <div class="flex flex-col gap-3">
+        <ngx-select label="Justify Content" formControlName="justifyContent">
+            <ngx-option [value]="'justify-start'" displayValue="justify-start (default)">justify-start (default)</ngx-option>
+            <ngx-option>justify-center</ngx-option>
+            <ngx-option>justify-end</ngx-option>
+            <ngx-option>justify-between</ngx-option>
+            <ngx-option>justify-around</ngx-option>
+        </ngx-select>
+    </div>    
+    <div class="flex flex-col gap-3">
+        <ngx-select label="Component Css class" formControlName="componentWidth">
+            <ngx-option [value]="'noClass'" displayValue="No class">No class</ngx-option>
+            <ngx-option [value]="'w-full'" displayValue="w-full (default)">w-full (default)</ngx-option>
+        </ngx-select>
+    </div>
+    <div class="flex flex-col gap-3">
+        <ngx-select label="Width" formControlName="width">
+            <ngx-option [value]="'w-full'" displayValue="w-full (default)">w-full (default)</ngx-option>
+            <ngx-option>w-fit</ngx-option>
+        </ngx-select>
+    </div>
+    <div class="flex flex-col gap-3">
+        <ngx-select label="Justify Content" formControlName="tabGap">
+            <ngx-option [value]="'gap-1'" displayValue="gap-1 (filled default)">gap-1 (filled default)</ngx-option>
+            <ngx-option>gap-2</ngx-option>
+            <ngx-option>gap-3</ngx-option>
+            <ngx-option [value]="'gap-4'" displayValue="gap-4 (underline default)">gap-4 (underline default)</ngx-option>
+            <ngx-option>gap-5</ngx-option>
+            <ngx-option>gap-6</ngx-option>
+            <ngx-option>gap-7</ngx-option>
+            <ngx-option>gap-8</ngx-option>
+            <ngx-option>gap-9</ngx-option>
+            <ngx-option>gap-10</ngx-option>
+        </ngx-select>
+    </div>
+    <div class="flex flex-col gap-3">
+        <div>Disabled</div>
+        <ngx-radio label="No" formControlName="disabled" [value]="false" name="disabled"></ngx-radio>
+        <ngx-radio label="Yes" formControlName="disabled" [value]="true" name="disabled"></ngx-radio>
+        <ngx-toggle label="Underline track" formControlName="underlineTrack"></ngx-toggle>
+    </div>
+</form>

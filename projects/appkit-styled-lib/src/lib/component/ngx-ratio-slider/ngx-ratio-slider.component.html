@@ -1,0 +1,38 @@
+<div class="w-full relative h-5" *ngIf="showScale">
+    <ng-container *ngFor="let step of stepScale">
+        <ng-container *ngIf="step?.heading?.value !== null">
+            <span [style.left.px]="step.left" class="absolute text-xs opacity-70 -translate-x-1/2 bottom-1">{{step?.heading?.value}}</span>
+        </ng-container>
+    </ng-container>
+</div>
+<div class="w-full relative h-3" *ngIf="showScale">
+    <ng-container *ngFor="let step of stepScale">
+        <span [style.left.px]="step.left" class="w-px bottom-0 absolute dark:bg-neutral-700 bg-neutral-200" [ngClass]="step.cssClass"></span>
+    </ng-container>
+</div>
+<div class="relative justify-center w-full h-12 bg-neutral-50 dark:bg-neutral-800" #boundaryBox>
+    <div class="relative w-full h-full rounded overflow-hidden">
+        <ng-container *ngFor="let segment of _segments">
+            <div class="absolute h-full" [style.left.px]="segment.start.x" [style.width.px]="segment.width" [class]="segment.cssClass">
+    
+            </div>
+        </ng-container>
+    </div>
+    <ng-container *ngFor="let manualInput of ratioSliderManualInput; let i = index">
+        <div class="absolute -translate-x-1/2 transition-transform bg-white dark:bg-neutral-900 rounded h-8" [ngClass]="manualInput.containerCssClass" [style.left.px]="manualInput.left + sliderWidth / 2">
+            <div class="triangle-up absolute left-1/2 -translate-x-1/2 -translate-y-full" [ngClass]="manualInput.arrowCssClass"></div>
+            <ngx-input-number [disabled]="disabled" class="flex h-4" size="s" [cssClass]="manualInput.cssClass" [value]="manualInput.value" (blur)="sliderManualInput($event,i)"></ngx-input-number>
+        </div>
+    </ng-container>
+    <ng-container *ngFor="let slider of _sliders">
+
+        <div *ngIf="slider.errors.length === 0" class="flex absolute top-2" ngxMouseTracker (mouseDownTrigger)="mouseDownTrigger($event)" (ngxMouseMove)="mouseMove($event,slider)" (mouseMoveStart)="mouseMoving = true" (mouseMoveEnd)="mouseMoveEnd()" [style.left.px]="slider.position.x">
+            <button type="button" [disabled]="disabled" class="semi-circle left bg-neutral-200/20 dark:bg-neutral-700/20 flex items-center justify-center overflow-hidden disabled:cursor-not-allowed {{mouseMoving ? '' : 'enabled:hover:dark:!bg-neutral-700/50 enabled:focus-within:outline enabled:focus-within:outline-2 enabled:focus:border enabled:focus:outline-neutral-100/40 enabled:focus:border-primary-lighten-100 enabled:focus-within:border-primary'}}" (click)="moveSteps(slider,-1)">
+                <span class="Appkit4-icon icon-left-chevron-outline"></span>
+            </button>
+            <button type="button" [disabled]="disabled" class="semi-circle right bg-neutral-200/20 dark:bg-neutral-700/20 flex items-center justify-center overflow-hidden disabled:cursor-not-allowed {{mouseMoving ? '' : 'enabled:hover:dark:!bg-neutral-700/50 enabled:focus-within:outline enabled:focus-within:outline-2 enabled:focus:border enabled:focus:outline-neutral-100/40 enabled:focus:border-primary-lighten-100 enabled:focus-within:border-primary'}}" (click)="moveSteps(slider,1)">
+                <span class="Appkit4-icon icon-right-chevron-outline"></span>
+            </button>
+        </div>
+    </ng-container>
+</div>

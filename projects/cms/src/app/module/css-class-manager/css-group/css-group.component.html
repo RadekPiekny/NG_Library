@@ -1,0 +1,46 @@
+
+<div class="ml-3">
+    test
+    <div class="flex">
+        <table class="ml-3 text-xs">
+            <tbody>
+                <tr *ngFor="let cssClass of group.cssClasses">
+                    <td class="px-3 py-1">{{cssClass.value}}</td>
+                    <td class="px-3 py-1 opacity-70">{{cssClass.description}}</td>
+                    <td class="flex px-3 py-1 items-center gap-3">
+                        <button class="rounded-full bg-neutral-200 dark:bg-neutral-800 dark:hover:bg-primary hover:bg-primary flex items-center justify-center h-7 w-7 shrink-0" (click)="newCssClassClick(group.cssGroupId,cssClass)">
+                            <div class="flex items-center justify-center">
+                                <span class="Appkit4-icon icon-edit-outline text-xs"></span>
+                            </div>
+                        </button>
+                        <button class="rounded-full bg-neutral-200 dark:bg-neutral-800 dark:hover:bg-red-400 hover:bg-red-400 flex items-center justify-center h-7 w-7 shrink-0" (click)="deleteClass(cssClass.cssClassId)">
+                            <div class="flex items-center justify-center">
+                                <span class="Appkit4-icon icon-delete-outline text-xs"></span>
+                            </div>
+                        </button>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="px-3 py-2"></td>
+                    <td class="px-3 py-2"></td>
+                    <td class="flex px-3 py-2">
+                        <button (click)="newCssClassClick(group.cssGroupId)" class="rounded-full w-full bg-primary flex items-center justify-center h-7">
+                            <div class="flex items-center justify-center">
+                                <span class="Appkit4-icon icon-plus-outline text-xs"></span>
+                            </div>
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+<ngx-modal *ngIf="newGroup$ | async as newGroup" (closeChange)="newGroup$.next(null)">
+    <css-group-form [parentId]="newGroup"></css-group-form>
+</ngx-modal>
+
+<ngx-modal *ngIf="newCssClass$ | async as newCssClass" (closeChange)="newCssClass$.next(null)">
+    <css-class-form [cssClass]="newCssClass"></css-class-form>
+</ngx-modal>

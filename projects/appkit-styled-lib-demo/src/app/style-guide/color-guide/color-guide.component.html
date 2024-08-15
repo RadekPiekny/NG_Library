@@ -1,0 +1,210 @@
+<h1 class="text-left py-5">Theme color palletes</h1>
+<p class="max-w-4xl">You can observe that color surface <code class="dark:bg-neutral-700 bg-neutral-300 px-3 py-1 font-extralight text-xs">bg-color-tint</code> automatically changes text color. You can still override the color with tailwind class but every brand color and its tint has appropriate text color based on <strong class="font-bold">contrast requirements ratio by W3C</strong></p>
+<div class="flex flex-col gap-2 p-5 dark:bg-neutral-800 bg-neutral-100 mt-4">
+  <div class="flex w-full gap-2">
+    <div class="text-xl text-center w-32 flex gap-2 items-center">
+      primary
+      <span class="Appkit4-icon icon-information-outline" [tooltip]="theme"></span>
+      <ng-template #theme>
+        <div class="p-4 bg-white dark:bg-neutral-700">
+          <div>It is based of the color <strong class="font-bold">theme</strong> of the application</div>
+          <div>You can <strong class="font-bold">change the theme</strong> in this demo at the bottom left corner to see the effect</div>
+        </div>
+      </ng-template>
+    </div>
+    <ng-container *ngFor="let tint of tints">
+      <ng-container *ngIf="lightenTypePrimary(tint); else noPrimaryTint">
+        <div class="px-3 py-1 rounded-md text-center bg-primary-{{tint}} border-2 border-primary-lighten-200 h-16 flex items-center justify-center flex-1">
+          <div class="flex justify-center items-center">
+            <span class="text-base font-bold">primary</span>
+            <span class="Appkit4-icon icon-information-outline" tooltip="or primary-{{tint}}"></span>
+          </div>
+        </div>
+      </ng-container>
+      <ng-template #noPrimaryTint>
+        <div class="flex flex-col justify-center w-24 items-center px-3 py-1 text-xs rounded-md text-center bg-primary-{{tint}} border-2 border-neutral-900/10 dark:border-neutral-100/20 flex-1" >
+          <span>primary</span>
+          <span class="text-base font-bold">{{tint}}</span>
+        </div>
+      </ng-template>
+    </ng-container>
+  </div>
+  <div class="h-px w-full my-3 bg-neutral-300 dark:bg-neutral-600"></div>
+  <div *ngFor="let type of types" class="flex">
+    <div class="flex gap-2 w-full">
+      <div class="text-xl w-32 flex items-center">
+        {{type.name}}
+      </div>
+      <ng-container *ngFor="let tint of tints">
+        <ng-container *ngIf="lightenType(type,tint); else noPrimaryTintf">
+          <div class="px-3 py-1 rounded-md w-24 text-center bg-{{type.name}}-{{tint}} border-2 border-{{type.name}}-lighten-200 h-16 flex items-center justify-center flex-1">
+            <div class="flex justify-center items-center">
+              <span class="text-base font-bold">{{type.name}}</span>
+              <span class="Appkit4-icon icon-information-outline" tooltip="or {{type.name}} - {{tint}}"></span>
+            </div>
+          </div>
+        </ng-container>
+        <ng-template #noPrimaryTintf>
+          <div class="flex flex-col justify-center items-center px-3 text-xs py-1 rounded-md w-24 text-center bg-{{type.name}}-{{tint}} border-2 border-neutral-900/10 dark:border-neutral-100/20 flex-1">
+            <span>{{type.name}}</span>
+            <span class="text-base font-bold">{{tint}}</span>
+          </div>
+        </ng-template>
+      </ng-container>
+    </div>
+  </div>
+  <div class="h-px w-full my-3 bg-neutral-300 dark:bg-neutral-600"></div>
+  <div *ngFor="let type of statusTypes" class="flex">
+    <div class="flex gap-2 w-full">
+      <div class="text-xl w-32 flex items-center">
+        {{type.name}}
+      </div>
+      <ng-container *ngFor="let tint of tints">
+        <ng-container *ngIf="lightenType(type,tint); else noPrimaryTintf">
+          <div class="px-3 py-1 rounded-md w-24 text-center bg-{{type.name}}-{{tint}} border-2 border-{{type.name}}-lighten-200 h-16 flex items-center justify-center flex-1">
+            <div class="flex justify-center items-center">
+              <span class="text-base font-bold">{{type.name}}</span>
+              <span class="Appkit4-icon icon-information-outline" tooltip="or {{type.name}} - {{tint}}"></span>
+            </div>
+          </div>
+        </ng-container>
+        <ng-template #noPrimaryTintf>
+          <div class="flex flex-col justify-center items-center px-3 text-xs py-1 rounded-md w-24 text-center bg-{{type.name}}-{{tint}} border-2 border-neutral-900/10 dark:border-neutral-100/20 flex-1">
+            <span>{{type.name}}</span>
+            <span class="text-base font-bold">{{tint}}</span>
+          </div>
+        </ng-template>
+      </ng-container>
+    </div>
+  </div>
+  <div class="flex">
+    <div class="text-xl w-32 flex items-center" style="min-width: 128px;">Neutral light</div>
+    <div class="flex flex-col justify-center items-center px-3 py-1 mx-2 rounded-md w-24 text-xs text-center bg-neutral-50 border-2 border-neutral-900/10 dark:border-neutral-100/20 h-16">
+      <span>Neutral</span>
+      <span>50</span>
+    </div>
+    <div class="flex flex-col justify-center items-center px-3 py-1 mx-2 rounded-md w-24 text-xs text-center bg-neutral-100 border-2 border-neutral-900/10 dark:border-neutral-100/20 h-16">
+      <span>Neutral</span>
+      <span>100</span>
+    </div>
+    <div class="flex flex-col justify-center items-center px-3 py-1 mx-2 rounded-md w-24 text-xs text-center bg-neutral-150 border-2 border-neutral-900/10 dark:border-neutral-100/20 h-16">
+      <span>Neutral</span>
+      <span>150</span>
+    </div>
+    <div class="flex flex-col justify-center items-center px-3 py-1 mx-2 rounded-md w-24 text-xs text-center bg-neutral-200 border-2 border-neutral-900/10 dark:border-neutral-100/20 h-16">
+      <span>Neutral</span>
+      <span>200</span>
+    </div>
+    <div class="flex flex-col justify-center items-center px-3 py-1 mx-2 rounded-md w-24 text-xs text-center bg-neutral-250 border-2 border-neutral-900/10 dark:border-neutral-100/20 h-16">            
+      <span>Neutral</span>
+      <span>250</span>
+    </div>
+    <div class="flex flex-col justify-center items-center px-3 py-1 mx-2 rounded-md w-24 text-xs text-center bg-neutral-300 border-2 border-neutral-900/10 dark:border-neutral-100/20 h-16">
+      <span>Neutral</span>
+      <span>300</span>
+    </div>
+    <div class="flex flex-col justify-center items-center px-3 py-1 mx-2 rounded-md w-24 text-xs text-center bg-neutral-350 border-2 border-neutral-900/10 dark:border-neutral-100/20 h-16">
+      <span>Neutral</span>
+      <span>350</span>
+    </div>
+    <div class="flex flex-col justify-center items-center px-3 py-1 mx-2 rounded-md w-24 text-xs text-center bg-neutral-400 border-2 border-neutral-900/10 dark:border-neutral-100/20 h-16">
+      <span>Neutral</span>
+      <span>400</span>
+    </div>
+    <div class="flex flex-col justify-center items-center px-3 py-1 mx-2 rounded-md w-24 text-xs text-center bg-neutral-450 border-2 border-neutral-900/10 dark:border-neutral-100/20 h-16">
+      <span>Neutral</span>
+      <span>450</span>
+    </div>
+    <div class="flex flex-col justify-center items-center px-3 py-1 mx-2 rounded-md w-24 text-xs text-center bg-neutral-475 border-2 border-neutral-900/10 dark:border-neutral-100/20 h-16">
+      <span>Neutral</span>
+      <span>475</span>
+    </div>
+    <div class="flex flex-col justify-center items-center px-3 py-1 mx-2 rounded-md w-24 text-xs text-center bg-neutral-500 border-2 border-neutral-900/10 dark:border-neutral-100/20 h-16">
+      <span>Neutral</span>
+      <span>500</span>
+    </div>
+    
+  </div>
+  <div class="flex">
+    <div class="text-xl flex items-center w-32" style="min-width: 128px;">Neutral dark</div>
+    <div class="flex flex-col justify-center items-center px-3 py-1 mx-2 rounded-md w-24 text-xs text-center bg-neutral-525 border-2 border-neutral-900/10 dark:border-neutral-100/20 h-16">
+      <span>Neutral</span>
+      <span>525</span>
+    </div>
+    <div class="flex flex-col justify-center items-center px-3 py-1 mx-2 rounded-md w-24 text-xs text-center bg-neutral-550 border-2 border-neutral-900/10 dark:border-neutral-100/20 h-16">
+      <span>Neutral</span>
+      <span>550</span>
+    </div>
+    <div class="flex flex-col justify-center items-center px-3 py-1 mx-2 rounded-md w-24 text-xs text-center bg-neutral-600 border-2 border-neutral-900/10 dark:border-neutral-100/20 h-16">
+      <span>Neutral</span>
+      <span>600</span>
+    </div>
+    <div class="flex flex-col justify-center items-center px-3 py-1 mx-2 rounded-md w-24 text-xs text-center bg-neutral-650 border-2 border-neutral-900/10 dark:border-neutral-100/20 h-16">
+      <span>Neutral</span>
+      <span>650</span>
+    </div>
+    <div class="flex flex-col justify-center items-center px-3 py-1 mx-2 rounded-md w-24 text-xs text-center bg-neutral-700 border-2 border-neutral-900/10 dark:border-neutral-100/20 h-16">
+      <span>Neutral</span>
+      <span>700</span>
+    </div>
+    <div class="flex flex-col justify-center items-center px-3 py-1 mx-2 rounded-md w-24 text-xs text-center bg-neutral-750 border-2 border-neutral-900/10 dark:border-neutral-100/20 h-16">
+      <span>Neutral</span>
+      <span>750</span>
+    </div>
+    <div class="flex flex-col justify-center items-center px-3 py-1 mx-2 rounded-md w-24 text-xs text-center bg-neutral-800 border-2 border-neutral-900/10 dark:border-neutral-100/20 h-16">
+      <span>Neutral</span>
+      <span>800</span>
+    </div>
+    <div class="flex flex-col justify-center items-center px-3 py-1 mx-2 rounded-md w-24 text-xs text-center bg-neutral-850 border-2 border-neutral-900/10 dark:border-neutral-100/20 h-16">
+      <span>Neutral</span>
+      <span>850</span>
+    </div>
+    <div class="flex flex-col justify-center items-center px-3 py-1 mx-2 rounded-md w-24 text-xs text-center bg-neutral-900 border-2 border-neutral-900/10 dark:border-neutral-100/20 h-16">
+      <span>Neutral</span>
+      <span>900</span>
+    </div>
+    <div class="flex flex-col justify-center items-center px-3 py-1 mx-2 rounded-md w-24 text-xs text-center bg-neutral-950 border-2 border-neutral-900/10 dark:border-neutral-100/20 h-16">
+      <span>Neutral</span>
+      <span>950</span>
+    </div>
+  </div>
+</div>
+
+<h1 class="text-left py-5">How to use</h1>
+<p class="max-w-4xl">The library use <strong class="font-bold">Tailwind Css framework</strong> hence all the tailwind functionality regarding the color will work based on the usage of the framework. The colors are both in CSS variables which you can observe in the inspect and in all variations tailwind provides.</p>
+<div class="mt-4">Here are some CSS classes <strong class="font-bold">examples:</strong></div>
+<div class="flex justify-center dark:bg-neutral-800 bg-neutral-100 p-5">
+  
+  <ul class="flex gap-4 my-4">
+    <li class="flex bg-primary-200 items-center justify-center p-4">
+      <ul>
+        <li><strong class="font-bold">bg-primary-200</strong></li>
+      </ul>
+    </li>
+    <li class="flex text-primary items-center justify-center p-4 border">
+      <ul>
+        <li><strong class="font-bold">text-primary</strong></li>
+      </ul>
+    </li>
+    <li class="flex items-center justify-center px-6 py-2 border-teal-600 border-b-teal-300 border-t-teal-300 border-2">
+      <ul>
+        <li><strong class="font-bold">border-teal-600</strong></li>
+        <li><strong class="font-bold">border-b-teal-300</strong></li>
+        <li><strong class="font-bold">border-t-teal-300</strong></li>
+      </ul>
+    </li>
+    <li class="flex items-center justify-center w-64 h-64 bg-primary border-primary-200 border-2 rounded-full p-5">
+      <ul>
+        <li><strong class="font-bold">bg-primary</strong></li>
+        <li><strong class="font-bold">border-primary-200</strong></li>
+      </ul>
+    </li>
+  </ul>
+</div>
+<h1 class="text-left py-5">Adjust saturation</h1>
+<p>You can adjust saturation of any color by 100 or 200:</p>
+<div class="flex justify-center gap-3 dark:bg-neutral-800 bg-neutral-100 p-5">
+  <div *ngFor="let s of saturation" class="bg-primary{{s}} w-48 h-64 flex items-center justify-center">
+    bg-primary{{s}}
+  </div>
+</div>

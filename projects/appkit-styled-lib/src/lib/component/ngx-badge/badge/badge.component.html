@@ -1,0 +1,8 @@
+<span
+  class="px-3 py-1 rounded-full w-fit flex justify-center items-center leading-4"
+  [ngClass]="badgeClass"
+  [class]="variation === 'Inline' ? 'text-sm leading-4': 'text-base leading-5'"
+  [style.box-shadow]="_filled ? '' : '0 0 0 .0625rem ' + _color"
+>
+<ng-content></ng-content>
+</span>

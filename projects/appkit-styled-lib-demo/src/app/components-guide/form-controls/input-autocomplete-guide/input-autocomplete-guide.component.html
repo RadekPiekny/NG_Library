@@ -1,0 +1,36 @@
+<div class="text-2xl">Input field</div>
+<p class="opacity-80">An input field enables users to input text within the context of a form.</p>
+<div class="flex flex-col py-4">
+    <component-showcase>
+        <ng-container visual>
+            <ngx-input-text label="Some label" placeholder="some placeholder" [value]="val" (valueChange)="valChange($event)" [menu]="options" class="w-96" [reset]="true"></ngx-input-text>
+            <ng-template #options>
+                <ng-container *ngIf="data$ | async as d">                
+                    <div *ngIf="d.length" class="w-96 dark:bg-neutral-850 bg-white mt-2 py-3 px-2">
+                        <ul class="flex flex-col gap-1">
+                            <li *ngFor="let item of d">
+                            <button class="flex 
+                            justify-start 
+                            items-center 
+                            w-full 
+                            h-12 
+                            pl-4 
+                            pr-2 
+                            hover:bg-neutral-400/10 
+                            dark:hover:bg-neutral-100/5
+                            rounded-md
+                            mt-1 
+                            mb-1" (click)="select(item)">{{item}}</button>
+                        </li>
+                        </ul>
+                    </div>
+                </ng-container>
+            </ng-template>
+        </ng-container>
+        <ng-container code>
+            <component-code-show [componentCode]="componentCode"></component-code-show>
+        </ng-container>
+        <input-autocomplete-guide-form form [form]="form" (formChange)="formChange($event)"></input-autocomplete-guide-form>
+    </component-showcase>
+    <all-guides [componentData]="componentData"></all-guides>
+</div>

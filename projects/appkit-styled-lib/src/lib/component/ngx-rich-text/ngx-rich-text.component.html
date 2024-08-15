@@ -1,0 +1,11 @@
+<ngx-button type="button" icon [variation]="item?.active ? 'primary' : 'transparent'" *ngFor="let item of localConfig" (click)="controlActivate(item, btn)" #btn>
+  <svg
+    *ngIf="item"
+    [attr.viewBox]="item.name === 'justifyFull' ? '0 0 20 20' : '0 0 24 24'"
+    class="h-3 w-3"
+  >
+    <g stroke="none" class="{{item?.active ? 'fill-white' : 'fill-neutral-700 dark:fill-neutral-200'}}">
+      <path [attr.d]="item.iconPath"></path>
+    </g>
+  </svg>
+</ngx-button>

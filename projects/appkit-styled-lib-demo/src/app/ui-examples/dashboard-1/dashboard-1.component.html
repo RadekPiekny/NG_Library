@@ -1,0 +1,46 @@
+<div class="d-flex" style="height: 600px">
+  <div
+    class="d-flex flex-column md-elevation-2dp me-3"
+    style="min-width: 160px"
+  >
+    <a
+      class="vertical-link py-2"
+      (click)="link = 'dashboard'"
+      [class.active]="link === 'dashboard'"
+    >
+      <span>dashboard</span>
+    </a>
+    <a
+      class="vertical-link py-2"
+      (click)="link = 'mailbox'"
+      [class.active]="link === 'mailbox'"
+    >
+      <span>mailbox</span>
+      <span class="ml-auto badge me-2">8</span>
+    </a>
+    <a
+      class="vertical-link py-2"
+      (click)="link = 'report'"
+      [class.active]="link === 'report'"
+    >
+      <span>report</span>
+    </a>
+    <a
+      class="vertical-link py-2"
+      (click)="link = 'hula'"
+      [class.active]="link === 'hula'"
+    >
+      <span>hula</span>
+    </a>
+  </div>
+  <div class="ps-3 md-elevation-0dp gr" style="min-width: 800px">
+    <div class="chart-element chart-left-top md-elevation-2dp"></div>
+    <div class="chart-element chart-left-bot md-elevation-2dp"></div>
+    <div class="chart-element chart-right-top md-elevation-2dp"></div>
+    <div class="chart-element data-left md-elevation-2dp"></div>
+    <div class="chart-element data-right md-elevation-2dp"></div>
+    <div class="chart-element chart-right-bot md-elevation-2dp">
+      <div id="chartdiv" style="width: 100%; height: 100%"></div>
+    </div>
+  </div>
+</div>

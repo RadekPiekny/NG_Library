@@ -1,0 +1,68 @@
+<ng-container *ngIf="data$ | async as data">
+  <ngx-form-field 
+    [disabled]="fc.disabled" [label]="data.label" 
+    cdkOverlayOrigin #trigger="cdkOverlayOrigin" 
+    [fieldFocus]="data.focused" [contentPopulated]="!!fc.value || !!data.placeholder" [heightClass]="heightClass" [readonly]="_readonly" [data]="data">
+    <button type="button" #btn class="{{heightClass === 'h-10' || heightClass === 'h-8' ? 'text-sm' : ''}} w-full h-full flex items-center disabled:cursor-not-allowed outline-none pr-8 {{_readonly ? 'cursor-default' : 'cursor-pointer'}}" (click)="btnClick()" (focus)="onFocus()" (blur)="selectBlur($event)" [disabled]="fc.disabled"> 
+      <span *ngIf="leftIcon" class="Appkit4-icon {{data.leftIcon}} opacity-60 me-2 {{data.label ? 'relative top-[5px]' : ''}}"></span>
+      <span *ngIf="fc.value && !_multi || fc.value?.length && _multi" [style]="stl$ | async">
+        {{ selectedValue }}
+      </span>
+      <span *ngIf="data.placeholder && !fc.value || data.placeholder && _multi && fc.value?.length === 0" class="opacity-70" [style]="stl$ | async">
+        {{data.placeholder}}
+      </span>
+      <span class="Appkit4-icon icon-down-chevron-outline absolute right-2" [ngClass]="(_readonly || fc.disabled) ? 'opacity-30' : ''" [class.rotate]="showOptions"></span>
+    </button>
+  </ngx-form-field>
+  
+  <ng-template
+    cdkConnectedOverlay
+    #optionsContainer="cdkConnectedOverlay"
+    [cdkConnectedOverlayOrigin]="trigger"
+    [cdkConnectedOverlayOpen]="showOptions"
+    [cdkConnectedOverlayHasBackdrop]="true"
+    [cdkConnectedOverlayBackdropClass]="'cdk-overlay-transparent-backdrop'"
+    [cdkConnectedOverlayPositions]="overlayPosition"
+    (backdropClick)="closeOptions()"
+  >
+    <div
+      #optionContainer
+      *ngIf="showOptions"
+      class="shadow-xl bg-white dark:bg-neutral-800 my-2 py-3 overflow-auto px-2 rounded-md flex flex-col gap-1"
+      [style.min-width]="overlayWidthExactMatch ? '' : selectOptionContainerWidth + 'px'"
+      [style]="'max-height: ' + maxScreenRatioContainer + 'vh; height: ' + optionsOverlayHeight + 'px'"
+      [style.width]="overlayWidthExactMatch ? selectOptionContainerWidth + 'px' : ''"
+      [attr.multi]="_multi ? 'true' : null"
+      @slideFromBottom
+    >
+      <ng-container *ngIf="_search">
+        <ngx-input-text label="Search" (valueChange)="searchChange.emit($event)" class="block w-full mb-2" [reset]="true"></ngx-input-text>
+      </ng-container>
+      <ng-container *ngIf="retainNonExistingOptions">
+        <ngx-option
+          *ngFor="let item of optionsToAdd | async"
+          [value]="item.value"
+          [multi]="_multi"
+          [selected]="true"
+          class="wtf"
+          (clickEvent)="optionClick(item)"
+          >{{ item.innerHTML }}</ngx-option
+        >
+      </ng-container>
+      <ng-container *ngIf="displayChangeSelectionAll">
+        <ngx-option (click)="testSelectAll()">
+          <div class="flex">
+            <input type="checkbox"
+              [indeterminate]="someOptionSelected"
+              class="me-2"
+              style="opacity: 0.5"
+            >
+            Select
+          </div>
+        </ngx-option>
+        <hr class="my-0" />
+      </ng-container>
+      <ng-content></ng-content>
+    </div>
+  </ng-template>
+</ng-container>

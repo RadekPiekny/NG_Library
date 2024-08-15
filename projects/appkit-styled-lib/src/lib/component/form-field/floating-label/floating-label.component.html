@@ -1,0 +1,30 @@
+<ng-container *ngIf="leftIcon; else noIcon">
+    <label
+        [for]="for"
+        class="
+            absolute text-sm leading-none
+            peer-invalid:!text-negative dark:peer-invalid:!text-negative-300 peer-invalid:opacity-100
+            transition-transform
+            top-4 z-10 origin-[0] left-2.5
+            opacity-70
+            pointer-events-none"
+            [ngClass]="contentPopulated || fieldFocus ? '-translate-y-3 scale-75' : 'translate-x-7 translate-y-0 scale-100'">
+            <ng-container *ngTemplateOutlet="content"></ng-container>
+        </label>
+</ng-container>
+<ng-template #noIcon>
+    <label
+    [for]="for"
+    class="
+        absolute text-sm leading-none
+        peer-invalid:!text-negative dark:peer-invalid:!text-negative-300 peer-invalid:opacity-100
+        transition-transform
+        top-4 z-10 origin-[0] left-2.5
+        opacity-70
+        pointer-events-none"
+        [ngClass]="contentPopulated || fieldFocus ? '-translate-y-3 scale-75' : 'translate-y-0 scale-100'">
+        <ng-container *ngTemplateOutlet="content"></ng-container>
+    </label>
+</ng-template>
+
+<ng-template #content><ng-content></ng-content></ng-template>

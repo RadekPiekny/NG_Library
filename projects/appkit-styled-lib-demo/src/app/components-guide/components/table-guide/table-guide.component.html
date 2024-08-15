@@ -1,0 +1,80 @@
+<div class="text-2xl">Table</div>
+<p class="opacity-80">A table is a data structure used to organize information..</p>
+<div class="flex flex-col py-4">
+    <component-showcase>
+        <ng-container visual class="overflow-y-scroll">
+          <div class="px-2 py-1 mb-5 border border-neutral-800 rounded-md bg-white dark:bg-neutral-800 dark:border-neutral-600 transition-all">
+            <table class="border-separate !border-spacing-y-1">
+              <thead>
+                <tr *ngIf="title">
+                  <th *ngIf="checkbox" class="text-center p-3 h-fit rounded"><input type="checkbox" name="all" class="appearance-none opacity-75 cursor-pointer before:font-appkit-font before:content-['\e98f'] dark:checked:text-primary-lighten-200 checked:opacity-100 checked:text-primary checked:before:content-['\e880'] dark:indeterminate:text-primary-lighten-200 indeterminate:opacity-100 indeterminate:text-primary indeterminate:before:content-['\e98d']"></th>
+                  <th class="text-left p-3 rounded cursor-pointer hover:bg-neutral-100 dark:hover:bg-neutral-700 transition-all">First name</th>
+                  <th class="text-left p-3 rounded cursor-pointer hover:bg-neutral-100 dark:hover:bg-neutral-700 transition-all">Last name</th>
+                  <th class="text-left p-3 rounded cursor-pointer hover:bg-neutral-100 dark:hover:bg-neutral-700 transition-all">Status</th>
+                  <th class="text-left p-3 rounded cursor-pointer hover:bg-neutral-100 dark:hover:bg-neutral-700 transition-all">Job description</th>
+                </tr>
+              </thead>
+              <tbody class="border-spacing-1">
+                <tr *ngFor="let row of tableFakeData_1 | slice:0:6" class="hover:bg-neutral-100 dark:hover:bg-neutral-600 transition-all" [ngClass]="{'odd:bg-neutral-50 dark:odd:bg-neutral-700': striped}">
+                  <td *ngIf="checkbox" class="text-left p-3 h-fit first:rounded-l last:rounded-r" [ngClass]="{'!py-1': condensed}"><input type="checkbox" class="appearance-none opacity-75 cursor-pointer before:font-appkit-font before:content-['\e98f'] dark:checked:text-primary-lighten-200 checked:opacity-100 checked:text-primary checked:before:content-['\e880'] dark:indeterminate:text-primary-lighten-200 indeterminate:opacity-100 indeterminate:text-primary indeterminate:before:content-['\e98d']"></td>
+                  <td class="text-left p-3 h-fit first:rounded-l last:rounded-r" [ngClass]="{'!py-1': condensed}">{{ row.firstName }}</td>
+                  <td class="text-left p-3 h-fit first:rounded-l last:rounded-r" [ngClass]="{'!py-1': condensed}">{{ row.lastName }}</td>
+                  <td class="text-left p-3 h-fit first:rounded-l last:rounded-r" [ngClass]="{'!py-1': condensed}"><span class="status {{ row.status }}"></span>{{ row.status }}</td>
+                  <td class="text-right p-3 h-fit first:rounded-l last:rounded-r" [ngClass]="{'!py-1': condensed}">{{ row.jobDescription }}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </ng-container>
+        <ng-container code>
+            <component-code-show [list]="['html']" (viewChange)="view = $event" [view]="view" [code]="code">
+                <ng-container html>
+                    <pre class="grid">
+                        <code [highlight]="tableHTMLString()" [languages]="['html']" [lineNumbers]="false" class="w-full"></code>
+                    </pre>
+                </ng-container>
+            </component-code-show>
+        </ng-container>
+        <form [formGroup]="form" class="flex flex-col gap-2">
+            <div class="flex flex-col gap-3">
+                <div class="text-l">Variation</div>
+                <div class="flex items-center gap-2">
+                    <input id="variationInline" formControlName="variation" type="radio" name="variation" value="default" class="appearance-none w-4 h-4 rounded-full border-2 border-current opacity-75 cursor-pointer checked:bg-transparent checked:opacity-100 checked:border-[5px] dark:checked:border-primary-lighten-200 checked:border-primary">
+                    <label for="variationInline" class="leading-none cursor-pointer">
+                        Default
+                    </label>
+                </div>
+                <div class="flex items-center gap-2">
+                    <input id="variationContained" formControlName="variation" type="radio" name="variation" value="condensed" class="appearance-none w-4 h-4 rounded-full border-2 border-current opacity-75 cursor-pointer checked:bg-transparent checked:opacity-100 checked:border-[5px] dark:checked:border-primary-lighten-200 checked:border-primary">
+                    <label for="variationContained" class="leading-none cursor-pointer">
+                        Condensed
+                    </label>
+                </div>
+            </div>
+            <div class="flex flex-col gap-1">
+                <div class="text-l">Modifier</div>
+                <div class="flex items-center gap-2">
+                  <input id="title" formControlName="title" type="checkbox" [checked]="form.get('title').value" name="title" class="appearance-none opacity-75 cursor-pointer before:font-appkit-font before:content-['\e98f'] dark:checked:text-primary-lighten-200 checked:opacity-100 checked:text-primary checked:before:content-['\e880'] dark:indeterminate:text-primary-lighten-200 indeterminate:opacity-100 indeterminate:text-primary indeterminate:before:content-['\e98d']">
+                  <label for="title" class="leading-none cursor-pointer">
+                      Title
+                  </label>
+                </div>
+                <div class="flex items-center gap-2">
+                  <input id="striped" formControlName="striped" type="checkbox" value="false" name="striped" class="appearance-none opacity-75 cursor-pointer before:font-appkit-font before:content-['\e98f'] dark:checked:text-primary-lighten-200 checked:opacity-100 checked:text-primary checked:before:content-['\e880'] dark:indeterminate:text-primary-lighten-200 indeterminate:opacity-100 indeterminate:text-primary indeterminate:before:content-['\e98d']">
+                  <label for="striped" class="leading-none cursor-pointer">
+                      Striped
+                  </label>
+                </div>
+                <div class="flex items-center gap-2">
+                  <input id="checkbox" formControlName="checkbox" type="checkbox" value="false" name="checkbox" class="appearance-none opacity-75 cursor-pointer before:font-appkit-font before:content-['\e98f'] dark:checked:text-primary-lighten-200 checked:opacity-100 checked:text-primary checked:before:content-['\e880'] dark:indeterminate:text-primary-lighten-200 indeterminate:opacity-100 indeterminate:text-primary indeterminate:before:content-['\e98d']">
+                  <label for="checkbox" class="leading-none cursor-pointer">
+                      Checkbox
+                  </label>
+              </div>
+            </div>
+        </form>
+    </component-showcase>
+    <accessibility-guide [heading]="componentData.accessibility.heading" [list]="componentData.accessibility.items" class="mt-4"></accessibility-guide>
+    <usage-guide [heading]="componentData.use.heading" [list]="componentData.use.items" class="mt-4"></usage-guide>
+    <usage-not-guide [heading]="componentData.useNot.heading" [list]="componentData.useNot.items" class="mt-4"></usage-not-guide>
+</div>

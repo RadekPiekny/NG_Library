@@ -1,0 +1,11 @@
+<div class="flex flex-row items-center gap-1">
+  <ngx-input-text
+  type="text"
+  tabindex="-1"
+  (change)="change($event)"
+  [value]="selectedData"
+  #v
+>
+</ngx-input-text>
+<ngx-button variation="secondary" (click)="change(v)">Change</ngx-button>
+</div>

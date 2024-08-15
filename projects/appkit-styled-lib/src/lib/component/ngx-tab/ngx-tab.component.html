@@ -1,0 +1,4 @@
+<ul class="flex items-center relative {{gap}} {{width}} {{justifyContent}} {{_filled ? 'dark:bg-neutral-800 bg-neutral-100 p-1 rounded-sm' : 'h-8' }}">
+  <div *ngIf="!_filled && underlineTrack" class="h-[2px] w-full absolute bottom-0 bg-neutral-50 dark:bg-neutral-800"></div>
+  <ng-content></ng-content>
+</ul>

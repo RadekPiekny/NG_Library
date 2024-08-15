@@ -1,0 +1,13 @@
+<ng-container *ngIf="lightMode$ | async as lightMode">
+  <ng-container *ngIf="lightMode === 'light'; else dark">
+    <button (click)="changeMode('light')" class="icon" type="button">
+      <span class="Appkit4-icon icon-moon-outline"></span>
+    </button>
+  </ng-container>
+  <ng-template #dark>
+    <button (click)="changeMode('dark')" class="icon" type="button">
+      <span class="Appkit4-icon icon-brightness-outline"></span>
+
+    </button>
+  </ng-template>
+</ng-container>

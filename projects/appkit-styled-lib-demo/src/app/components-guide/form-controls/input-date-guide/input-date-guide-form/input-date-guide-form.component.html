@@ -1,0 +1,13 @@
+<form [formGroup]="form" class="flex flex-col gap-4">
+    <ngx-tab [filled]="true">
+        <ngx-tab-item (click)="changeSize('s')" class="flex-1" [active]="form.value.size === 's'">small</ngx-tab-item>
+        <ngx-tab-item (click)="changeSize('m')" class="flex-1" [active]="form.value.size === 'm'">medium</ngx-tab-item>
+        <ngx-tab-item (click)="changeSize('auto')" class="flex-1" [active]="form.value.size === 'auto'">auto</ngx-tab-item>
+    </ngx-tab>
+    <ngx-input-text label="Label" formControlName="label"></ngx-input-text>
+    <ngx-input-text label="Date format" formControlName="format"></ngx-input-text>
+    <ngx-input-date label="Value" formControlName="value"></ngx-input-date>
+    <ngx-input-date label="Disable from" formControlName="disableFrom"></ngx-input-date>
+    <ngx-input-date label="Disable to" formControlName="disableTo"></ngx-input-date>
+    <input-base [form]="baseForm.general" [err]="true" (formChange)="baseChange($event)"></input-base>
+</form>

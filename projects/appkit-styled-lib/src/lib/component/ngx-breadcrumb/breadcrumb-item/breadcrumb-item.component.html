@@ -1,0 +1,7 @@
+<li class="py-1 flex-nowrap flex">
+    <ng-content></ng-content>
+    <a class="text-primary cursor-pointer hover:underline flex items-center dark:text-primary-lighten-200">
+        <ng-content select="[tabindex]"></ng-content>
+    </a>
+    <span class="Appkit4-icon icon-right-chevron-outline text-primary dark:text-primary-200 leading-3 h-3 text-xs" [ngClass]="_isLast ? '!hidden' : 'inline-flex'"></span>
+</li>

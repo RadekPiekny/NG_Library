@@ -1,0 +1,51 @@
+<button class="icon primary l">
+  <span class="appkiticon icon-play-outline" style="font-size: 24px"></span>
+</button>
+<h1>Main</h1>
+<p class="text-center m-auto">
+  In case of general loading data the best placement is at the top of the
+  application as there is no need to distinguish between desktop and mobile.
+  Other use-cases would be loading at input levels etc.
+</p>
+<div class="md-elevation-4dp m-5">
+  <div class="loading-bar on"></div>
+  <div class="p-5"></div>
+  <code-show>
+    <pre>
+            <code [highlight]="loading" [languages]="['html']" [lineNumbers]="true"></code>
+        </pre>
+  </code-show>
+</div>
+
+<h1>Saturation</h1>
+<p class="text-center m-auto">
+  Use different saturation levels only in case of need for a different hiearchy
+  visuals. The lower saturation the lower hiearchy. Prefer global loading bar as
+  handling different loading increase complexity of the code and potential
+  cognitive load.
+</p>
+<div class="md-elevation-4dp m-5" *ngFor="let item of loadingSaturation">
+  <div [class]="item.class"></div>
+  <div class="p-1"></div>
+  <code-show>
+    <pre>
+            <code [highlight]="item.html" [languages]="['html']" [lineNumbers]="true"></code>
+        </pre>
+  </code-show>
+</div>
+
+<h1>Speed</h1>
+<p class="text-center m-auto">
+  If there is some form of slow callback such as data processing you can use a
+  slower speed to indicate the process would take longer. Ideal in that case is
+  to give at least some approximation of the time as well.
+</p>
+<div class="md-elevation-4dp m-5" *ngFor="let item of loadingSpeed">
+  <div [class]="item.class"></div>
+  <div class="p-1"></div>
+  <code-show>
+    <pre>
+            <code [highlight]="item.html" [languages]="['html']" [lineNumbers]="true"></code>
+        </pre>
+  </code-show>
+</div>

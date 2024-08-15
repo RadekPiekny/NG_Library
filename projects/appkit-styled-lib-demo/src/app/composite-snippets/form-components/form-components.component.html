@@ -1,0 +1,15 @@
+<ng-container>
+
+    <form [formGroup]="form" class="flex flex-col gap-4 p-4">
+        <ngx-input-text label="E-mail *" formControlName="wtf"></ngx-input-text>
+        <ngx-input-text formControlName="name" label="test" [invalid]="true"></ngx-input-text>
+        <ngx-select formControlName="level" label="Level" placeholder="some placeholder">
+            <ngx-option (click)="testClick('blabla')">level 1</ngx-option>
+            <ngx-option>level 2</ngx-option>
+        </ngx-select>
+        <ngx-textarea [rows]="5" formControlName="description"></ngx-textarea>
+        <ngx-input-checkbox [readonly]="true" formControlName="checkboxTest"></ngx-input-checkbox>
+        <ngx-slider formControlName="slider"></ngx-slider>
+    </form>    
+</ng-container>
+<pre>{{form.value | json}}</pre>    

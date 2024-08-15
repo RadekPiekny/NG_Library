@@ -1,0 +1,18 @@
+<form [formGroup]="form" class="flex flex-col gap-4">
+    <ngx-tab [filled]="true">
+        <ngx-tab-item (click)="changeSize('xs')" class="flex-1" *ngIf="false">xs</ngx-tab-item>
+        <ngx-tab-item (click)="changeSize('s')" class="flex-1">small</ngx-tab-item>
+        <ngx-tab-item (click)="changeSize('m')" class="flex-1" [active]="true">medium</ngx-tab-item>
+    </ngx-tab>
+    <ngx-input-text label="Label" formControlName="label"></ngx-input-text>
+    <ngx-input-text label="Placeholder" formControlName="placeholder"></ngx-input-text>
+    <ngx-input-text label="Value" formControlName="value"></ngx-input-text>
+    <ngx-input-number label="Max length" formControlName="maxlength"></ngx-input-number>
+    <ngx-select label="Icon" formControlName="leftIcon" [overlayWidthExactMatch]="true">
+        <ngx-option [value]="null">reset</ngx-option>
+        <ngx-option *ngFor="let item of appkitIconOutline">{{item.onlyIconName}}</ngx-option>
+    </ngx-select>
+    <input-base [form]="baseForm.general" [err]="true" (formChange)="baseChange($event)"></input-base>
+    <ngx-input-toggle label="Reset" formControlName="reset"></ngx-input-toggle>
+    <ngx-input-toggle label="Focus" formControlName="focus"></ngx-input-toggle>
+</form>

@@ -1,0 +1,25 @@
+.bar-container {
+    --bar-width: 60vw;
+    --bar-height: 2px;
+    height: var(--bar-height);
+    position: relative;
+    overflow: hidden;
+}
+.bar {
+    position: absolute;
+    transform: translateX(calc(-1 * var(--bar-width)));
+    background-color: #D93954;
+    width: var(--bar-width);
+    height: var(--bar-height);
+    animation: loadingBar 1.6s ease-in-out infinite;
+    transform-origin: 0 0;
+}
+
+@keyframes loadingBar {
+    0% {
+        transform: translateX(calc(-1 * var(--bar-width)));
+    }
+    100% {
+        transform: translateX(100vw);
+    }
+}

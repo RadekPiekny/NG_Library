@@ -1,0 +1,7 @@
+.lightState {
+  transform-origin: 50% 200%;
+  transition: all 1s ease;
+}
+.background {
+  transition: fill 0.8s ease;
+}

@@ -1,0 +1,8 @@
+<button
+  *ngIf="activeTheme$ | async as activeTheme"
+  (click)="changeTheme(activeTheme)"
+  class="icon"
+  type="button"
+>
+  <brand-palette-icon></brand-palette-icon>
+</button>

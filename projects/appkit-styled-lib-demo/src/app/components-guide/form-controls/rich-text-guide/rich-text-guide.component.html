@@ -1,0 +1,41 @@
+<div class="text-2xl">Rich text editor</div>
+<p class="opacity-80">Allows a user to edit and format text using a predefined selection of formatting or styling options.
+</p>
+<div class="flex flex-col py-4">
+    <component-showcase>
+        <ng-container visual>
+            <div class="p-4 rounded-lg shadow dark:shadow-lg" [class]=" form.value.variation === 'simple' ? 'w-96':' w-full'">
+                <ngx-rich-text [editedElement]="elementWithContent" [variation]="form.value.variation"></ngx-rich-text>
+                <div [contentEditable]="true" class="w-full h-20 mt-3 px-4 outline-none border border-transparent rounded-lg focus:border-neutral-300 dark:focus:border-neutral-600" #elementWithContent>Rich text editor</div>
+            </div>
+        </ng-container>
+        <ng-container code>
+            <component-code-show [componentCode]="componentCode"></component-code-show>
+        </ng-container>
+        <rich-text-guide-form form [form]="form" (formChange)="formChange($event)"></rich-text-guide-form>
+    </component-showcase>
+    <div class="px-2 py-1 rounded-md bg-white dark:bg-neutral-850 dark:border-neutral-600 transition-all mt-4">
+        <ngx-tab>
+            <ngx-tab-item active>ngx-rich-text </ngx-tab-item>
+        </ngx-tab>
+        <table class="w-full">
+          <thead>
+            <tr>
+              <th class="text-left p-3 rounded transition-all">Property name</th>
+              <th class="text-left p-3 rounded transition-all">Type</th>
+              <th class="text-left p-3 rounded transition-all">Data type</th>
+              <th class="text-left p-3 rounded transition-all">Description</th>
+            </tr>
+          </thead>
+          <tbody class="border-spacing-1">
+            <tr *ngFor="let row of ngx_rich_TextData" class="hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-all" [ngClass]="{'odd:bg-neutral-50 dark:odd:bg-neutral-700': striped}">
+              <td class="text-left p-3 h-fit first:rounded-l last:rounded-r" [ngClass]="{'!py-1': condensed}">{{ row.name }}</td>
+              <td class="text-left p-3 h-fit first:rounded-l last:rounded-r" [ngClass]="{'!py-1': condensed}">{{ row.type }}</td>
+              <td class="text-left p-3 h-fit first:rounded-l last:rounded-r" [ngClass]="{'!py-1': condensed}">{{ row.dataType }}</td>
+              <td class="text-left p-3 h-fit first:rounded-l last:rounded-r" [ngClass]="{'!py-1': condensed}">{{ row.description }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    <all-guides [componentData]="componentData"></all-guides>
+</div>

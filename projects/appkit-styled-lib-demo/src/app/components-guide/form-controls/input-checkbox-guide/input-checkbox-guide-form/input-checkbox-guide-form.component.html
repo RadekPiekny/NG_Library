@@ -1,0 +1,6 @@
+<form [formGroup]="form" class="flex flex-col gap-4">
+    <ngx-input-text label="Label" formControlName="label"></ngx-input-text>
+    <ngx-toggle label="Checked" formControlName="checked"></ngx-toggle>
+    <ngx-toggle label="Indeterminate" formControlName="indeterminate"></ngx-toggle>
+    <input-base [form]="baseForm.general" [err]="false" (formChange)="baseChange($event)"></input-base>
+</form>

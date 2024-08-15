@@ -1,0 +1,18 @@
+body.rp-theme-1 {
+  .status {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    display: inline-block;
+    margin: 0 .5rem;
+    &.good {
+        background-color: green;
+    };
+    &.error {
+      background-color: red;
+    };
+    &.warn {
+      background-color: darkkhaki;
+    }
+  }
+}

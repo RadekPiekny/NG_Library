@@ -1,0 +1,15 @@
+<ng-container *ngIf="label; else noLabel">
+    <div class="flex items-center gap-3" (click)="vChange($event)">
+        <input [id]="id" type="radio" [name]="name" [value]="value" class="
+        appearance-none w-4 h-4 rounded-full border-2 border-current {{_disabled ? 'opacity-30 cursor-not-allowed' : 'opacity-75 checked:opacity-100 cursor-pointer'}}  
+        checked:bg-transparent checked:border-[5px] 
+        dark:checked:border-primary-lighten-200 checked:border-primary" [checked]="_checked">
+        <label [for]="id" class="leading-none {{_disabled ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer'}}">{{label}}</label>
+    </div>
+</ng-container>
+<ng-template #noLabel>
+    <input (click)="vChange($event)" [id]="id" type="radio" [name]="name" class="
+    appearance-none w-4 h-4 rounded-full border-2 border-current {{_disabled ? 'opacity-30 cursor-not-allowed' : 'opacity-75 checked:opacity-100 cursor-pointer'}}  
+    checked:bg-transparent checked:border-[5px] 
+    dark:checked:border-primary-lighten-200 checked:border-primary" [checked]="_checked">
+</ng-template>

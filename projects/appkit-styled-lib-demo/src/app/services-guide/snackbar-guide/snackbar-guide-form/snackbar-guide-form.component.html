@@ -1,0 +1,8 @@
+<form [formGroup]="form" class="flex flex-col gap-4">
+    <ngx-select formControlName="type">
+        <ngx-option [value]="snackType.Success">Success</ngx-option>
+        <ngx-option [value]="snackType.Warning">Warning</ngx-option>
+        <ngx-option [value]="snackType.Error">Error</ngx-option>
+    </ngx-select>
+    <ngx-toggle formControlName="changeMessagess" label="add counter"></ngx-toggle>
+</form>

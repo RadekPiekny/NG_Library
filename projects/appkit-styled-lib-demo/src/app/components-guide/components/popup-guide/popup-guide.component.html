@@ -1,0 +1,34 @@
+<button *ngIf="buttonShow" class="primary" tooltip="some tooltip" (click)="buttonShow = false">hover over me</button>
+<div class="flex">
+  <div class="m-5" tooltip="this is some long add tooltip">test</div>
+  <div class="m-8" [tooltip]="htmlToolTip">test</div>
+</div>
+
+<ng-template #htmlToolTip>
+  <div class="bg-primary text-primary-200 p-6">
+    wohou
+  </div>
+</ng-template>
+
+<ng-template #blablaMenu>
+  <div class="md-elevation-4dp p-3">menu content stuff</div>
+</ng-template>
+
+<button [menu]="myMenu">menu</button>
+
+<ng-template #myMenu>
+  <div>
+    <button >blabla
+      <button>
+        nested button
+        <button>
+          nested button
+          <button>
+            nested button
+          </button>
+        </button>
+      </button>
+    </button>
+    <button [routerLink]="['../', 'logo']" menu-close>logo</button>
+  </div>
+</ng-template>

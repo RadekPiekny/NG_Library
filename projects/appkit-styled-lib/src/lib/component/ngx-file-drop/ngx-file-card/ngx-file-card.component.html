@@ -1,0 +1,24 @@
+<div
+  *ngIf="imageString$ | async as imageString"
+  class="ngx-file-card shadow-2dp"
+>
+  <span class="label size shadow-2dp" *ngIf="showSize">{{ size }}</span>
+  <span class="label extension shadow-2dp" *ngIf="showExtension">{{
+    extension
+  }}</span>
+
+  <img
+    [src]="sanitazeImg(imageString)"
+    alt="image preview"
+    [style.width]="previewSize"
+    [style.height]="previewSize"
+  />
+  <div class="controls">
+    <span class="name" *ngIf="showName" [style.width]="previewSize">{{
+      nameWithoutExtension
+    }}</span>
+    <div class="content">
+      <ng-content></ng-content>
+    </div>
+  </div>
+</div>

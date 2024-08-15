@@ -1,0 +1,26 @@
+<ng-container *ngIf="indeterminate; else default">
+    <div  class="h-{{size}} w-{{size}} relative bg-transparent ngx-loader-spin">
+        <svg width="100%" height="100%">
+            <circle cx="50%" cy="50%" r="40%" class="stroke-primary/20 dark:stroke-primary-lighten-100/20 fill-transparent" [ngStyle]="{'stroke-width': strokeWidth + 'px'}"></circle>
+            <circle cx="50%" cy="50%" r="40%" class="stroke-primary dark:stroke-primary-lighten-100/100 fill-transparent" [ngStyle]="{'stroke-width': strokeWidth + 'px'}"
+                stroke-linecap="round"
+                pathLength="100"
+                attr.stroke-dasharray="{{_progressIndeterminate}} 100"
+                stroke-dashoffset="0">
+            </circle>
+        </svg>
+    </div>
+</ng-container>
+<ng-template #default>
+    <div  class="h-{{size}} w-{{size}} relative bg-transparent -rotate-90">
+        <svg width="100%" height="100%">
+            <circle cx="50%" cy="50%" r="40%" class="stroke-primary/20 dark:stroke-primary-lighten-100/20 fill-transparent" [ngStyle]="{'stroke-width': strokeWidth + 'px'}"></circle>
+            <circle cx="50%" cy="50%" r="40%" class="stroke-primary dark:stroke-primary-lighten-100/100 fill-transparent" [ngStyle]="{'stroke-width': strokeWidth + 'px'}"
+                stroke-linecap="round"
+                pathLength="100"
+                attr.stroke-dasharray="{{_progress}} 100"
+                stroke-dashoffset="0">
+            </circle>
+        </svg>
+    </div>
+</ng-template>

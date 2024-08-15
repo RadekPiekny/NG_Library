@@ -1,0 +1,29 @@
+<div class="d-flex align-items-center">
+  <div class="file-icon">
+    <svg viewBox="0 0 32 32" width="32px" height="32px">
+      <polyline
+        points="6,2 21,2 28,9 28,30 6,30 6,2"
+        fill="transparent"
+        stroke="black"
+      />
+    </svg>
+    <div>
+      <span style="margin-bottom: 1px" style="font-size: smaller">{{
+        getFileType(file.name)
+      }}</span>
+    </div>
+  </div>
+  <span
+    class="m-3"
+    style="width: 40%; text-overflow: ellipsis; max-width: 120px"
+    >{{ file.name }}</span
+  >
+  <span class="m-3">{{ sizeInMB(file.size) }}</span>
+  <button
+    type="button"
+    class="a-btn a-btn-secondary a-btn-lg ml-auto"
+    (click)="download(file)"
+  >
+    download
+  </button>
+</div>

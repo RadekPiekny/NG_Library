@@ -1,0 +1,13 @@
+
+<ng-container *ngIf="indeterminate; else prg">
+    <div class="w-full bg-primary/20 dark:bg-primary-lighten-100/20 rounded-full transition-all bar-container" [ngClass]="[compact ? 'h-0.5' : 'h-1']">
+        <div class="h-full rounded-full bg-primary dark:bg-primary-lighten-100 w-100 transition-transform bar"></div>
+    </div>
+</ng-container>
+
+
+<ng-template #prg>
+    <div class="w-full bg-primary/20 dark:bg-primary-lighten-100/20 rounded-full transition-all" [ngClass]="[compact ? 'h-0.5' : 'h-1']">
+        <div class="h-full rounded-full bg-primary dark:bg-primary-lighten-100 transition-[width]" [style.width.%]="progress"></div>
+    </div>
+</ng-template>

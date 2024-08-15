@@ -1,0 +1,83 @@
+<div class="text-2xl">Input Select</div>
+<p class="opacity-80">Displays a standardized list of options to choose from.</p>
+<div class="flex flex-col py-4">
+    <component-showcase>
+        <ng-container visual>
+            <div class="w-80">
+                <ng-container *ngIf="form.value.multi; else noMulti">
+                    <ngx-select 
+                        class="w-full"
+                        [disabled]="form.value.general.state === 'disabled'"
+                        [readonly]="form.value.general.state === 'readonly'"
+                        [invalid]="form.value.general.state === 'invalid'"
+                        [value]="form.value.value"
+                        [placeholder]="form.value.placeholder"
+                        [label]="form.value.label"
+                        (valueChange)="valueChange($event)"
+                        [leftIcon]="form.value.leftIcon"
+                        [size]="form.value.size"
+                        [multi]="true"
+                    >
+                        <ngx-option>option 1</ngx-option>
+                        <ngx-option>option 2</ngx-option>
+                    </ngx-select>
+                </ng-container>
+                <ng-template #noMulti>
+                    <ngx-select 
+                        class="w-full"
+                        [disabled]="form.value.general.state === 'disabled'"
+                        [readonly]="form.value.general.state === 'readonly'"
+                        [invalid]="form.value.general.state === 'invalid'"
+                        [value]="form.value.value"
+                        [placeholder]="form.value.placeholder"
+                        [label]="form.value.label"
+                        (valueChange)="valueChange($event)"
+                        [leftIcon]="form.value.leftIcon"
+                        [size]="form.value.size"
+                    >
+                        <ngx-option>option 1</ngx-option>
+                        <ngx-option>option 2</ngx-option>
+                    </ngx-select>
+                </ng-template>
+                
+            </div>
+        </ng-container>
+        <ng-container code>
+            <component-code-show [componentCode]="componentCode"></component-code-show>
+        </ng-container>
+        <input-select-guide-form form [form]="form" (formChange)="formChange($event)"></input-select-guide-form>
+    </component-showcase>
+    <div class="px-2 py-1 rounded-md bg-white dark:bg-neutral-850 dark:border-neutral-600 transition-all mt-4">
+        <ngx-tab>
+            <ngx-tab-item [active]="activeTab === 'ngx_selectData'" (click)="activeTab = 'ngx_selectData'">ngx-select</ngx-tab-item>
+            <ngx-tab-item [active]="activeTab === 'ngx_optionData'" (click)="activeTab = 'ngx_optionData'">ngx-option</ngx-tab-item>
+        </ngx-tab>
+        <table class="w-full">
+          <thead>
+            <tr>
+              <th class="text-left p-3 rounded transition-all">Property name</th>
+              <th class="text-left p-3 rounded transition-all">Type</th>
+              <th class="text-left p-3 rounded transition-all">Data type</th>
+              <th class="text-left p-3 rounded transition-all">Description</th>
+            </tr>
+          </thead>
+          <tbody class="border-spacing-1" *ngIf="activeTab === 'ngx_selectData'">
+            <tr *ngFor="let row of allSelectPropertyData" class="hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-all" [ngClass]="{'odd:bg-neutral-50 dark:odd:bg-neutral-700': striped}">
+              <td class="text-left p-3 h-fit first:rounded-l last:rounded-r" [ngClass]="{'!py-1': condensed}">{{ row.name }}</td>
+              <td class="text-left p-3 h-fit first:rounded-l last:rounded-r" [ngClass]="{'!py-1': condensed}">{{ row.type }}</td>
+              <td class="text-left p-3 h-fit first:rounded-l last:rounded-r" [ngClass]="{'!py-1': condensed}">{{ row.dataType }}</td>
+              <td class="text-left p-3 h-fit first:rounded-l last:rounded-r" [ngClass]="{'!py-1': condensed}">{{ row.description }}</td>
+            </tr>
+          </tbody>
+          <tbody class="border-spacing-1" *ngIf="activeTab === 'ngx_optionData'">
+            <tr *ngFor="let row of ngx_optionData" class="hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-all" [ngClass]="{'odd:bg-neutral-50 dark:odd:bg-neutral-700': striped}">
+              <td class="text-left p-3 h-fit first:rounded-l last:rounded-r" [ngClass]="{'!py-1': condensed}">{{ row.name }}</td>
+              <td class="text-left p-3 h-fit first:rounded-l last:rounded-r" [ngClass]="{'!py-1': condensed}">{{ row.type }}</td>
+              <td class="text-left p-3 h-fit first:rounded-l last:rounded-r" [ngClass]="{'!py-1': condensed}">{{ row.dataType }}</td>
+              <td class="text-left p-3 h-fit first:rounded-l last:rounded-r" [ngClass]="{'!py-1': condensed}">{{ row.description }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    <all-guides [componentData]="componentData"></all-guides>
+</div>

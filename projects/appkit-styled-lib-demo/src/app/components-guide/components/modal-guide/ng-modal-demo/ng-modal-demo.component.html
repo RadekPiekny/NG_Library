@@ -1,0 +1,12 @@
+<ngx-button variation='primary' (click)="showModal = !showModal">open</ngx-button>
+
+<ngx-modal [open]="showModal" (closeChange)="showModal = false">
+    <div [ngSwitch]="content">
+        <ng-container *ngSwitchCase="'empty'"> 
+            <div class="p-4 text-center">modal content</div>
+        </ng-container>
+        <ng-container *ngSwitchCase="'termsOfUse'"> 
+            <modal-content (showModalChange)="showModal = $event"></modal-content>
+        </ng-container>
+    </div>
+</ngx-modal>

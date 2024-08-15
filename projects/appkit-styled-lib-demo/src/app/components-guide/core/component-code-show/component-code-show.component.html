@@ -1,0 +1,17 @@
+<div class="dark:bg-neutral-850 bg-white rounded-md px-6 py-4 overflow-auto">
+    <div class="flex py-2">
+        <ngx-tab [filled]="false" class="w-full">
+            <ngx-tab-item *ngFor="let item of componentCode" (click)="currentCodeChange(item)" [active]="item.active">{{item.label}}</ngx-tab-item>
+        </ngx-tab>
+        <ngx-button variation='text' icon class="ms-auto border-b-2 border-neutral-200 dark:border-neutral-800" (click)="copyToClipboard()">
+            <span class="Appkit4-icon icon-copy-outline"></span>
+        </ngx-button>
+    </div>
+    <div>
+        <ng-container html>
+            <pre class="grid text-xs">
+                <code [highlight]="currentCode.code.text" [languages]="currentCode.code.languages" [lineNumbers]="currentCode.code.lineNumbers" class="w-full"></code>
+            </pre>
+        </ng-container>
+    </div>
+</div>

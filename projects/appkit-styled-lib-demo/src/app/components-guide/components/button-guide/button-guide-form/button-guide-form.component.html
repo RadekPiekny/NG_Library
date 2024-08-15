@@ -1,0 +1,27 @@
+<form [formGroup]="form" class="flex flex-col gap-4">
+    
+    <div class="flex flex-col gap-3">
+        <div class="text-l">Text</div>
+        <ngx-input-text formControlName="text"></ngx-input-text>
+    </div>
+    <div class="flex flex-col gap-3">
+        <div class="text-l">Variation</div>
+        <ng-container *ngFor="let s of buttonVariations">
+            <ngx-radio [label]="s" formControlName="variation" [value]="s" name="variation"></ngx-radio>
+        </ng-container>
+    </div>
+    <div class="flex flex-col gap-3">
+        <div class="text-l">State</div>
+        <ngx-input-checkbox label="Disabled" formControlName="disabled"></ngx-input-checkbox>
+        <ngx-input-checkbox label="Negative" formControlName="negative"></ngx-input-checkbox>
+    </div>
+    <div class="flex flex-col gap-3">
+        <div class="text-l">Compact</div>
+        <ngx-input-checkbox label="Compact" formControlName="compact"></ngx-input-checkbox>
+    </div>
+    <div class="flex flex-col gap-3">
+        <div class="text-l">Icon</div>
+        <ngx-input-toggle label="Only icon" formControlName="iconOnly"></ngx-input-toggle>
+        <ngx-input-checkbox label="Icon" formControlName="icon"></ngx-input-checkbox>
+    </div>
+</form>

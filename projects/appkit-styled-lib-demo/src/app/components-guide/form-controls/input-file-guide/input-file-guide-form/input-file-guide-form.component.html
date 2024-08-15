@@ -1,0 +1,33 @@
+    
+
+  <form [formGroup]="form" class="flex flex-col gap-4">
+    <ngx-tab [filled]="true">
+        <ngx-tab-item (click)="changeSize('s')" class="flex-1" [active]="form.value.size === 's'" [disabled]="form.value.icon.icon">small</ngx-tab-item>
+        <ngx-tab-item (click)="changeSize('m')" class="flex-1" [active]="form.value.size === 'm'" [disabled]="form.value.icon.icon">medium</ngx-tab-item>
+        <ngx-tab-item (click)="changeSize('auto')" class="flex-1" [active]="form.value.size === 'auto'">auto</ngx-tab-item>
+    </ngx-tab>
+    <ngx-input-text label="Label" formControlName="label"></ngx-input-text>
+    <ngx-input-text label="Upload instruction label" formControlName="uploadInstruction"></ngx-input-text>
+    <ngx-input-text label="Accept attribute" formControlName="accept"></ngx-input-text>
+    <ngx-toggle label="Multiple" formControlName="multiple"></ngx-toggle>
+    <div class="flex flex-col gap-3" formGroupName="icon">
+        <div class="text-l">Icon</div>
+        <ngx-toggle label="On/Off" formControlName="icon"></ngx-toggle>
+        <ng-container *ngIf="false">
+            <ngx-select label="Icon - enabled" formControlName="iconEnabled" [overlayWidthExactMatch]="true">
+                <ngx-option [value]="null">reset</ngx-option>
+                <ngx-option *ngFor="let item of appkitIconOutline">{{item.onlyIconName}}</ngx-option>
+            </ngx-select>
+            <ngx-select label="Icon - disabled" formControlName="iconDisabled" [overlayWidthExactMatch]="true">
+                <ngx-option [value]="null">reset</ngx-option>
+                <ngx-option *ngFor="let item of appkitIconOutline">{{item.onlyIconName}}</ngx-option>
+            </ngx-select>
+        </ng-container>
+    </div>
+    <div class="flex flex-col gap-3">
+        <div class="text-l">Form control state</div>
+        <ngx-radio [label]="'default'" [value]="false" formControlName="disabled" name="state"></ngx-radio>
+        <ngx-radio [label]="'disabled'" [value]="true" formControlName="disabled" name="state"></ngx-radio>
+    </div>
+</form>
+{{form.value.icon.iconEnabled ? form.value.icon.iconEnabled : null}}

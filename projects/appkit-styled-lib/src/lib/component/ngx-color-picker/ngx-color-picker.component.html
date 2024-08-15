@@ -1,0 +1,62 @@
+<button
+  (click)="toggleShowColorPicker($event)"
+  cdkOverlayOrigin
+  #overlay="cdkOverlayOrigin"
+  type="button"
+>
+  <span
+    class="appkiticon icon-art-themes-fill"
+    [ngStyle]="{ color: selectionColor, transform: 'scale(1.2)' }"
+  ></span>
+</button>
+
+<ng-template
+  cdkConnectedOverlay
+  [cdkConnectedOverlayOrigin]="overlay"
+  [cdkConnectedOverlayOpen]="showColorPicker"
+  [cdkConnectedOverlayPanelClass]="'custom-cdk-overlay-container'"
+  [cdkConnectedOverlayPositions]="overlayPosition"
+  (overlayOutsideClick)="hideColorList()"
+  [cdkConnectedOverlayPush]="true"
+>
+  <div class="color-list ngx-overlay-container">
+    <div class="color-type">
+      <p class="color-type-description">Primary colors</p>
+      <div class="color-set-list">
+        <div class="color-set" *ngFor="let colorSet of primaryColors">
+          <div
+            *ngFor="let color of colorSet"
+            [id]="color.id"
+            (click)="changeColor(color.id)"
+            [style.background-color]="color.id"
+            [ngClass]="{ colors: true, 'color-light': color.light }"
+          >
+            <span
+              *ngIf="selectionColor === color.id"
+              class="appkiticon icon-check-mark-fill a-text-green"
+            ></span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="color-type">
+      <p class="color-type-description">Secondary colors</p>
+      <div class="color-set-list">
+        <div class="color-set" *ngFor="let colorSet of secondaryColors">
+          <div
+            *ngFor="let color of colorSet"
+            [id]="color.id"
+            (click)="changeColor(color.id)"
+            [style.background-color]="color.id"
+            [ngClass]="{ colors: true, 'color-light': color.light }"
+          >
+            <span
+              *ngIf="selectionColor === color.id"
+              class="appkiticon icon-check-mark-fill a-text-green"
+            ></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-template>

@@ -1,0 +1,12 @@
+<div class="
+   
+    {{heightClass}} {{stateCssClass}} {{borderCssClass}} {{fieldCssClass}}
+    [&:has(input:invalid)]:focus-within:!outline-negative/10 [&:has(input:invalid)]:!bg-negative/10 [&:has(input:invalid)]:!border-negative/70 [&:has(input:invalid)]:hover:!bg-negative/[0.08] [&:has(input:invalid)]:dark:focus-within:!outline-negative/20'
+    w-full border-[1.5px] rounded px-2.5
+    relative flex items-center
+    "
+    (click)="clicked()">
+    <span *ngIf="data?.leftIcon" class="Appkit4-icon {{data?.leftIcon}} opacity-60 me-2 {{data?.label && contentPopulated ? 'relative top-[5px]' : ''}}"></span>
+    <ngx-floating-label *ngIf="data?.label" [fieldFocus]="fieldFocus" [contentPopulated]="contentPopulated" [leftIcon]="!!data?.leftIcon">{{ data?.label }}</ngx-floating-label>
+    <ng-content></ng-content>
+</div>

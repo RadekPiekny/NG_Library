@@ -1,0 +1,6 @@
+<form [formGroup]="form" class="flex flex-col gap-3">
+  <ngx-input-number formControlName="month" label="month" [max]="12"></ngx-input-number>
+  <ngx-input-number formControlName="year" label="year"></ngx-input-number>
+  <ngx-input-date label="Disable from" formControlName="disableFrom"></ngx-input-date>
+  <ngx-input-date label="Disable to" formControlName="disableTo"></ngx-input-date>
+</form>

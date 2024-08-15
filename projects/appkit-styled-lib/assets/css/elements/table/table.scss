@@ -1,0 +1,22 @@
+table.ngx:not(.hljs-ln) {
+  border-radius: .25rem;
+  border-collapse: collapse;
+  tr {
+    padding: .5rem;
+    th {
+      font-size: smaller;
+      color: var(--text-color-active);
+      padding: .5rem 2rem;
+      text-transform: capitalize;
+    }
+    td {
+      padding: .5rem 2rem;
+    }
+    &:nth-child(even) {
+      background-color: rgba(255,255,255,.02);
+    }
+    &:not(:first-child):hover {
+      background-color: rgba(var(--data-mode-inverse-color-rgb),0.03);
+    }
+  }
+}

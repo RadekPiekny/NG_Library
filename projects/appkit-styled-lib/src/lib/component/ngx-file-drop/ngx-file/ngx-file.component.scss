@@ -1,0 +1,19 @@
+.file-icon {
+  display: inline-block;
+  position: relative;
+  width: 32px;
+  div {
+    position: absolute;
+    top: 35%;
+    left: 0;
+    background-color: #d04a02;
+    border-radius: 2px;
+    width: 70%;
+    height: 14px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: smaller;
+    color: white;
+  }
+}

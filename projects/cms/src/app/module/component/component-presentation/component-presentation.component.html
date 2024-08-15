@@ -1,0 +1,68 @@
+
+<div *ngIf="ComponentGroups$ | async as ComponentGroups" class="py-5 px-8 mx-auto">
+    <div *ngFor="let group of ComponentGroups" class="p-5">
+        <div class="mb-2 text-3xl font-semibold flex relative">
+            <span class="w-1 h-full bg-primary absolute -left-5"></span>
+            {{group.name}}
+            <button class="ml-auto" [menu]="groupMenu">
+                <span class="Appkit4-icon icon-vertical-more-outline"></span>
+            </button>
+            <ng-template #groupMenu>
+                <div class="shadow dark:bg-neutral-800 bg-white p-3 my-1 flex flex-col">
+                    <ngx-button variation="transparent" [routerLink]="['editor','new']" [queryParams]="{groupId: group.id}" cssClass="w-full !justify-start">
+                        <span class="Appkit4-icon icon-plus-outline"></span>
+                        <span class="ml-3">new component</span>
+                    </ngx-button>                    
+                    <ngx-button variation="transparent" (click)="deleteGroup(group.id)" cssClass="w-full !justify-start">
+                        <span class="Appkit4-icon icon-delete-outline"></span>
+                        <span class="ml-3">delete group</span>
+                    </ngx-button>
+                </div>
+            </ng-template>
+        </div>
+        <p class="text-neutral-600 dark:text-neutral-400 max-w-3xl">Build complete web applications with stunning and ready-to-use Tailwind UI components crafted for Web Apps. Application UI consists of - blogs, cards, contact sections, special pages, footer sections, modals, navbar & menus, paginations, auth pages, data tables and more.</p>
+        <div class="flex flex-wrap w-full gap-5 py-5">
+
+            <div *ngFor="let component of group.reusableComponents" 
+                class="
+                bg-neutral-200 dark:bg-neutral-800 bg-opacity-25 dark:bg-opacity-50
+                flex flex-col
+                rounded-md
+                hover:shadow-features 
+                dark:hover:shadow-features-dark">
+                <div class="py-3 flex text-center text-neutral-600 dark:text-neutral-300 border-b border-neutral-200 dark:border-neutral-800">
+                    <div class="w-8"></div>
+                    <span class="m-auto">{{component.name}}</span>
+                    <div class="w-8 flex justify-center">
+                        <button [menu]="componentMenu">
+                            <span class="Appkit4-icon icon-vertical-more-outline"></span>
+                        </button>
+                        <ng-template #componentMenu>
+                            <div class="shadow dark:bg-neutral-800 bg-white py-3 my-1">
+                                <button class="flex align-center w-full transparent px-3 py-2" [routerLink]="['editor',component.id]" [queryParams]="{groupId: group.id}">
+                                    <span class="Appkit4-icon icon-edit-outline"></span>
+                                    <span class="ml-3">Edit</span>
+                                </button>
+                                <button class="flex align-center w-full transparent px-3 py-2" [routerLink]="['editor',component.id]" [queryParams]="{skeleton: true}">
+                                    <span class="Appkit4-icon icon-edit-outline"></span>
+                                    <span class="ml-3">Edit skeleton</span>
+                                </button>
+                                <button class="flex text-red-600 align-center w-full transparent px-3 py-2" (click)="deleteComponent(component.id)">
+                                    <span class="Appkit4-icon  icon-delete-outline"></span>
+                                    <span class="ml-3">Delete</span>
+                                </button>
+                                
+                            </div>
+                        </ng-template>
+                    </div>
+                </div>
+                <div class="flex justify-center items-center flex-1 p-5 w-72 ">
+                    <container-edit *ngIf="component.webBlocksComponent; else nope" [data]="component" class="pointer-events-none"></container-edit>
+                    <ng-template #nope>
+                        <div class="text-neutral-700 text-2xl">Skeleton unavailable</div>
+                    </ng-template>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

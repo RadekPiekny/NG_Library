@@ -1,0 +1,62 @@
+<div>
+  <form [formGroup]="controls">
+    <input
+      id="size"
+      type="checkbox"
+      class="toggle x-small mr-2"
+      formControlName="showSize"
+      label="show sizes"
+    />
+    <input
+      id="name"
+      type="checkbox"
+      class="toggle x-small mr-2"
+      formControlName="showName"
+      label="show names"
+    />
+    <input
+      id="ext"
+      type="checkbox"
+      class="toggle x-small mr-2"
+      formControlName="showExtension"
+      label="show extension"
+    />
+
+    <label for="file-upload" class="file-upload"> browse </label>
+    <input
+      id="file-upload"
+      type="file"
+      multiple
+      (change)="browseFile($event)"
+    />
+  </form>
+  <div
+    class="file-zone"
+    dropZone
+    (fileDropped)="onSelectFile($event)"
+    [class.ngx-control-disabled]="disabled"
+  >
+    <div class="browse-zone" *ngIf="editable">
+      <span class="mt-3">drag and drop zone</span>
+    </div>
+    <ul class="file-list d-flex" [@listAnimationFromLeft]="fileList.length">
+      <li *ngFor="let file of fileList; let i = index">
+        <ngx-file-card
+          *ngIf="file"
+          [file]="file"
+          [showSize]="controls.get('showSize')?.value"
+          [showName]="controls.get('showName')?.value"
+          [showExtension]="controls.get('showExtension')?.value"
+          previewSize="140px"
+          @slideFromLeft
+        >
+          <button type="button" (click)="download(file)" class="content-btn">+</button>
+          <button type="button" *ngIf="editable" (click)="deleteFile(i)" class="content-btn">
+            -
+          </button>
+        </ngx-file-card>
+      </li>
+    </ul>
+    <input type="file" multiple />
+  </div>
+</div>

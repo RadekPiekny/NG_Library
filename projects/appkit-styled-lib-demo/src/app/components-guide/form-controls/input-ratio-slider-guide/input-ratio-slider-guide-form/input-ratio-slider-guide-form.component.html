@@ -1,0 +1,35 @@
+<form [formGroup]="form" class="flex flex-col gap-4">
+    <ngx-input-number label="Min" formControlName="min"></ngx-input-number>
+    <ngx-input-number label="Max" formControlName="max"></ngx-input-number>
+    <ngx-input-number label="Step" formControlName="step"></ngx-input-number>
+    <ngx-input-toggle label="Show scale" formControlName="showScale"></ngx-input-toggle>
+    <ngx-input-toggle label="Disabled" formControlName="disabled"></ngx-input-toggle>
+    <div formArrayName="sliders" class="my-2">
+        <div class="flex">
+            <h3 class="text-left text-xl mr-auto">Sliders:</h3>
+            <ngx-button variation='text' compact icon (click)="addSlider()">+</ngx-button>
+        </div>
+        <ng-container *ngFor="let slider of sliders.controls; let i = index">
+            <div [formGroupName]="i" class="flex items-center gap-2">
+                <ngx-input-number label="Value" formControlName="value"></ngx-input-number>
+                <ngx-button variation='text' negative compact icon (click)="deleteSlider(i)">
+                    <span class="Appkit4-icon icon-delete-outline"></span>
+                </ngx-button>
+                
+            </div>
+        </ng-container>
+    </div>
+    <div formArrayName="segments" class="my-2">
+        <h3 class="text-left text-xl">Segments:</h3>
+        <div class="flex flex-wrap mt-2 gap-2">
+            <ng-container *ngFor="let segment of segments.controls; let i = index" >
+                <div [formGroupName]="i">
+                    <div class="w-12 h-8 rounded {{segments.controls[i].value.cssClass}}" [menu]="colorMenu"></div>
+                    <ng-template #colorMenu>
+                        <rp-color-picker (colorChange)="colorChange(i,$event)"></rp-color-picker>
+                    </ng-template>
+                </div>
+            </ng-container>
+        </div>
+    </div>
+</form>

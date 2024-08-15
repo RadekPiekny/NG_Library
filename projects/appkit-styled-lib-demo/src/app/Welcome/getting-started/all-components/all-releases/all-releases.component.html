@@ -1,0 +1,89 @@
+<div class="flex flex-col gap-8">
+  <div class="bg-white dark:bg-neutral-850 rounded-md p-4 block relative">
+    <div class="bg-white dark:bg-neutral-850 absolute left-7 top-0 -translate-y-1/2 rounded px-6 py-1 flex items-center font-bold">
+      <img src="./assets/angular-logo.svg"><span class="ms-1">{{angularVersion}}</span>
+    </div>
+    <ngx-accordion >
+      <ng-container *ngFor="let item of data[0]; let i=index">
+        <div class="flex items-baseline my-2" *ngIf="item.visible !== false">
+          <div class="whitespace-nowrap py-1 px-2 flex gap-1 items-center w-28">
+            <span class="text-xs h-10 leading-10 opacity-60">
+              <ng-container *ngIf="item.date; else dev">
+                {{item.date | date}}
+              </ng-container>
+              <ng-template #dev>
+                In development
+              </ng-template>
+            </span>
+            <span *ngIf="item.breakingChange" class="font-appkit4-font icon-alert-fill text-negative dark:text-negative-lighten-200" tooltip="Breaking changes"></span>
+          </div>
+          <ngx-accordion-item-btn  [state]="i === 0 ? 'expand' : null" [title]="item.version.major + '.' + item.version.minor + '.' + item.version.patch" class="w-full" >
+            <ul class="px-6">
+              <li *ngFor="let featureItem of item.features" class="leading-8 flex items-baseline">
+                <div class="text-xs opacity-60 pt-1">              
+                  <ng-container *ngIf="featureItem.type === 'bug'">
+                    <span class="Appkit4-icon icon-service-fill text-negative" tooltip="bug"></span>
+                  </ng-container>
+                  <ng-container *ngIf="featureItem.type === 'update'">
+                    <span class="Appkit4-icon icon-pencil-outline" tooltip="update"></span>
+                  </ng-container>
+                </div>
+                <p class="ms-3">
+                  {{featureItem.description}}
+                  <ng-container *ngIf="featureItem.breakingChange">
+                    <ngx-badge class="inline-block" sentiment="negative">breaking</ngx-badge>
+                  </ng-container>
+                </p>
+              </li>
+            </ul>
+          </ngx-accordion-item-btn>
+        </div>
+      </ng-container>
+    </ngx-accordion>
+  </div>
+  
+  <div class="bg-white dark:bg-neutral-850 rounded-md p-4 block relative">
+    <div class="bg-white dark:bg-neutral-850 absolute left-7 top-0 -translate-y-1/2 rounded px-6 py-1 flex items-center font-bold">
+      <img src="./assets/angular-logo.svg"><span class="ms-1">{{angularPreviewsVersion}}</span>
+    </div>
+    <ngx-accordion >
+      <ng-container *ngFor="let version of dataVersion4_5">
+        <ng-container *ngFor="let item of version; let i=index">  
+          <div class="flex items-baseline my-2">
+            <div class="whitespace-nowrap py-1 px-2 flex gap-1 items-center w-28">
+              <span class="text-xs h-10 leading-10 opacity-60">
+                <ng-container *ngIf="item.date; else dev">
+                  {{item.date | date}}
+                </ng-container>
+                <ng-template #dev>
+                  In development
+                </ng-template>
+              </span>
+              <span *ngIf="item.breakingChange" class="font-appkit4-font icon-alert-fill text-negative dark:text-negative-lighten-200" tooltip="Breaking changes"></span>
+            </div>
+            <ngx-accordion-item-btn  [state]="i === 0 ? 'expand' : null" [title]="item.version.major + '.' + item.version.minor + '.' + item.version.patch" class="w-full">
+              <ul class="px-6">
+                <li *ngFor="let featureItem of item.features" class="leading-8 flex items-baseline">
+                  <div class="text-xs opacity-60 pt-1">              
+                    <ng-container *ngIf="featureItem.type === 'bug'">
+                      <span class="Appkit4-icon icon-service-fill text-negative" tooltip="bug"></span>
+                    </ng-container>
+                    <ng-container *ngIf="featureItem.type === 'update'">
+                      <span class="Appkit4-icon icon-pencil-outline" tooltip="update"></span>
+                    </ng-container>
+                  </div>
+                  <p class="ms-3">
+                    {{featureItem.description}}
+                    <ng-container *ngIf="featureItem.breakingChange">
+                      <ngx-badge class="inline-block" sentiment="negative">breaking</ngx-badge>
+                    </ng-container>
+                  </p>
+                </li>
+              </ul>
+            </ngx-accordion-item-btn>
+          </div>
+        </ng-container>
+      </ng-container>
+    </ngx-accordion>
+  </div>
+</div>

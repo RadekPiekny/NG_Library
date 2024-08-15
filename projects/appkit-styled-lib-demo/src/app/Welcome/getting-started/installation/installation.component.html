@@ -1,0 +1,300 @@
+<ngx-accordion class="flex flex-col gap-4 bg-white dark:bg-neutral-850">
+    <ngx-accordion-item (stateChange)="stateChange($event,0)">
+        <div header class=" w-full">
+            <process-header [number]="1">
+                <span h>Template npmrc</span>
+                <span class="text-xs opacity-70">Creation of auth files</span>
+                <div class="ms-auto">
+                    <span class="Appkit4-icon icon-right-chevron-outline transition-transform {{states[0] === 'expand' ? 'rotate-90' : ''}}"></span>
+                </div>
+            </process-header>
+        </div>
+        <div class=" px-6 py-2">
+            <p>
+                Once you've created your Angular project, it's essential to establish a template for the project's <code>.npmrc</code> file. This template, named <code>template.npmrc</code>, should reside in the root of your Angular application.
+            </p>
+            <br>
+            <p>Remember, the <code>template.npmrc</code> file serves as a blueprint for other developers working on the project. It allows them to create their own <code>.npmrc</code> file, which is necessary for library downloads.</p>
+            <p>
+                It's crucial to include the <code>template.npmrc</code> in your Git repository so that everyone has access to it. 
+            </p><br>
+            <p>Content of the templace.npmrc:</p>
+            <pre class="bg-neutral-100 dark:bg-neutral-750 flex my-2">
+                <code [highlight]="npmrcTemplate" [languages]="['DOS']" [lineNumbers]="false"></code>
+            </pre>
+        </div>
+    </ngx-accordion-item>
+    <ngx-accordion-item (stateChange)="stateChange($event,1)">
+        <process-header [number]="2" header class=" w-full">
+            <span h>Personal npmrc</span>
+            <span class="text-xs opacity-70">Creation personal npmrc for authentification</span>
+            <div class="ms-auto">
+                <span class="Appkit4-icon icon-right-chevron-outline transition-transform {{states[1] === 'expand' ? 'rotate-90' : ''}}"></span>
+            </div>
+        </process-header>
+        <div class=" px-6 py-2">
+            <ol class="list-disc ms-4">
+                <li>Create copy of tempalte.npmrc</li>
+                <li>Rename it to .npmrc</li>
+            </ol>
+            <br>
+            <p>Keep in mind, the <code>.npmrc</code> file is a <em>personal configuration</em> and should not be committed to Git. Make sure to adjust your Git ignore settings accordingly to exclude <code>.npmrc</code> files.</p>
+        </div>
+    </ngx-accordion-item>
+    <ngx-accordion-item (stateChange)="stateChange($event,2)">
+        <process-header [number]="3" header class=" w-full">
+            <span h>Authentification</span>
+            <span class="text-xs opacity-70">Auth to CZ Software Development</span>
+            <div class="ms-auto">
+                <span class="Appkit4-icon icon-right-chevron-outline transition-transform {{states[2] === 'expand' ? 'rotate-90' : ''}}"></span>
+            </div>
+        </process-header>
+        <div class=" px-6 py-2">
+            <ol class="list-decimal ms-4">
+                <li>Open a terminal and use this command to authentificate:
+                    <pre class="bg-neutral-100 dark:bg-neutral-750 flex my-2">
+                        <code [highlight]="vstsNpmAuth" [languages]="['DOS']" [lineNumbers]="false"></code>
+                    </pre>
+                </li>
+                <li>if vsts-npm-auth is not known command then run:
+                    <pre class="bg-neutral-100 dark:bg-neutral-750 flex my-2">
+                        <code [highlight]="installNpmrcAuth" [languages]="['DOS']" [lineNumbers]="false"></code>
+                    </pre>
+                    and then try again the first command
+                </li>
+                <li>
+                    There might be issues regarding the connection. If so then try:
+                    <ol class="list-disc ms-6">
+                        <li>Check network first</li>
+                        <li>Disable VPN</li>
+                        <li>If you are on office wi-fi try cell-phone hotspot.</li>
+                    </ol>
+                </li>
+            </ol>
+        </div>
+    </ngx-accordion-item>
+    <ngx-accordion-item (stateChange)="stateChange($event,3)">
+        <process-header [number]="4" header class=" w-full">
+            <span h>Stylesheets import</span>
+            <span class="text-xs opacity-70">Stylesheets from the library</span>
+            <div class="ms-auto">
+                <span class="Appkit4-icon icon-right-chevron-outline transition-transform {{states[3] === 'expand' ? 'rotate-90' : ''}}"></span>
+            </div>
+        </process-header>
+        <div class=" w-full px-6 py-2">
+            <p>
+                In angular.json in the project locate styles: architect -> build -> options -> styles
+                and import these stylesheets:
+            </p>
+            <pre class="bg-neutral-100 dark:bg-neutral-750 flex my-2">
+                <code [highlight]="styles" [languages]="['TS']" [lineNumbers]="false"></code>
+            </pre>
+        </div>
+    </ngx-accordion-item>
+    <ngx-accordion-item (stateChange)="stateChange($event,4)">
+        <process-header [number]="5" header class=" w-full">
+            <span h>Angular animations import</span>
+            <span class="text-xs opacity-70">Standard angular animation module</span>
+            <div class="ms-auto">
+                <span class="Appkit4-icon icon-right-chevron-outline transition-transform {{states[4] === 'expand' ? 'rotate-90' : ''}}"></span>
+            </div>
+        </process-header>
+        <div class=" w-full px-6 py-2">
+            <p>
+                For certain components it is required to have BrowserAnimationsModule in app.module.ts
+            </p>
+            <pre class="bg-neutral-100 dark:bg-neutral-750 flex my-2">
+                <code [highlight]="browserAnimation" [languages]="['TS']" [lineNumbers]="false"></code>
+            </pre>
+        </div>
+    </ngx-accordion-item>
+    <ngx-accordion-item (stateChange)="stateChange($event,5)">
+        <process-header [number]="6" header class=" w-full">
+            <span h>Dependency installation</span>
+            <span class="text-xs opacity-70">Tailwind dependency installation</span>
+            <div class="ms-auto">
+                <span class="Appkit4-icon icon-right-chevron-outline transition-transform {{states[5] === 'expand' ? 'rotate-90' : ''}}"></span>
+            </div>
+        </process-header>
+        <div class=" w-full px-6 py-2">
+            <p>
+                The library use mostly just angular except for tailwind. It also use tree-shaking so that unused CSS wont be part of the final bundle. 
+            </p>
+            <p>That is also the reason why it is required to update tailwind config with every component that is used in the project</p>
+            <ol class="list-decimal ms-4">
+                <li>
+                    <pre class="bg-neutral-100 dark:bg-neutral-750 flex my-2">
+                        <code [highlight]="tailwindInstall" [languages]="['DOS']" [lineNumbers]="false"></code>
+                    </pre>
+                </li>
+                <li>
+                    <pre class="bg-neutral-100 dark:bg-neutral-750 flex my-2">
+                        <code [highlight]="angularAnimations" [languages]="['DOS']" [lineNumbers]="false"></code>
+                    </pre>
+                </li>
+                <li>
+                    <pre class="bg-neutral-100 dark:bg-neutral-750 flex my-2">
+                        <code [highlight]="ngMaterial" [languages]="['CSS']" [lineNumbers]="false"></code>
+                    </pre>
+                    <ol class="list-disc ms-6">
+                        <li>You can either use above snippet and put it into the global stylesheet</li>
+                        <li>Or you can use styles in angular.json</li>
+                    </ol>
+                </li>
+            </ol>
+
+        </div>
+    </ngx-accordion-item >
+    <ngx-accordion-item (stateChange)="stateChange($event,6)">
+        <process-header [number]="7" header class=" w-full">
+            <span h>Installing library NPM package</span>
+            <div class="ms-auto">
+                <span class="Appkit4-icon icon-right-chevron-outline transition-transform {{states[6] === 'expand' ? 'rotate-90' : ''}}"></span>
+            </div>
+        </process-header>
+        <div class=" w-full px-6 py-2">
+            <pre class="bg-neutral-100 dark:bg-neutral-750 flex my-2">
+                <code [highlight]="installLibraryNpmPackage" [languages]="['TS']" [lineNumbers]="false"></code>
+            </pre>
+        </div>
+    </ngx-accordion-item>
+    <ngx-accordion-item (stateChange)="stateChange($event,7)">
+        <process-header [number]="8" header class=" w-full">
+            <span h>Tailwind config</span>
+            <span class="text-xs opacity-70">Configuration of tailwind behavior</span>
+            <div class="ms-auto">
+                <span class="Appkit4-icon icon-right-chevron-outline transition-transform {{states[7] === 'expand' ? 'rotate-90' : ''}}"></span>
+            </div>
+        </process-header>
+        <div class=" w-full px-6 py-2">
+            <p>In order for tailwind to work correctly you have to create a tailwind.config.js file in the root of the application</p>
+            <p>You can use basic configuration as a starter:</p>
+            <pre class="bg-neutral-100 dark:bg-neutral-750 flex my-2">
+                <code [highlight]="tailwindConfig" [languages]="['TS']" [lineNumbers]="false"></code>
+            </pre>
+        </div>
+    </ngx-accordion-item>
+    <ngx-accordion-item (stateChange)="stateChange($event,8)">
+        <process-header [number]="9" header class=" w-full">
+            <span h>theme choice</span>
+            <span class="text-xs opacity-70">Theme configuration</span>
+            <div class="ms-auto">
+                <span class="Appkit4-icon icon-right-chevron-outline transition-transform {{states[8] === 'expand' ? 'rotate-90' : ''}}"></span>
+            </div>
+        </process-header>
+        <div class=" w-full px-6 py-2">
+            <p>It is required to update html tag with data-theme attribute</p>
+            <p>Currently there are 6 themes to choose from:</p>
+            <br>
+            <ol class="flex gap-8">
+                <li class="flex gap-2 items-center"><span class="h-4 w-4 bg-blue"></span> blue</li>
+                <li class="flex gap-2 items-center"><span class="h-4 w-4 bg-orange"></span>orange</li>
+                <li class="flex gap-2 items-center"><span class="h-4 w-4 bg-teal"></span>teal</li>
+                <li class="flex gap-2 items-center"><span class="h-4 w-4 bg-pink"></span>pink</li>
+                <li class="flex gap-2 items-center"><span class="h-4 w-4 bg-red"></span>red</li>
+                <li class="flex gap-2 items-center"><span class="h-4 w-4 bg-black"></span>black</li>
+            </ol>
+            <br>
+            <pre class="bg-neutral-100 dark:bg-neutral-750 flex my-2">
+                <code [highlight]="htmlStuff" [languages]="['TS']" [lineNumbers]="false"></code>
+            </pre>
+        </div>
+    </ngx-accordion-item>
+    <ngx-accordion-item (stateChange)="stateChange($event,9)">
+        <process-header [number]="10" header class=" w-full">
+            <span h>Tailwind imports</span>
+            <span class="text-xs opacity-70">Imports of required tailwind modules in global stylesheet</span>
+            <div class="ms-auto">
+                <span class="Appkit4-icon icon-right-chevron-outline transition-transform {{states[9] === 'expand' ? 'rotate-90' : ''}}"></span>
+            </div>
+        </process-header>
+        <div class=" w-full px-6 py-2">
+            <p>It is required to have tailwind modules in the global stylesheet styles.scss or styles.css order</p>
+            <p>For better readability, you would put these ideally at the top of the file</p>
+            <pre class="bg-neutral-100 dark:bg-neutral-750 flex my-2">
+                <code [highlight]="tailwindModules" [languages]="['CSS']" [lineNumbers]="false"></code>
+            </pre>
+        </div>
+    </ngx-accordion-item>
+</ngx-accordion>
+<div class="bg-neutral-300 dark:bg-neutral-700 h-px w-full mt-4"></div>
+<h1 class="text-left text-2xl mb-4">Optional:</h1>
+<ngx-accordion class="overflow-hidden flex flex-col gap-4" >
+    <ngx-accordion-item (stateChange)="optionalStateChange($event,0)">
+        <process-header [number]="1" [optional]="true" header class=" w-full">
+            <span h>Dark mode</span>
+            <span class="text-xs opacity-70">Light settings from the library</span>
+            <div class="ms-auto">
+                <span class="Appkit4-icon icon-right-chevron-outline transition-transform {{optionalStates[0] === 'expand' ? 'rotate-90' : ''}}"></span>
+            </div>
+        </process-header>
+        <div class=" w-full px-6 py-2">
+            <p>Light mode should be OS driven first only then from interaction in the application iteself.</p>
+            <p>The library provide a service that would automatically detect change in OS settings and change the application accordingly</p>
+            <p>The service can provide access to lightmode observable and method to change if the app would have custom switcher</p>
+            <br>
+            <p>In order to use dark/light mode in the application it is required to:</p>
+            <br>
+            <ol class="list-decimal ms-4">
+                <li>
+                    update body 
+                    <pre class="bg-neutral-100 dark:bg-neutral-750 flex my-2">
+                        <code [highlight]="body" [languages]="['html']" [lineNumbers]="false"></code>
+                    </pre>
+                </li>
+                <li>
+                    Update app.module.ts
+                    <pre class="bg-neutral-100 dark:bg-neutral-750 flex my-2">
+                        <code [highlight]="appModuleDarkModeConstructor" [languages]="['TS']" [lineNumbers]="false"></code>
+                    </pre>
+                </li>
+                <li>
+                    Update app.component.ts
+                    <pre class="bg-neutral-100 dark:bg-neutral-750 flex my-2">
+                        <code [highlight]="appComponentDarkModeConstructor" [languages]="['TS']" [lineNumbers]="false"></code>
+                    </pre>
+                    
+                </li>
+                <li>
+                    Update app.component.html
+                    <pre class="bg-neutral-100 dark:bg-neutral-750 flex my-2">
+                        <code [highlight]="appComponentHtmlDarkModeConstructor" [languages]="['TS']" [lineNumbers]="false"></code>
+                    </pre>
+                </li>
+            </ol>
+
+        </div>
+    </ngx-accordion-item>
+    <ngx-accordion-item (stateChange)="optionalStateChange($event,1)">
+        <process-header [number]="2" [optional]="true" header class=" w-full">
+            <span h>Dynamic theme</span>
+            <span class="text-xs opacity-70">Light settings from the library</span>
+            <div class="ms-auto">
+                <span class="Appkit4-icon icon-right-chevron-outline transition-transform {{optionalStates[1] === 'expand' ? 'rotate-90' : ''}}"></span>
+            </div>
+        </process-header>
+        <div class=" w-full px-6 py-2">
+            <p>The library offers the capability to manually switch themes using a dedicated service</p>
+            <p>"Please bear in mind that implementing a manual theme switcher in the application may require additional development time to create custom components.</p>
+            <br>
+            <p>In order to use dynamic theme mode in the application it is required to:</p>
+            <br>
+            <ol class="list-decimal ms-4">
+                <li>
+                    Update component ts file that will contain theme switcher
+                    <pre class="bg-neutral-100 dark:bg-neutral-750 flex my-2">
+                        <code [highlight]="appComponentThemeModeConstructorTs" [languages]="['TS']" [lineNumbers]="false"></code>
+                    </pre>
+                    
+                </li>
+                <li>
+                    Update component html that will contain theme switcher and its function(div with primary backgroud)
+                    <pre class="bg-neutral-100 dark:bg-neutral-750 flex my-2">
+                        <code [highlight]="appComponentThemeModeConstructorHtml" [languages]="['html']" [lineNumbers]="false"></code>
+                    </pre>
+                    
+                </li>
+            </ol>
+        </div>
+    </ngx-accordion-item>
+</ngx-accordion>

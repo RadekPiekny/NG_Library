@@ -1,0 +1,74 @@
+<div class="text-2xl">Modal</div>
+<p class="opacity-80">A modal window is a graphical control element that is subordinate to the application's main window. A modal window creates a mode that disables the main window but keeps it displayed with the modal window as the child in front of it.</p>
+<div class="flex flex-col py-4">
+    <component-showcase>
+        <ng-container visual>
+            <ngx-button variation='primary' (click)="openModal()">open</ngx-button>
+            
+            <ngx-modal [open]="form.value.open" [autoClose]="form.value.autoClose" (closeChange)="closeModal()">
+                <div class="flex items-start justify-between p-4 border-b rounded-t dark:border-neutral-600">
+                    <h3 class="text-xl font-semibold text-neutral-900 dark:text-white">
+                        Terms of Service
+                    </h3>
+                    <button type="button" (click)="closeModal()" class="text-neutral-400 bg-transparent hover:bg-neutral-200 hover:text-neutral-900 rounded text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-neutral-100/5 dark:hover:text-white" data-modal-hide="defaultModal">
+                        <span class="Appkit4-icon icon-close-outline"></span>
+                        <span class="sr-only" >Close modal</span>
+                    </button>
+                    </div>
+                    <!-- Modal body -->
+                    <div class="p-6 space-y-6">
+                    <p class="text-base leading-relaxed text-neutral-500 dark:text-neutral-400">
+                        With less than a month to go before the European Union enacts new consumer privacy laws for its citizens, companies around the world are updating their terms of service agreements to comply.
+                    </p>
+                    <p class="text-base leading-relaxed text-neutral-500 dark:text-neutral-400">
+                        The European Union’s General Data Protection Regulation (G.D.P.R.) goes into effect on May 25 and is meant to ensure a common set of data rights in the European Union. It requires organizations to notify users as soon as possible of high-risk data breaches that could personally affect them.
+                    </p>
+                    </div>
+                    <!-- Modal footer -->
+                    <div class="flex justify-end p-6 space-x-2 border-t border-neutral-200 rounded-b dark:border-neutral-600">
+                    <button class="rounded text-base leading-6 cursor-pointer flex justify-center relative tracking-normal px-4 py-1 dark:text-primary-lighten-200 text-primary hover:bg-primary/20">Decline</button>
+                    <button class="rounded text-base leading-6 cursor-pointer flex justify-center relative tracking-normal px-4 py-1 bg-primary hover:bg-primary-lighten-100">I accept</button>
+                </div>
+            </ngx-modal>
+        </ng-container>
+        <ng-container code>
+            <component-code-show [componentCode]="componentCode"></component-code-show>
+        </ng-container>
+        <modal-guide-form form [form]="form" (formChange)="formChange($event)"></modal-guide-form>
+    </component-showcase>
+    <div class="px-2 py-1 rounded-md bg-white dark:bg-neutral-850 dark:border-neutral-600 transition-all mt-4">
+        <ngx-tab>
+            <ngx-tab-item [active]="activeTab === 'ngx-modal'" (click)="activeTab = 'ngx-modal'">ngx-modal</ngx-tab-item>
+            <ngx-tab-item [active]="activeTab === 'ngx-button'" (click)="activeTab = 'ngx-button'">ngx-button</ngx-tab-item>
+        </ngx-tab>
+        <table class="w-full">
+          <thead>
+            <tr>
+              <th class="text-left p-3 rounded transition-all">Property name</th>
+              <th class="text-left p-3 rounded transition-all">Type</th>
+              <th class="text-left p-3 rounded transition-all">Data type</th>
+              <th class="text-left p-3 rounded transition-all">Description</th>
+            </tr>
+          </thead>
+          <tbody class="border-spacing-1" *ngIf="activeTab === 'ngx-modal'">
+            <tr *ngFor="let row of ngx_modalData" class="hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-all" [ngClass]="{'odd:bg-neutral-50 dark:odd:bg-neutral-700': striped}">
+              <td class="text-left p-3 h-fit first:rounded-l last:rounded-r" [ngClass]="{'!py-1': condensed}">{{ row.name }}</td>
+              <td class="text-left p-3 h-fit first:rounded-l last:rounded-r" [ngClass]="{'!py-1': condensed}">{{ row.type }}</td>
+              <td class="text-left p-3 h-fit first:rounded-l last:rounded-r" [ngClass]="{'!py-1': condensed}">{{ row.dataType }}</td>
+              <td class="text-left p-3 h-fit first:rounded-l last:rounded-r" [ngClass]="{'!py-1': condensed}">{{ row.description }}</td>
+            </tr>
+          </tbody>
+          <tbody class="border-spacing-1" *ngIf="activeTab === 'ngx-button'">
+            <tr *ngFor="let row of ngx_buttonData" class="hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-all" [ngClass]="{'odd:bg-neutral-50 dark:odd:bg-neutral-700': striped}">
+              <td class="text-left p-3 h-fit first:rounded-l last:rounded-r" [ngClass]="{'!py-1': condensed}">{{ row.name }}</td>
+              <td class="text-left p-3 h-fit first:rounded-l last:rounded-r" [ngClass]="{'!py-1': condensed}">{{ row.type }}</td>
+              <td class="text-left p-3 h-fit first:rounded-l last:rounded-r" [ngClass]="{'!py-1': condensed}">{{ row.dataType }}</td>
+              <td class="text-left p-3 h-fit first:rounded-l last:rounded-r" [ngClass]="{'!py-1': condensed}">{{ row.description }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    <accessibility-guide [heading]="componentData.accessibility.heading" [list]="componentData.accessibility.items" class="mt-4"></accessibility-guide>
+    <usage-guide [heading]="componentData.use.heading" [list]="componentData.use.items" class="mt-4"></usage-guide>
+    <usage-not-guide [heading]="componentData.useNot.heading" [list]="componentData.useNot.items" class="mt-4"></usage-not-guide>
+</div>

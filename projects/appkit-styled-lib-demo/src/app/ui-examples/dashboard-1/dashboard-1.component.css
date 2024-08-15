@@ -1,0 +1,30 @@
+.gr {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 0.75fr 2fr;
+  gap: 1rem;
+}
+.chart-left-top {
+  grid-column: 1/2;
+  grid-row: 1/2;
+}
+.chart-left-bot {
+  grid-column: 1/2;
+  grid-row: 2/4;
+}
+.chart-right-top {
+  grid-column: 2/4;
+  grid-row: 1/2;
+}
+.data-left {
+  grid-column: 2/3;
+  grid-row: 2/3;
+}
+.data-right {
+  grid-column: 3/4;
+  grid-row: 2/3;
+}
+.chart-right-bot {
+  grid-column: 2/4;
+  grid-row: 3/4;
+}

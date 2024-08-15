@@ -1,0 +1,37 @@
+input[type="checkbox"] {
+    appearance: none;
+    opacity: .75;
+    cursor: pointer;
+    &::before {
+        font-family: appkit4-font;
+        content: "\e98f";
+    }
+}
+  
+input[type="checkbox"]:checked {
+    opacity: 1;
+    &::before {
+        font-family: appkit4-font;
+        content: "\e880";
+    }
+}
+
+input[type="checkbox"]:indeterminate {
+    opacity: 1;
+    &::before {
+        font-family: appkit4-font;
+        content: "\e98d";
+    }
+}
+
+
+body[data-mode=dark] {
+    input[type="checkbox"]:checked, input[type="checkbox"]:indeterminate {
+        color: var(--color-primary-lighten-200);
+    }
+}
+body[data-mode="light"] {
+    input[type="checkbox"]:checked, input[type="checkbox"]:indeterminate {
+        color: var(--color-primary);
+    }
+}

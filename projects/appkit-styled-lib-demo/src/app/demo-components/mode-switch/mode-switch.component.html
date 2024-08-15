@@ -1,0 +1,20 @@
+<form [formGroup]="switch">
+    <ul class="flex flex-row justify-around items-baseline rounded bg-neutral-200 dark:bg-neutral-700 mb-1">
+        <li class="inline-block m-1 cursor-pointer relative">
+            <input type="radio" formControlName="mode" name="mode" value="default"
+            class="peer absolute !h-full !w-full opacity-0 cursor-pointer !border-0 disabled:cursor-not-allowed">
+            <a href=""
+            class="select-none inline-block px-3 py-1 w-full h-full rounded dark:text-gray-200 hover:bg-neutral-300 peer-checked:bg-primary peer-checked:text-white peer-hover:bg-black-200 peer-checked:peer-hover:bg-primary dark:peer-hover:bg-black-800 dark:peer-checked:peer-hover:bg-primary peer-disabled:text-neutral-400 peer-disabled:peer-hover:bg-neutral-200 dark:peer-disabled:text-neutral-500 dark:peer-disabled:peer-hover:bg-neutral-700">
+                Vanilla
+            </a>
+        </li>
+        <li class="inline-block m-1 cursor-pointer relative">
+            <input type="radio" formControlName="mode" name="mode" value="angular"
+            class="peer absolute !h-full !w-full opacity-0 cursor-pointer !border-0 disabled:cursor-not-allowed">
+            <a href=""
+            class="select-none inline-block px-3 py-1 w-full h-full rounded dark:text-gray-200 hover:bg-neutral-300 dark:peer-hover:bg-neutral-600 peer-checked:bg-primary peer-checked:text-white peer-hover:bg-black-200 peer-checked:peer-hover:bg-primary dark:peer-checked:peer-hover:bg-primary peer-disabled:text-neutral-400 peer-disabled:peer-hover:bg-neutral-200 dark:peer-disabled:text-neutral-500 dark:peer-disabled:peer-hover:bg-neutral-700">
+                Angular
+            </a>
+        </li>
+    </ul>
+</form>

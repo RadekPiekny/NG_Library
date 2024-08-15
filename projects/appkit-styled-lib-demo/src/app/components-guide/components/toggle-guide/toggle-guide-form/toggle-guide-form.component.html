@@ -1,0 +1,8 @@
+<form [formGroup]="form" class="flex flex-col gap-4">
+    <div class="flex flex-col gap-3">
+        <ngx-input-text id="label" label="Label" size="m" formControlName="label" name="label"></ngx-input-text>
+        <div class="text-l">Modifiers</div>
+        <ngx-input-checkbox label="Indicator" name="indicator" formControlName="indicator"></ngx-input-checkbox>
+        <ngx-input-toggle label="Disabled" formControlName="disabled"></ngx-input-toggle>
+    </div>
+</form>

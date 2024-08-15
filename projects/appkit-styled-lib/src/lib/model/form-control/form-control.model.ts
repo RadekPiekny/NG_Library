@@ -1,0 +1,1 @@
+export type FormControlSize = 's' | 'sm' | 'xs' | 'm' | 'auto';

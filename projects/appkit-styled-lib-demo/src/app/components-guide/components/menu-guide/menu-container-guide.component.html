@@ -1,0 +1,16 @@
+<div class="text-2xl">Accordion</div>
+<p class="opacity-80">An accordion is an element comprised of a vertically stacked list of items such as labels. Each item can be expanded or collapsed to either display or hide the items below it.</p>
+<div class="flex flex-col py-4">
+    <component-showcase>
+        <ng-container visual>
+            <ngx-menu-container>content</ngx-menu-container>
+        </ng-container>
+        <ng-container code>
+            <component-code-show [componentCode]="componentCode"></component-code-show>
+        </ng-container>
+        <menu-container-guide-form form [form]="form" (formChange)="formChange($event)"></menu-container-guide-form>
+    </component-showcase>
+    <accessibility-guide [heading]="componentData.accessibility.heading" [list]="componentData.accessibility.items" class="mt-4"></accessibility-guide>
+    <usage-guide [heading]="componentData.use.heading" [list]="componentData.use.items" class="mt-4"></usage-guide>
+    <usage-not-guide [heading]="componentData.useNot.heading" [list]="componentData.useNot.items" class="mt-4"></usage-not-guide>
+</div>

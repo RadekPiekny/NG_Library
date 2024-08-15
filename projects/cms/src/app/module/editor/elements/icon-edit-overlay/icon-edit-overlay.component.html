@@ -1,0 +1,8 @@
+<div class='md-elevation-4dp p-3 my-3' [formGroup]="form" *ngIf="form" @slideFromTop style="max-height: 40vh; max-width: 450px; overflow: auto;">
+    <div class="flex wrap g-3">
+        <button *ngFor="let icon of appkitIconOutline" class="p-3 flex flex-col center icon-presentation" (click)="changeIcon(icon)">
+            <span class="{{icon.cssClass}} ap-font-24 mb-2" aria-hidden="true"></span>
+            <span style="color: var(--color-text-light);">{{icon.description}}</span>
+        </button>
+    </div>
+</div>

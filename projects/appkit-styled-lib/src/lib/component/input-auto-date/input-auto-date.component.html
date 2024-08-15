@@ -1,0 +1,29 @@
+<ng-container *ngIf="periods$ | async as periods">
+    <div class="flex items-center">
+        <ng-container *ngFor="let period of periods; let i = index">
+            <input 
+                #inputs 
+                class="bg-transparent cursor-default outline-none text-center disabled:cursor-not-allowed" 
+                [class.opacity-60]="!period.valid" 
+                [class.text-negative-lighten-200]="!period.valid && !period.canContinue" 
+                type="text" 
+                [ngStyle]="{width: period.width}" 
+                (input)="inputChange($event,period)" 
+                [value]="period.value" 
+                (blur)="onDateBlur(i,$event)" 
+                (click)="inputClick(i,$event)"
+                [disabled]="fc.disabled"
+                [readonly]="_readonly"
+            >
+            <div *ngIf="i < 2" [class.opacity-60]="!period.valid">
+                {{separator}}
+            </div>
+        </ng-container>
+    </div>
+    <div class="flex gap-2" *ngIf="false">
+        <div *ngFor="let i of ugh">
+            <div>{{periods.valid}}</div>
+            <div>{{periods.canContinue}}</div>
+        </div>
+    </div>
+</ng-container>

@@ -1,0 +1,51 @@
+body.rp-theme-1.dark {
+    .vertical-link {
+        user-select: none;
+        .appkiticon {
+            font-size: medium;
+            color: inherit;
+        }
+        color: var(--text-color-inactive);
+        &.level-1 {
+            &.active {
+                color: white;
+                .appkiticon {
+                    //color: var(--rp-theme-1-dark-color-primary-100);
+                }
+                &::before {
+                    background-color: rgba(255,255,255,0.08);
+                }
+            }
+        }
+        &.level-2 {
+            &.active {
+                color: white;
+                background-color: transparent;
+                &::before {
+                    background-color: rgba(255,255,255,0.08);
+                }
+                &::after {
+                    content: "";
+                    position: absolute;
+                    height: 100%;
+                    width: 2px;
+                    max-width: 2px;
+                    top: 0;
+                    left: calc(100% - 2px);
+                    background-color: var(--primary-100);
+                    animation: ffwefew .3s ease-in-out 0s forwards;
+                }
+            }
+            
+        }
+    } 
+}
+
+@keyframes ffwefew {
+    0%   {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}

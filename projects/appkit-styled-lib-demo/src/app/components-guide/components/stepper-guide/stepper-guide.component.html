@@ -1,0 +1,21 @@
+<ngx-stepper>
+    <ngx-stepper-item>
+        <span class="Appkit4-icon icon-air-filter-outline"></span> label 1
+    </ngx-stepper-item>
+    <ngx-stepper-item>
+        label 2
+    </ngx-stepper-item>
+</ngx-stepper>
+
+<hr class="my-4">
+
+<ngx-stepper direction="vertical" (changeVal)="changeOfVertical($event)">
+    <ngx-stepper-item [status]="status">
+        <span class="Appkit4-icon icon-air-filter-outline"></span> label 1
+    </ngx-stepper-item>
+    <ngx-stepper-item [status]="status">
+        label 2
+    </ngx-stepper-item>
+</ngx-stepper>
+
+<ngx-button variation='primary' (click)="changeStatus()">change status</ngx-button>

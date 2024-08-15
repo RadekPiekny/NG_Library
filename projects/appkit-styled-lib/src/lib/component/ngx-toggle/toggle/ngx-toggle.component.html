@@ -1,0 +1,27 @@
+
+
+<ng-container *ngIf="label; else standAlone">
+    <div class="flex gap-4 items-center">
+        <ng-container [ngTemplateOutlet]="toggle"></ng-container>
+        <label [for]="id" class="{{fc.disabled ?  'opacity-70 cursor-not-allowed' : 'cursor-pointer'}}">{{label}}</label>
+    </div>
+</ng-container>
+<ng-template #standAlone>
+    <ng-container [ngTemplateOutlet]="toggle"></ng-container>
+</ng-template>
+
+
+<ng-template #toggle>
+    <label [for]="id" class="rounded-full w-9 h-5 inline-flex items-center px-[2px]  {{fc.disabled ?  'opacity-70 cursor-not-allowed' : 'cursor-pointer'}}" [ngClass]="fc.value ? 'bg-primary dark:bg-primary-lighten-200' : 'bg-neutral-500'">
+        <input type="checkbox" name="" [id]="id" class="appearance-none hidden" (click)="onToggle()">
+        <div class="relative h-4 w-4 rounded-full transition-transform flex justify-center items-center" [ngClass]="fc.value ? 'translate-x-4' : ''" style="background-color: white;">
+            <ng-container *ngIf="indicator && fc.value">
+                <svg width="8px" height="8px" viewBox="0 0 8 8" class="absolute fill-primary dark:fill-primary-lighten-200">
+                    <g stroke-width="1" >
+                        <path d="M3.09980431,8 C2.91193738,8 2.7553816,7.96540253 2.63013699,7.89620758 C2.50489237,7.82701264 2.37964775,7.71257485 2.25440313,7.55289421 L0.234833659,5.04590818 C0.0782778865,4.85429142 0,4.64404524 0,4.41516966 C0,4.18629408 0.0782778865,3.99201597 0.234833659,3.83233533 C0.391389432,3.67265469 0.57925636,3.59281437 0.798434442,3.59281437 C0.944553164,3.59281437 1.07240705,3.6247505 1.18199609,3.68862275 C1.29158513,3.75249501 1.39856491,3.84830339 1.50293542,3.9760479 L3.06849315,5.98802395 L6.46575342,0.463073852 C6.6431833,0.154357951 6.87801696,0 7.1702544,0 C7.38943249,0 7.58251794,0.0691949434 7.74951076,0.20758483 C7.91650359,0.345974717 8,0.532268796 8,0.766467066 C8,0.883566201 7.98173516,0.987358616 7.94520548,1.07784431 C7.9086758,1.16833001 7.85388128,1.27212242 7.78082192,1.38922156 L3.89823875,7.53692615 C3.69993477,7.84564205 3.43378995,8 3.09980431,8 Z"></path>
+                    </g>
+                </svg>
+            </ng-container>
+        </div>
+    </label>
+</ng-template>

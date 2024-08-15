@@ -1,0 +1,13 @@
+<form [formGroup]="form" class="flex flex-col gap-4">
+    <div class="flex flex-col gap-3">
+        <ngx-input-text label="Label" formControlName="label"></ngx-input-text>
+        <ngx-input-text label="lb placeholder" formControlName="placeholder"></ngx-input-text>
+        <ngx-input-number label="Max length" formControlName="maxlength"></ngx-input-number>
+        <ngx-input-number label="Rows" formControlName="rows"></ngx-input-number>
+    </div>
+    <div class="flex flex-col gap-3">
+        <div class="text-l">Modifiers</div>
+        <ngx-input-checkbox label="Resize" formControlName="resize"></ngx-input-checkbox>
+        <ngx-input-toggle label="Focus" formControlName="focus"></ngx-input-toggle>
+    </div>
+</form>

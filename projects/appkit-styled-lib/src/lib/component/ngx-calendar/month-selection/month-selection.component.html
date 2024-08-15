@@ -1,0 +1,10 @@
+<div class="h-full w-full flex flex-col relative">
+    <div class="grid grid-cols-3 grid-rows-4 gap-px flex-1 overflow-auto px-2">
+        <div *ngFor="let month of monthList" class="flex items-center justify-center">
+            <ngx-button variation='secondary' compact (click)="change(month)" *ngIf="month.number === selectedMonth; else notSelected">{{ month.shortName }}</ngx-button>
+            <ng-template #notSelected>
+              <ngx-button variation='transparent' compact (click)="change(month)" >{{ month.shortName }}</ngx-button>
+            </ng-template>
+        </div>
+    </div>
+  </div>

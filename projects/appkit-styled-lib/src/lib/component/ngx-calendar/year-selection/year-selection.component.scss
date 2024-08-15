@@ -1,0 +1,13 @@
+.selected {
+  background-color: rgba(
+    var(--data-mode-inverse-color-rgb),
+    var(--light-opacity)
+  );
+}
+.months {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+::-webkit-scrollbar {
+  width: 3px;
+}

@@ -1,0 +1,14 @@
+<ng-container *ngIf="direction === 'vertical'; else horizontal">
+    <div class="flex flex-col">
+        <ng-container *ngTemplateOutlet="content"></ng-container>
+    </div>
+</ng-container>
+<ng-template #horizontal>
+    <div class="flex">
+        <ng-container *ngTemplateOutlet="content"></ng-container>
+    </div>
+</ng-template>
+
+<ng-template #content>
+    <ng-content></ng-content>
+</ng-template>
